@@ -22,7 +22,7 @@ title: DevUP Solutions Blog
 email: support@devup.solutions
 description: >- # this means to ignore newlines until "baseurl:"
   A blog with news, recomendations, tips and tricks for working with and managing PaaS services in Azure.
-baseurl: "https://blog.devup.solutions" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://blog.devup.solutions" # the base hostname & protocol for your site, e.g. http://example.com
 show_downloads: false
 google_analytics: G-KQ94BCQ324
