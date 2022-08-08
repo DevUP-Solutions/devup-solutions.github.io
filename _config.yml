@@ -31,10 +31,10 @@ github_username: DevUP-Solutions
 linkedin_username: devup-solutions
 #https://www.linkedin.com/company/devup-solutions/
 # Build settings
-#theme: minima #jekyll-theme-slate
+theme: minima #jekyll-theme-slate
 #minima:
 #  skin: dark
-remote_theme: pages-themes/slate@v0.2.0
+#remote_theme: pages-themes/slate@v0.2.0
 disqus:
   shortname: devupblog
 #remote_theme: pages-themes/slate@v0.2.0
