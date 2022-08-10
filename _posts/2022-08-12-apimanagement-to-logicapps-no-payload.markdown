@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "APIM sending requests to LA with no payload!"
+title:  "Issue: APIM sending requests to LA with no payload"
 date:   2022-08-04 11:25:18 +0200
 categories: apim issues
 tags: [API Management, Integration, Logic Apps, Issues]
