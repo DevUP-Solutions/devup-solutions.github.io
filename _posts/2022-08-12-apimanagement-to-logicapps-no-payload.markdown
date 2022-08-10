@@ -1,16 +1,16 @@
 ---
 layout: post
-title:  "Issue: APIM sending requests to LA with no payload"
-date:   2022-08-04 11:25:18 +0200
-categories: apim issues
+title:  "Issue: Logic App recieves no payload from Api Management"
+date:   2022-08-12 12:00:00 +0200
+categories: logicapps issues
 tags: [API Management, Integration, Logic Apps, Issues]
 comments: true
 ---
 
-Our Logic Apps that was behind API Management suddenly started to recieve empty payloads after our instance got the [July, 2022 release](https://github.com/Azure/API-Management/releases/tag/release-service-2022-07). We started an ticket and found out the following.
+Our Logic Apps that was behind API Management suddenly started to recieve empty payloads after our instance got the [July, 2022 release](https://github.com/Azure/API-Management/releases/tag/release-service-2022-07). We started an ticket with Microsoft Support and found out the following.
 
 ## Issue
-When APIM recieves forwards a message to the backend it does so after process the *inbound policies* if it at this point hasen't read the full payload and are not sure that the **Content-Length** header equals the actual payload length. It will add a new header when sending the request to the backend **Transfer-Encoding** and here is where it starts to be problem. The [Logic App trigger dosen't support chunking](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-handle-large-messages), so it ends up triggering the run with an empty payload.
+When Api Management forwards a message to the backend it does so when reaching the **backend** section of the **policies**, nothing new there. But as soon as this section starts there is a short period of time where apim starts reading the request and if it's not read when this "short period" of time is done. It will not wait (performance improvement) but will start sending chunked messages to the backend. This shown by the backend start reciving requests's with the header **Transfer-Encoding** added. Here is where it starts to be a problem if you have Logic apps as backends. Since the [Logic App trigger dosen't support chunking](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-handle-large-messages), so it ends up triggering the run as expected but with an empty payload.
 
 Example output of the trigger action on Logic Apps, with the **Transfer-Encoding** header and no **body** property.
 {% highlight json %}
