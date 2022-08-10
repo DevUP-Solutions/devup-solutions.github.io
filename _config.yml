@@ -28,9 +28,9 @@ permalink: /:categories/:title/
 show_downloads: false
 google_analytics: G-KQ94BCQ324
 social:
-  twitter_username: DevupSolutions
-  github_username: DevUP-Solutions
-  linkedin_username: devup-solutions
+  twitter: DevupSolutions
+  github: DevUP-Solutions
+  linkedin: devup-solutions
 #https://www.linkedin.com/company/devup-solutions/
 # Build settings
 theme: minima #jekyll-theme-slate
