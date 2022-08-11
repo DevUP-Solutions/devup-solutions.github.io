@@ -33,7 +33,7 @@ social:
   linkedin: devup-solutions
 #https://www.linkedin.com/company/devup-solutions/
 # Build settings
-theme: jekyll-theme-slate
+theme: minima
 #minima:
 #  skin: dark
 #remote_theme: pages-themes/slate@v0.2.0
