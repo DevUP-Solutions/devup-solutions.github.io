@@ -1,0 +1,22 @@
+---
+---
+
+@import "minima";
+
+.site-header {
+  border: none;
+  background-color: #00182F;
+}
+
+.logo {
+  width: 150px;
+}
+
+.site-nav .page-link {
+  color: #fff;
+}
+
+@media screen and (max-width: 600px)
+{.site-nav .page-link {
+    color: #111;
+}}
