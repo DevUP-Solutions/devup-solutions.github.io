@@ -2,6 +2,26 @@
 ---
 
 @import "minima";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 1.2em;
+}
+
+.post-title {
+  line-height: 1.2em;
+}
+
+.post-link {
+  line-height: 1.5em;
+}
+
+.page-link {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
 
 .site-header {
   border: none;
@@ -16,7 +36,29 @@
   color: #fff;
 }
 
-@media screen and (max-width: 600px)
-{.site-nav .page-link {
+@media screen and (max-width: 600px) {
+  .site-nav .page-link {
     color: #111;
-}}
+  }
+}
+
+.site-footer {
+  border: none;
+  background-color: #00182F;
+}
+
+.footer-col-wrapper {
+  color: #fff;
+}
+
+a {
+  color: #9ABFF0;
+}
+
+a:visited {
+  color: #9ABFF0;
+}
+
+.svg-icon {
+  fill: #fff;
+}
