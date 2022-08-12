@@ -76,6 +76,3 @@ When this fix was added the issues we had in Logic Apps where solved.
 
 ### Summary
 We encountered this on large messages that where sent to us. But Microsoft Support informed us that our problems already started around 1000 kilobytes. So from now on we will add this fix to all our APIs that potentially will receive a large payload. Hopefully Logic Apps http trigger will support chunked messages in the future.
-
-
-{% include authorMattias.html %}
