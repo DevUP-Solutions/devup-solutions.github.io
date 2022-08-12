@@ -9,7 +9,7 @@ comments: true
 
 Our Logic Apps suddenly started to receive empty payloads from API Management after our APIM instance got the [July, 2022 release](https://github.com/Azure/API-Management/releases/tag/release-service-2022-07). We opened a ticket with Microsoft Support and found out the following:
 
-## Issue
+### Issue
 When API Management forwards a message to the backend it does so when reaching the backend section of the policies. When this section starts there is a short period of time where APIM reads the request body. If APIM fails to read the entire body in this “short period” it will start to send chunked messages (performance improvement) to the backend service. This can be detected when the receiving service starts to get requests with the header Transfer-Encoding: chunked. This is where it starts to be a problem if you have Logic Apps as the receiving service. [Logic App trigger does not support chunking](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-handle-large-messages), so it ends up triggering the run as expected but with an empty payload.
 
 Example output of the trigger action on Logic Apps, with the **Transfer-Encoding** header and no **body** property.
@@ -30,7 +30,7 @@ Example output of the trigger action on Logic Apps, with the **Transfer-Encoding
 {% endhighlight %}
 
 
-## Solution
+### Solution
 In order to solve this we need to make sure the entire request body is read in APIM. This is easily achieved with the following policy added in the inbound policy.
 
 {% highlight xml %}
@@ -73,9 +73,6 @@ The full policy will then look like this: (removed all the other stuffs for simp
 
 When this fix was added the issues we had in Logic Apps where solved.
 
-## Summary
+### Summary
 We encountered this on large messages that where sent to us. But Microsoft Support informed us that our problems already started around 1000 kilobytes. So from now on we will add this fix to all our APIs that potentially will receive a large payload. Hopefully Logic Apps http trigger will support chunked messages in the future.
 
-
-## Helium - CH100200 Payload warning
-When we found this issue we also took the opportunity to add this control to Helium to make sure all of our customers will not encounter the same issue.
