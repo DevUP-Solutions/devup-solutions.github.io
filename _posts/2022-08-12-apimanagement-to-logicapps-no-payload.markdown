@@ -4,6 +4,7 @@ title:  "Issue: Logic App recieves no payload from Api Management"
 date:   2022-08-12 12:00:00 +0200
 categories: logicapps issues
 tags: [API Management, Integration, Logic Apps, Issues]
+author: Mattias Lögdberg
 comments: true
 ---
 
@@ -76,3 +77,5 @@ When this fix was added the issues we had in Logic Apps where solved.
 ### Summary
 We encountered this on large messages that where sent to us. But Microsoft Support informed us that our problems already started around 1000 kilobytes. So from now on we will add this fix to all our APIs that potentially will receive a large payload. Hopefully Logic Apps http trigger will support chunked messages in the future.
 
+
+{% include authorMattias.html %}
