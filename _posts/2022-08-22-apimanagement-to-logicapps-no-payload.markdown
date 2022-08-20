@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Issue: Logic App recieves no payload from Api Management"
-date:   2022-08-12 12:00:00 +0200
+date:   2022-08-22 10:00:00 +0200
 categories: logicapps issues
 tags: [API Management, Integration, Logic Apps, Issues]
 author: Mattias Lögdberg

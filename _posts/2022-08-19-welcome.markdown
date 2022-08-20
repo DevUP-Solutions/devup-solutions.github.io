@@ -1,0 +1,25 @@
+---
+layout: post
+title:  "Welcome!"
+date:   2022-08-19 10:00:00 +0200
+categories: devup
+tags: DevUP
+author: Mattias Lögdberg
+comments: false
+---
+
+### Welcome
+
+We at DevUP is happy to announce our Blog going live! 
+
+This will be a place where we can share our knowledge, experience, tips & trix and news. Keep a look out for new posts and let us know if there i anything you would like us to cover.
+
+
+## DevUP
+DevUP is a small company in Sweden with many years of experience building and managing Azure Integration's built with PaaS services in Azure. By providing this blog we want to be able to share big and small things to help you learn neat trix, solve issues or get latest news. Main focus will be around PaaS/Integration services in Azure.
+
+[Read more](https://devup.solutions)
+
+
+
+Make sure to not miss anything, <a href="http://eepurl.com/h6evyf" target="_blank">join our mailing list</a> and/or <a href="/feed.xml">subscribe to our RSS feed</a>.
