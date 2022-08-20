@@ -1,17 +1,20 @@
 ---
 layout: post
-title:  "Issue: Logic App recieves no payload from Api Management"
-date:   2022-08-22 10:00:00 +0200
+title: "Issue: Logic App recieves no payload from Api Management"
+date: 2022-08-22 10:00:00 +0200
 categories: logicapps issues
 tags: [API Management, Integration, Logic Apps, Issues]
-author: Mattias Lögdberg
+author: "Mattias Lögdberg"
 comments: true
 ---
 
 Our Logic Apps suddenly started to receive empty payloads from API Management after our APIM instance got the [July, 2022 release](https://github.com/Azure/API-Management/releases/tag/release-service-2022-07). We opened a ticket with Microsoft Support and found out the following:
 
 ### Issue
-When API Management forwards a message to the backend it does so when reaching the backend section of the policies. When this section starts there is a short period of time where APIM reads the request body. If APIM fails to read the entire body in this “short period” it will start to send chunked messages (performance improvement) to the backend service. This can be detected when the receiving service starts to get requests with the header Transfer-Encoding: chunked. This is where it starts to be a problem if you have Logic Apps as the receiving service. [Logic App trigger does not support chunking](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-handle-large-messages), so it ends up triggering the run as expected but with an empty payload.
+When API Management forwards a message to the backend it does so when reaching the backend section of the policies. When this section starts there is a short period of time where APIM reads the request body and if APIM is not done reading the body during this *period* it will (due to performance improvements) start sending chunked messages to the backend service. This is for most backend service a standard and good way, but since [Logic App trigger does not support chunking](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-handle-large-messages) this becomes a problem for us. Since the Logic App will start a run by the incoming request but since it dosen't support chunking the run will have a empty incoming payload.
+
+
+This can be detected when the receiving service starts to get requests with the header Transfer-Encoding: chunked.
 
 Example output of the trigger action on Logic Apps, with the **Transfer-Encoding** header and no **body** property.
 {% highlight json %}
@@ -32,7 +35,7 @@ Example output of the trigger action on Logic Apps, with the **Transfer-Encoding
 
 
 ### Solution
-In order to solve this we need to make sure the entire request body is read in APIM. This is easily achieved with the following policy added in the inbound policy.
+In order to solve this we need to make sure the entire request body is read in APi Management before the request is started to be sent to the backend. This is fortunally easily achieved with adding a read of the incoming body in the *inbound* policy section. Here is a simple example of how this could be achived, setting the body of the request for the backend to the full read incoming request from the caller:
 
 {% highlight xml %}
 <set-body template="none">@{
@@ -40,7 +43,7 @@ return context.Request.Body.As<string>(preserveContent: true);
 }</set-body>
 {% endhighlight %}
 
-I was also recommended by Microsoft Support to explicitly declare the forward request in the backend section and set the buffer for the request body to true.
+We where also recommended by Microsoft Support to explicitly declare the forward request in the backend section and set the buffer for the request body to true.
 
 {% highlight xml %}
 <forward-request timeout="300" buffer-request-body="true" />
