@@ -20,14 +20,22 @@
 
 title: DevUP Solutions Blog
 email: support@devup.solutions
+tagline: Sharing knowledge and experience gathered in the Azure PaaS world. 
 description: >- # this means to ignore newlines until "baseurl:"
   A blog with news, recomendations, tips and tricks for working with and managing PaaS services in Azure.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://blog.devup.solutions" # the base hostname & protocol for your site, e.g. http://example.com
+url: https://blog.devup.solutions # the base hostname & protocol for your site, e.g. http://example.com
 permalink: /:categories/:title/
 show_downloads: false
 google_analytics: G-KQ94BCQ324
 social:
+  name: DevUP solutions
+  links:
+    - https://github.com/DevUP-Solutions
+    - https://www.linkedin.com/company/devup-solutions
+    - https://twitter.com/DevupSolutions
+
+custom-social:
   twitter: DevupSolutions
   github: DevUP-Solutions
   linkedin: devup-solutions

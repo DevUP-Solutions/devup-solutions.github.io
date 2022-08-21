@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Issue: Logic App recieves no payload from Api Management"
+description: Logic App is not supporting chunked messages, in this case Api Management suddenly started to do send chunked messages. | This post explains why it happens and how we solved it. 
 date: 2022-08-22 10:00:00 +0200
 categories: logicapps issues
 tags: [API Management, Integration, Logic Apps, Issues]
