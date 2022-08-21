@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 ### About us
-DevUP is a small company in Sweden with many years of experience building and managing Azure Integration's built with PaaS services in Azure. By providing this blog we want to be able to share big and small things to help you learn neat trix, solve issues or get latest news. Main focus will be around PaaS/Integration services in Azure.
+DevUP is a small company in Sweden with many years of experience building and managing Azure Integration's built with PaaS services in Azure. By providing this blog we want to be able to share big and small things to help you learn neat tricks, solve issues or get latest news. Main focus will be around PaaS/Integration services in Azure.
 
 Please let us know if there is a specific subject you would like us to discuss.
 [Contact us!](mailto:support@devup.solutions)

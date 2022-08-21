@@ -17,7 +17,7 @@ This will be a place where we can share our knowledge, experience, tips & trix a
 
 
 ### DevUP
-DevUP is a small company in Sweden with many years of experience building and managing Azure Integration's built with PaaS services in Azure. By providing this blog we want to be able to share big and small things to help you learn neat trix, solve issues or get latest news. Main focus will be around PaaS/Integration services in Azure.
+DevUP is a small company in Sweden with many years of experience building and managing Azure Integration's built with PaaS services in Azure. By providing this blog we want to be able to share big and small things to help you learn neat tricks, solve issues or get latest news. Main focus will be around PaaS/Integration services in Azure.
 
 [Read more](https://devup.solutions)
 
