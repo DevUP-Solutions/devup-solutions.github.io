@@ -13,7 +13,7 @@ comments: false
 
 We at DevUP is happy to announce that our Blog is finally live! 
 
-This will be a place where we can share our knowledge, experience, tips & trix and more. Keep a look out for new posts and let us know if there i anything you would like us to cover. [Email](mailto:support@devup.solutions)
+This will be a place where we can share our knowledge, experience, tips & tricks and more. Keep a look out for new posts and let us know if there i anything you would like us to cover. [Email](mailto:support@devup.solutions)
 
 
 ### DevUP
