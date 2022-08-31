@@ -2,7 +2,7 @@
 layout: post
 title: "Api Management: Policy Fragments, a powerfull friend"
 description: Api Management released Policy Fragments earlier this year and i's been little talk about the. | This post explains why Policy Fragments are so great to use. 
-date: 2022-09-02 08:00:00 +0200
+date: 2022-09-01 08:00:00 +0200
 categories: apimanagement tips&tricks
 tags: [API Management, Integration, Tips and Tricks]
 author: "Mattias Lögdberg"
