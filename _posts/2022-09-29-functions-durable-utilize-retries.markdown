@@ -1,24 +1,24 @@
 ---
 layout: post
-title: "Api Management: Policy Fragments, a powerful friend"
-description: Api Management released Policy Fragments earlier this year and i's been little talk about the. | This post explains why Policy Fragments are so great to use. 
-date: 2022-09-01 08:00:00 +0200
-categories: apimanagement tips&tricks
-tags: [API Management, Integration, Tips and Tricks]
+title: "Durable Functions: Utilize retries"
+description: Azure Function comes with an extension called Durable Functions. | This post explains how to work with retires in order to build robust scalable Durable Functions.
+date: 2022-09-29 08:00:00 +0200
+categories: functions tips&tricks
+tags: [Azure Functions, Integration, Tips and Tricks]
 author: "Mattias Lögdberg"
 comments: true
 ---
 
-Api Management released a new feature earlier this year called Policy fragments. In this post we will go through what it is and show why you should start using them!
+Azure Functions extension Durable Function is a powerfull extension to build long running well performed flows. In the Durable Functions extension we get alot of different things but the most important ones are the 3 different types we use when implenting Durable Functions. First we have thewe have the **Orchestration**, then we have the **Activity** and last we have **Entity** all of these has theire speciall abilites and sitations where they have the best fit. [Read more about the different types.](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-types-features-overview)
 
 ### Background
-In API Management we have policies that we can configure to manage incoming requests from API consumers. Through policies we can manage request before forwarding them to backend systems and before returning the response to the consumer. This gives us flexibility and power to do a lot of things. The most common things we add are increased security, manage of routing to backend and transformation of incoming and response messages.
-
-Even if we have a layered approach in Api Management where we can add policies on instance -> product -> api -> operation level (these will be combined starting from operation and moving upward adding the policy instead of the```<base/>``` tag. We still end up with a lot of duplicate code and copy paste situations.
-
-Let’s say you want a specific configuration for 2 of 3 operations in an API. This usually ends up with copy pasting the same code snippet and here is where Policy fragments comes in and shines.
+When building for scale we soon end up in managing retries, they are needed for many reasons the one we had lately is that the target api sometimes might start returning 429 or 503 responses due to high pressure. If and when this happens we need to back of a bit and retry again after either a set of time or a calculated time depending on how much informaton we get back from the api.
 
 ### How does it work
+In order to get a good retry strategy we want to use the built in functionality in the Durable Functions framework.
+
+In this case we are using an **Orchestration** function that runs for a given context, when it need's to call the api endpoint we do so via an **Activity** function.
+
 Here is a sample to show you what’s happening. We create a simple trace snippet and add that to a new *Policy fragment*:
 
 {% highlight xml %}
