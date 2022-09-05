@@ -9,7 +9,7 @@ author: "Mattias Lögdberg"
 comments: true
 ---
 
-Azure Functions extension Durable Function is a powerfull extension to build long running well performed flows. In the Durable Functions extension we get alot of different things but the most important ones are the 3 different types we use when implenting Durable Functions. First we have thewe have the **Orchestration**, then we have the **Activity** and last we have **Entity** all of these has theire speciall abilites and sitations where they have the best fit. [Read more about the different types.](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-types-features-overview)
+Azure Functions extension Durable Function is a powerfull extension to build long running well organized background jobs. In the Durable Functions extension we get alot of different things but the most important ones are the 3 different types we use when implenting Durable Functions. First we have thewe have the **Orchestration**, then we have the **Activity** and last we have **Entity** all of these has theire speciall abilites and sitations where they have the best fit. [Read more about the different types.](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-types-features-overview)
 
 ### Background
 When building for scale we soon end up in managing retries, they are needed for many reasons the one we had lately is that the target api sometimes might start returning 429 or 503 responses due to high pressure. If and when this happens we need to back of a bit and retry again after either a set of time or a calculated time depending on how much informaton we get back from the api.
