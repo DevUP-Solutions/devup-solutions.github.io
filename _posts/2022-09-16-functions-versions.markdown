@@ -45,6 +45,6 @@ Check out this (migration guide)[https://docs.microsoft.com/azure/azure-function
 
 ### Summary
 When using PaaS services we are spared of alot of maintainance work. But the solutions we build with Functions are still tied to a .net version and that we need to maintain and update to new versions over time in order to run supported workloads. It's time to start planning those upgrades.
-
+Interested in following more detailed realease (here is the public roadmap)[https://github.com/Azure/azure-functions-dotnet-worker/projects/2].
 
 We help our customers track the versions of each and every *Function App*. Showing what Functions are running an verion that is either unsupported or going to be unsupported to make it easier to keep track. In **Helium** this check is called *CH70003*.
