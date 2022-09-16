@@ -2,7 +2,7 @@
 layout: post
 title: "Azure Functions version support for c# .net"
 description: Azure Functions c# .net versions| This post explains the different versions and their supported timeline.
-date: 2022-09-16 13:00:00 +0200
+date: 2022-09-19 08:00:00 +0200
 categories: functions maintainability
 tags: [Azure Functions, Integration, Maintainability ]
 author: "Mattias Lögdberg"
