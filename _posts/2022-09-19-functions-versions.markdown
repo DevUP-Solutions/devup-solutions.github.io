@@ -26,7 +26,7 @@ There are 4 different versions of Functions app runtime that we can use in Azure
 
 With .NET Core 3.1 support ending 2022-12-13 the list of supported versions will be like this: [Dotnet Core Lifecycle](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core#lifecycle)
 
-| Version | Today(2022-09-15) | 2022-12-13 |
+| Version | Today(2022-09-15) | From 2022-12-13 |
 |---|---|---|
 | Functions 4.x | supported .NET version | supported .NET version |
 | Functions 3.x | supported .NET version (.NET Core 3.1) | x |
