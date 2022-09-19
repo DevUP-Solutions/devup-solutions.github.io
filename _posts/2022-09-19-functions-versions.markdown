@@ -28,10 +28,10 @@ With .NET Core 3.1 support ending 2022-12-13 the list of supported versions will
 
 | Version | Today(2022-09-15) | 2022-12-13 |
 |---|---|---|
-| Functions 4.x | supported .net version | supported .net version |
-| Functions 3.x | supported .net version (.NET Core 3.1) | x |
+| Functions 4.x | supported .NET version | supported .NET version |
+| Functions 3.x | supported .NET version (.NET Core 3.1) | x |
 | Functions 2.x	| x | x |
-| Functions 1.x | supported .net version | supported .net version |
+| Functions 1.x | supported .NET version | supported .NET version |
 
 Microsoft also states [Azure Functions runtime versions overview](https://docs.microsoft.com/en-us/azure/azure-functions/functions-versions?tabs=azure-cli%2Cin-process%2Cv4&pivots=programming-language-csharp) that .NET Framework 4.8 will come to version 4 (in preview now).
 
