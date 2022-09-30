@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Api Management: Authroizations"
+title: "Api Management Authorizations in preview"
 description: Api Management released a preview of Authorizations earlier this year. | This post explains why Authorizations is a neat way of handling authrorization for all backends protected by OAuth.
 date: 2022-09-30 14:00:00 +0200
 categories: apimanagement tips&tricks
