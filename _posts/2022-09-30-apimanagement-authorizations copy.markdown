@@ -17,9 +17,9 @@ In API Management we want to be able to connect to many systems in order to prov
 The most important part is that it simplifies the policy tremendously.
 
 ### How does it work
-The Api Management team have built standard code for managing authroization and state for us, which removes a lot of customization previously needed and makes it easier to separate code from authroization, reuse and manage.
+The Api Management team have built standard code for managing authroization and state for us, which removes a lot of customization previously needed and makes it easier to separate code from authorization, reuse and manage.
 
-This image below is taken from the [Authroizations Ovreview](https://learn.microsoft.com/en-us/azure/api-management/authorizations-overview) and in a very good way describes how it works. Simply described the *Authroization* resource is hanling all the complexity to create a token, cache the token and before a new call validate if the token still is valid.
+This image below is taken from the [Authorizations Ovreview](https://learn.microsoft.com/en-us/azure/api-management/authorizations-overview) and in a very good way describes how it works. Simply described the *Authorization* resource is hanling all the complexity to create a token, cache the token and before a new call validate if the token still is valid.
 
 
 ![Get Token path](https://learn.microsoft.com/en-us/azure/api-management/media/authorizations-overview/get-token-for-backend.svg)
@@ -97,7 +97,7 @@ And here is after:
 </policies>
 {% endhighlight %}
 
-As you can see the policy is much easier to understand and work with. We get dedicated resources in *API Management* to work with and that also makes the deployment much better and easier. The authorzation handles the renew and caching of the token that we previously needed to manage ourselves.
+As you can see the policy is much easier to understand and work with. We get dedicated resources in *API Management* to work with and that also makes the deployment much better and easier. The authorization handles the renew and caching of the token that we previously needed to manage ourselves.
 
 ### Improvments
 My primary wish for improvements so far is that **Key Vault** will be integrated into the process. Since it not at the moment it becomes a bit annoying when i.e. working with grant type **Client credentials** since we don't want these credentials stored and managed manually in multiple places.
@@ -108,4 +108,4 @@ A first class resource manageing the token state to your provider, simplifying t
 But the biggest part is that we now can separate the policy from the authorization, wich make using **Authorizations** a great separation of concern setup.
 
 ### Summary
-As described above the *Authorization* is a great addition to *API Management*. Helping us keep authroization to backend services separated from policies so the policy are kept slimmer and authroization are managed by itself. Improves maintainabillity both on updates on the authorization and also by keeping our policies slimmer and easier to read.
+As described above the *Authorization* is a great addition to *API Management*. Helping us keep authroization to backend services separated from policies so the policy are kept slimmer and authorization are managed by itself. Improves maintainabillity both on updates on the authorization and also by keeping our policies slimmer and easier to read.
