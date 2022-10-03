@@ -9,7 +9,7 @@ author: "Mattias Lögdberg"
 comments: true
 ---
 
-Api Management released a new feature earlier this year called Ahtorizations it's still in *preview*. In this post we will go through what it is and show why you should start using them!
+Api Management released a new feature earlier this year called Auhtorizations it's still in *preview*. In this post we will go through what it is and show why you should start using them!
 
 ### Background
 In API Management we want to connect to many systems in order to provide a good api for our consumers. These systems often have different ways of athenticate, the ones that are protected by Oauth2 has now got an much better experince, [read details on Authorizations overview](https://learn.microsoft.com/en-us/azure/api-management/authorizations-overview).
@@ -19,7 +19,7 @@ The most important part for Api Publisher's is that it simplifies the policy tre
 ### How does it work
 The Api Management team has built standard code for managing authroization and state for us, wich remove alot of customization previously needed and make it easier to separate code from authroization, reuse and management.
 
-This image bellow is taken from the [Authroizations Ovreview](https://learn.microsoft.com/en-us/azure/api-management/authorizations-overview) but it describes so good how it works. Simply described the *Authroization* resource is hanling all the complexity to create a token, cache the token and before a new call validate if the token still is valid.
+This image bellow is taken from the [Authroizations Overview](https://learn.microsoft.com/en-us/azure/api-management/authorizations-overview) but it describes so good how it works. Simply described the *Authroization* resource is handling all the complexity to create a token, cache the token and before a new call validate if the token still is valid.
 
 
 ![Get Token path](https://learn.microsoft.com/en-us/azure/api-management/media/authorizations-overview/get-token-for-backend.svg)
