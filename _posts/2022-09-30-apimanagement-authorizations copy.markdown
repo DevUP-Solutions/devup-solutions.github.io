@@ -39,7 +39,7 @@ This is how the *policy* looked like before:
         <choose>
             <when condition="@(!context.Variables.ContainsKey("bearerToken"))">
                 <send-request ignore-error="true" timeout="20" response-variable-name="accessTokenResult" mode="new">
-                    <set-url>https://login.microsoftonline.com/{{tenantiId}}/oauth2/token</set-url>
+                    <set-url>https://login.microsoftonline.com/{{'{{tenantiId}}'}}/oauth2/token</set-url>
                     <set-method>POST</set-method>
                     <set-header name="Content-Type" exists-action="override">
                         <value>application/x-www-form-urlencoded</value>
