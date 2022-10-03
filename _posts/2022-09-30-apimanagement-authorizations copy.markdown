@@ -46,7 +46,7 @@ This is how the *policy* looked like before:
                     </set-header>
                     <set-body>@{
                     var uriStr = context.Api.ServiceUrl.ToString();
-              return "client_id={{Secret-ClientId}}&resource="+uriStr.Remove(uriStr.Length - 1)+"&client_secret={{Secret-ClientSecret}}&grant_type=client_credentials";
+              return "client_id=&#123;&#123;Secret-ClientId&#125;&#125;&resource="+uriStr.Remove(uriStr.Length - 1)+"&client_secret={{Secret-ClientSecret}}&grant_type=client_credentials";
                     }</set-body>
                 </send-request>
                 <set-variable name="accessToken" value="@(((IResponse)context.Variables["accessTokenResult"]).Body.As<JObject>())" />
