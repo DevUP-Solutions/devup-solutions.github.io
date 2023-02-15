@@ -43,7 +43,7 @@ Here is an exampel of hiow it could look like:
 Using references also makes it easier to do debugging localy when we can add the settings needed to our *local.settings.json* as usual. 
 
 
-### Improvments
+### Improvements
 Primary improvements found so far is that **Api Management** and **Logic App Consumption** would be integrated "out of box" aswell. So we can share settings across all processing services.
 
 ### Why use it
