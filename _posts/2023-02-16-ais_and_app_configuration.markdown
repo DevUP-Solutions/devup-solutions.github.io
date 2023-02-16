@@ -2,7 +2,7 @@
 layout: post
 title: "App Configuration in Azure Integration Services"
 description: App Configuration for Functions is finally in preview! More flexibility and easier usage is now on the horizon.  | This post explains an overview of how a setup could look like and how it works.
-date: 2022-12-30 09:00:00 +0200
+date: 2023-02-16 09:00:00 +0200
 categories: appconfiguration maintainability
 tags: [App Configuration, Integration, Maintainability ]
 author: "Mattias Lögdberg"
