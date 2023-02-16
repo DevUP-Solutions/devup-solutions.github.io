@@ -19,7 +19,7 @@ App Configuration has been a big part in centralizing settings that are used by 
 ### How does it work
 Settings are stored inside Azure App Configuration and can be read by multiple sources, whenever a change is done in App Configuration the next time a source refreshes it's data the update will be applied. 
 
-![App Configuration Overview](/assets/images/2023/appconfig-overview.png)
+![App Configuration Overview](/assets/images/2023/february/appconfigoverview.jpg)
 
 With references we can skip the extra code needed for fetching the setting from the App configuration instance and only do a "normal" fetch of a value from App Settings, such as: 
 {% highlight code %}
