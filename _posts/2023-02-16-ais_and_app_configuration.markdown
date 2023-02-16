@@ -14,7 +14,7 @@ App Configuration is a central place to store shared configuration values, like 
 There are .NET and java frameworks for connecting to App Configuration but Web Apps/Azure Functions runtime has been lacking app config reference support. This makes it much easier to start using App Configuration and also brings the capabilities to Logic App Standard*.
 
 ### Background
-App Configuration has been a big part in centralizing settings that are used by several microservices. These settings have previously been used through code, the code is easily implemented when using the **Microsoft.Extensions.Configuration.AzureAppConfiguration** (NuGet package)[https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration/] but it makes migration harder and forces us to manage caching of the values collected.
+App Configuration has been a big part in centralizing settings that are used by several microservices. These settings have previously been used through code, the code is easily implemented when using the **Microsoft.Extensions.Configuration.AzureAppConfiguration** [NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration/) but it makes migration harder and forces us to manage caching of the values collected.
 
 ### How does it work
 Settings are stored inside Azure App Configuration and can be read by multiple sources, whenever a change is done in App Configuration the next time a source refreshes it's data the update will be applied. 
