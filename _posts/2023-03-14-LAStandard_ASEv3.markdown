@@ -45,11 +45,12 @@ The same goes for the NSG that is attached to *Subnet B* but inbound rule to all
 
 We can now deploy our *Logic App Standard* instance to our *App Service Environment*, this is done via picking the *App Service Environment* as the **region** when creating the *Logic App Standard* instance. It will then connect to the *Storage Account* as the image describes and the traffic will be allowed due to our rules in the NSG's.
 
-![Full Overview](/assets/images/2023/march/inboundhttpsnsgrule.png)
+![Full Overview](/assets/images/2023/march/asedrawing.jpg)
 
 Now we can start to add workflows as normal, we will be restricted to use *Built-in* connectors or open up access to internet from Subnet A, there is a TAG to only allow traffic to Managed Connectors and not open for HTTPS to the whole internet, use that if needed to keep openings to a minimal.
 
-Make note that you need to have direct access to the *App Service Environment* in order to access logs in the Workflow runs, this is a security feature and by design. If you are not able to reach the *App Service Environment* there will be an error on the actions "Unexpected error. Failed to fetch", make sure to be on the network in order to get the data and also make sure routing/dns etc is working from your location, [read more here](https://techcommunity.microsoft.com/t5/integrations-on-azure-blog/common-errors-in-azure-logic-apps-standard-unexpected-error/ba-p/3293197). 
+
+> **Note:** that you need to have direct access to the *App Service Environment* in order to access logs in the Workflow runs, this is a security feature and by design. If you are not able to reach the *App Service Environment* there will be an error on the actions "Unexpected error. Failed to fetch", make sure to be on the network in order to get the data and also make sure routing/dns etc is working from your location, [read more here](https://techcommunity.microsoft.com/t5/integrations-on-azure-blog/common-errors-in-azure-logic-apps-standard-unexpected-error/ba-p/3293197). 
 
 ### Improvements
 When using full VNet protection we cannot use *Managed Connectors* and can only use *Built-in connectors* ([see the full list](https://learn.microsoft.com/en-us/azure/connectors/built-in)) or build our own [read more](https://learn.microsoft.com/en-us/azure/logic-apps/create-custom-built-in-connector-standard). In our case we had alot of *Oracle databases* and the only way is to use a generic *JDBC* connector or build our own.
