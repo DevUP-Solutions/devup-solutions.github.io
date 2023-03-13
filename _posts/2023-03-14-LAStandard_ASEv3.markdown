@@ -2,14 +2,14 @@
 layout: post
 title: "Logic App Standard on ASE v3"
 description: Finally Logic App's can be run inside VNet.  | This post gives an overview of how a setup could look like and how it works.
-date: 2023-03-13 14:00:00 +0200
+date: 2023-03-14 14:00:00 +0200
 categories: LogicApps Security
 tags: [Logic App Standard, Integration, Security ]
 author: "Mattias Lögdberg"
 comments: true
 ---
 
-Logic App Standard is the first version of Logic Apps that can run outside of the dedicated space in Azure. In this post we will show how we helped a customer use Logic App Standard without going outside their VNet boundaries.
+Logic App Standard is the first version of Logic Apps that can run outside of the dedicated space in Azure. In this post we will show how we helped a customer use Logic App Standard without going outside their VNet boundaries, full lockdown.
 
 ### Background
 
@@ -18,14 +18,14 @@ Logic App Standard is built on the Azure Functions runtime which means that the 
 ### How does it work?
 To make this setup work, we need to configuration a couple of things for traffic to flow.
 
-* VNet with atelast 2 Subnets
+* VNet with atleast 2 Subnets
 * Each Subnet should have a Network Security Group (NSG)
     * To protect from unwanted traffic in and out of the subnet.
 * App Service Environment, deployed in a dedicated subnet
 * Logic App Standard, deployed on the App Service Environment
-* Storage Account, deployed with private endpoint in to another subnet.
+* Storage Account, deployed with private endpoint in to the other subnet.
 
-The 2 subnets is divided as follow, *Subnet A* dedicated for the *App Service Environment* due to the need for it's own subnet. We then create a second subnet *Subnet B* so we can use it for adding private links. It will look as like this:
+The 2 subnets is divided as follow, *Subnet A* dedicated for the *App Service Environment* due to the need for it's own subnet. We then create a second subnet *Subnet B* so we can use it for adding private links or other services. It will look like this:
 
 ![Network overview Overview](/assets/images/2023/march/subnetdrawing.jpg)
 
@@ -43,11 +43,11 @@ The same goes for the NSG that is attached to *Subnet B* but inbound rule to all
 
 ![Inbound Rule](/assets/images/2023/march/inboundhttpsnsgrule.png)
 
-We can now deploy our *Logic App Standard* instance to our *App Service Environment*. It will then connect to the *Storage Account* as the image describes and the traffic will be allowed due to our rules in the NSG's.
+We can now deploy our *Logic App Standard* instance to our *App Service Environment*, this is done via picking the *App Service Environment* as the **region** when creating the *Logic App Standard* instance. It will then connect to the *Storage Account* as the image describes and the traffic will be allowed due to our rules in the NSG's.
 
 ![Full Overview](/assets/images/2023/march/inboundhttpsnsgrule.png)
 
-Now we can start to add workflows as normal, we will be restricted to use *Built-in* connectors or open up access to internet from Subnet A, there is a TAG to only allow traffic to Managed Connectors and not open for HTTPS to the whole internet, use that if needed.
+Now we can start to add workflows as normal, we will be restricted to use *Built-in* connectors or open up access to internet from Subnet A, there is a TAG to only allow traffic to Managed Connectors and not open for HTTPS to the whole internet, use that if needed to keep openings to a minimal.
 
 Make note that you need to have direct access to the *App Service Environment* in order to access logs in the Workflow runs, this is a security feature and by design. If you are not able to reach the *App Service Environment* there will be an error on the actions "Unexpected error. Failed to fetch", make sure to be on the network in order to get the data and also make sure routing/dns etc is working from your location, [read more here](https://techcommunity.microsoft.com/t5/integrations-on-azure-blog/common-errors-in-azure-logic-apps-standard-unexpected-error/ba-p/3293197). 
 
@@ -60,7 +60,7 @@ As in many cases error messages are not very helpful and it took a long time to 
 Full VNet protection is required in many companies and finally we can use Logic App Standard in these scenarios and utilize the power of Logic Apps orchestration engine in closed environments.
 
 ### Summary
-When everything is up and running. this is a nice solution. We can management our logic apps from Azure but make sure to have routing up if you want to see the input and outputs of the actions when troubleshooting. Being able to use Logic App's inside our network and in a full network lockdown proves that Microsoft is really pushing Logic Apps.
+When everything is up and running. this is a nice solution. We can manage our logic apps from Azure but make sure to have routing up if you want to see the input and outputs of the actions when troubleshooting. Being able to use Logic App's inside our network and in a full network lockdown proves that Microsoft is really pushing Logic Apps.
 
 During these and many other cases it is important to understand that security now is co-managed by developers and infrastructure teams and managed via infrastructure as code. It's a long journey and it's important to take ownership of security in order to be successful over time. We also love to help you out here with **Helium**, our continuous review tool. To make sure that you are building robust and secure solutions that will continue to be secure and robust over time, all so you can sleep well at night knowing things are as expected.
 
