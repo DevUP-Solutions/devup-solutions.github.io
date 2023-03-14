@@ -18,14 +18,14 @@ Logic App Standard is built on the Azure Functions runtime which means that the 
 ### How does it work?
 To make this setup work, we need to configuration a couple of things for traffic to flow.
 
-* VNet with atleast 2 Subnets
+* VNet with at least 2 Subnets
 * Each Subnet should have a Network Security Group (NSG)
     * To protect from unwanted traffic in and out of the subnet.
 * App Service Environment, deployed in a dedicated subnet
 * Logic App Standard, deployed on the App Service Environment
 * Storage Account, deployed with private endpoint in to the other subnet.
 
-The 2 subnets is divided as follow, *Subnet A* dedicated for the *App Service Environment* due to the need for it's own subnet. We then create a second subnet *Subnet B* so we can use it for adding private links or other services. It will look like this:
+The 2 subnets is divided as follows, *Subnet A* dedicated for the *App Service Environment* due to the need for it's own subnet. We then create a second subnet *Subnet B* so we can use it for adding private links or other services. It will look like this:
 
 ![Network overview Overview](/assets/images/2023/march/subnetdrawing.jpg)
 
@@ -35,11 +35,11 @@ Now we can add the storage account and the private links. To lock down our stora
 ![Network Overview](/assets/images/2023/march/privateendpoints.jpg)
 
 We also need to make sure that traffic can flow, all these endpoints are accessed over HTTPS so rules need to be added in the NSG's.
-In the *NSG* on *Subnet A* we need to allow outboud HTTPS(443) and SMB(445) traffic, the rules below allows connecting to *Subnets* from *Subnet A*.(You can ofcourse narrow this down by changing *destination* property)
+In the *NSG* on *Subnet A* we need to allow outbound HTTPS(443) and SMB(445) traffic, the rules below allows connecting to *Subnets* from *Subnet A*.(You can of course narrow this down by changing *destination* property)
 
 ![Outbound Rule](/assets/images/2023/march/outbundhttpsnsgrule.png)
 
-The same goes for the NSG that is attached to *Subnet B* but inbound rule to allow HTTPS(443) and SMB(445) traffic. The rules below allow all *Subnets* to sen requests to *Subnet B* over HTTPS. (You can ofcourse narrow this down by changing *source* property)
+The same goes for the NSG that is attached to *Subnet B* but inbound rule to allow HTTPS(443) and SMB(445) traffic. The rules below allow all *Subnets* to sen requests to *Subnet B* over HTTPS. (You can of course narrow this down by changing *source* property)
 
 ![Inbound Rule](/assets/images/2023/march/inboundhttpsnsgrule.png)
 
@@ -66,6 +66,6 @@ When everything is up and running. this is a nice solution. We can manage our lo
 During these and many other cases it is important to understand that security now is co-managed by developers and infrastructure teams and managed via infrastructure as code. It's a long journey and it's important to take ownership of security in order to be successful over time. We also love to help you out here with **Helium**, our continuous review tool. To make sure that you are building robust and secure solutions that will continue to be secure and robust over time, all so you can sleep well at night knowing things are as expected.
 
 
-[App Service Environment read more](https://learn.microsoft.com/en-us/azure/app-service/environment/overview)
-[Deploy single-tenant Standard logic apps to private storage accounts using private endpoints](https://learn.microsoft.com/en-us/azure/logic-apps/deploy-single-tenant-logic-apps-private-storage-account)
-[Common errors in Azure Logic Apps (Standard) - Unexpected error. Failed to fetch](https://techcommunity.microsoft.com/t5/integrations-on-azure-blog/common-errors-in-azure-logic-apps-standard-unexpected-error/ba-p/3293197)
+* [App Service Environment read more](https://learn.microsoft.com/en-us/azure/app-service/environment/overview)
+* [Deploy single-tenant Standard logic apps to private storage accounts using private endpoints](https://learn.microsoft.com/en-us/azure/logic-apps/deploy-single-tenant-logic-apps-private-storage-account)
+* [Common errors in Azure Logic Apps (Standard) - Unexpected error. Failed to fetch](https://techcommunity.microsoft.com/t5/integrations-on-azure-blog/common-errors-in-azure-logic-apps-standard-unexpected-error/ba-p/3293197)
