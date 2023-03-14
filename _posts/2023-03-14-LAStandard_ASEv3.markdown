@@ -2,7 +2,7 @@
 layout: post
 title: "Logic App Standard on ASE v3"
 description: Finally Logic App's can be run inside VNet.  | This post gives an overview of how a setup could look like and how it works.
-date: 2023-03-14 14:00:00 +0200
+date: 2023-03-14 09:00:00 +0200
 categories: LogicApps Security
 tags: [Logic App Standard, Integration, Security ]
 author: "Mattias Lögdberg"
