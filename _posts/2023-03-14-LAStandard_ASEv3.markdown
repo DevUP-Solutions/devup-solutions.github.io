@@ -27,12 +27,12 @@ To make this setup work, we need to configuration a couple of things for traffic
 
 The 2 subnets is divided as follows, *Subnet A* dedicated for the *App Service Environment* due to the need for it's own subnet. We then create a second subnet *Subnet B* so we can use it for adding private links or other services. It will look like this:
 
-![Network overview Overview](/assets/images/2023/march/subnetdrawing.jpg)
+![Network overview Overview](https://my.revision.app/api/svg/wjc72bpXFR)
 
 Now we can add the storage account and the private links. To lock down our storage account we need four private endpoints, one for each service (Blob, Files, Table, Queues). Private links require a private DNS record to be created inside the VNet. This is so that resources can find them. We can just use the built in suggestion and put the standard generated private DNS zone in a Production subscription (since we used hub-and-spoke network setup) attached to the VNet. Now DNS lookup will be correct inside the network.
 
 
-![Network Overview](/assets/images/2023/march/privateendpoints.jpg)
+![Network Overview](https://my.revision.app/api/svg/xjfrOFAdfK)
 
 We also need to make sure that traffic can flow, all these endpoints are accessed over HTTPS so rules need to be added in the NSG's.
 In the *NSG* on *Subnet A* we need to allow outbound HTTPS(443) and SMB(445) traffic, the rules below allows connecting to *Subnets* from *Subnet A*.(You can of course narrow this down by changing *destination* property)
@@ -45,7 +45,7 @@ The same goes for the NSG that is attached to *Subnet B* but inbound rule to all
 
 We can now deploy our *Logic App Standard* instance to our *App Service Environment*, this is done via picking the *App Service Environment* as the **region** when creating the *Logic App Standard* instance. It will then connect to the *Storage Account* as the image describes and the traffic will be allowed due to our rules in the NSG's.
 
-![Full Overview](/assets/images/2023/march/asedrawing.jpg)
+![Full Overview](https://my.revision.app/api/svg/1yXN5QZ4Ut)
 
 Now we can start to add workflows as normal, we will be restricted to use *Built-in* connectors or open up access to internet from Subnet A, there is a TAG to only allow traffic to Managed Connectors and not open for HTTPS to the whole internet, use that if needed to keep openings to a minimal.
 
