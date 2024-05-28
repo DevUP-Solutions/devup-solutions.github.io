@@ -19,7 +19,9 @@ Breaches are real, and we are suffering from the threat daily. We know attackers
 Building services in Azure Integration Services span all from critical and sensitive data to publicly available data. This means we are managing a complex setup. What would a small mistake open for you?
 
 For **Optus**, it was a devastating experience where 10 million customers' personal data was stolen. [Read more on Optus Breach](https://www.bbc.com/news/world-australia-63056838)
-This all led to an API that they were unaware of being unprotected. When was the last time you checked your APIs?
+This all came from an API that they were unaware of being unprotected. When was the last time you checked your APIs?
+
+Do you know how your Azure Integration Services are configured in detail?
 
 ### Start with the Basics
 There are a lot of sophisticated ways, but what **Optus** is proof of, we need to have the basics in place. Basics are:
