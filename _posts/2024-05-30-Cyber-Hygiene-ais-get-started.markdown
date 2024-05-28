@@ -2,7 +2,7 @@
 layout: post
 title: "Start with the basic Cyber Hygiene in AIS"
 description: What is cyber hygiene in Azure Integration Services. | This post gives an introduction to the concept Cyber Hygiene in Azure Integration Services.
-date: 2024-05-30 09:00:00 +0200
+date: 2024-05-28 09:00:00 +0200
 categories: Cyber Hygiene, Security
 tags: [AIS, Integration, Security]
 author: "Mattias Lögdberg"
