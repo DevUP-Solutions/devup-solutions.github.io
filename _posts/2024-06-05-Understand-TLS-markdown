@@ -62,3 +62,7 @@ Make sure your Azure Integration Services are enforcing the latest version accep
 We at DevUP are experts in this area, and we use our service **Helium** to quickly scan the whole environment and get the TLS versions per resource, we know and will let you know when new versions of TLS is released.
 
 Reach out, and we can show you how to get this information in minutes and continuously.
+
+
+![Sample of TLS versions in Helium](https://devupgeneric.blob.core.windows.net/public/marketing/Group%20705.png)
+*Small sample of how you easily can track TLS settings over all your resources in Helium
