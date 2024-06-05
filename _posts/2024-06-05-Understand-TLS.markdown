@@ -3,7 +3,7 @@ layout: post
 title: "Understanding TLS Versions and Why Upgrading to TLS 1.3 Matters"
 description: A guide to understanding the differences between TLS versions and the importance of upgrading to TLS 1.3.
 date: 2024-06-05 09:00:00 +0200
-categories: Security, Encryption
+categories: Security Encryption
 tags: [TLS, Security, Encryption]
 author: "Mattias Lögdberg"
 comments: true
