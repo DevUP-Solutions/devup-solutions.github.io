@@ -2,7 +2,7 @@
 layout: post
 title: "Azure API Manageent and TLS 1.3 Compability"
 description: TLS 1.3 is currently rolling out in Azure and API Management plays an vital role in the API landscape, so we need to understand what capabilities there are.
-date: 2024-06-05 09:00:00 +0200
+date: 2024-07-03 09:00:00 +0200
 categories: Security Encryption
 tags: [TLS, Security, Encryption]
 author: "Mattias Lögdberg"
