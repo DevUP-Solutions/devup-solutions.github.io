@@ -5,7 +5,7 @@ description: Securing App Service with Authentication is getting more and more i
 date: 2025-02-14 09:00:00 +0200
 categories: Security Authentication
 tags: [EntraID, Security, Authentication]
-author: "Mattias Lögdberg"
+author: "Jonas Gaverus"
 comments: true
 ---
 
