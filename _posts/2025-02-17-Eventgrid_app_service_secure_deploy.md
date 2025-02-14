@@ -2,7 +2,7 @@
 layout: post
 title: "How to connect Event Grid to secured Function App"
 description: Securing App Service with Authentication is getting more and more important here we go thur how to connect event grid to a protected App Service.
-date: 2025-02-14 09:00:00 +0200
+date: 2025-02-17 09:00:00 +0200
 categories: Security Authentication
 tags: [EntraID, Security, Authentication]
 author: "Jonas Gaverus"
