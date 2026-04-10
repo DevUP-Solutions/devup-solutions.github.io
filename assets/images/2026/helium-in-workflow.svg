@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 225" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arrowB" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#0078d4"/>
+    </marker>
+    <marker id="arrowG" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#16a34a"/>
+    </marker>
+    <marker id="arrowGR" markerWidth="9" markerHeight="6" refX="1" refY="3" orient="auto">
+      <polygon points="9 0, 0 3, 9 6" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="760" height="225" fill="#f5f7fb" rx="12"/>
+
+  <!-- ===== DEVELOPER ===== -->
+  <!-- Head -->
+  <circle cx="90" cy="63" r="19" fill="#0078d4"/>
+  <!-- Body/shoulders -->
+  <path d="M63,90 Q90,81 117,90 L121,146 H59 Z" fill="#0078d4"/>
+  <!-- Laptop screen -->
+  <rect x="61" y="110" width="58" height="36" rx="4" fill="#1e293b"/>
+  <rect x="64" y="113" width="52" height="27" rx="2" fill="#2563eb"/>
+  <!-- Code lines on screen -->
+  <rect x="68" y="118" width="24" height="2" rx="1" fill="white" opacity="0.85"/>
+  <rect x="68" y="123" width="17" height="2" rx="1" fill="white" opacity="0.85"/>
+  <rect x="68" y="128" width="22" height="2" rx="1" fill="white" opacity="0.85"/>
+  <rect x="68" y="133" width="12" height="2" rx="1" fill="white" opacity="0.6"/>
+  <!-- Laptop base/hinge -->
+  <rect x="54" y="146" width="72" height="4" rx="2" fill="#1e293b"/>
+  <!-- Labels -->
+  <text x="90" y="168" text-anchor="middle" font-size="13" fill="#374151" font-weight="600">Developer</text>
+  <text x="90" y="182" text-anchor="middle" font-size="10" fill="#6b7280">AI-assisted delivery</text>
+
+  <!-- ===== PUSH ARROW ===== -->
+  <line x1="158" y1="116" x2="290" y2="116" stroke="#0078d4" stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arrowB)"/>
+  <text x="224" y="104" text-anchor="middle" font-size="12" fill="#0078d4" font-weight="600">push / deploy</text>
+
+  <!-- ===== AZURE CLOUD ===== -->
+  <!-- Cloud shape centered ~x=360, y=106 -->
+  <circle cx="343" cy="106" r="38" fill="#dbeafe"/>
+  <circle cx="374" cy="96" r="33" fill="#dbeafe"/>
+  <circle cx="392" cy="108" r="26" fill="#dbeafe"/>
+  <circle cx="325" cy="114" r="22" fill="#dbeafe"/>
+  <!-- Flatten cloud bottom -->
+  <rect x="303" y="108" width="118" height="40" fill="#dbeafe"/>
+  <!-- Azure hexagon icon -->
+  <polygon points="359,76 378,87 378,107 359,118 340,107 340,87" fill="#0078d4"/>
+  <text x="359" y="102" text-anchor="middle" font-size="15" font-weight="bold" fill="white">Az</text>
+  <!-- Azure labels -->
+  <text x="358" y="160" text-anchor="middle" font-size="13" fill="#374151" font-weight="600">Azure</text>
+  <text x="358" y="175" text-anchor="middle" font-size="10" fill="#6b7280">Production environment</text>
+
+  <!-- ===== VALIDATE ARROWS ===== -->
+  <line x1="432" y1="106" x2="588" y2="106" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowG)"/>
+  <line x1="588" y1="122" x2="432" y2="122" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowGR)"/>
+  <text x="510" y="96" text-anchor="middle" font-size="11" fill="#16a34a" font-weight="600">validates continuously</text>
+
+  <!-- ===== HELIUM SHIELD ===== -->
+  <!-- Outer shield, center x=640 -->
+  <path d="M 608,48 L 672,48 L 686,70 L 686,130 Q 673,166 640,190 Q 607,166 594,130 L 594,70 Z"
+        fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+  <!-- Inner fill for depth -->
+  <path d="M 615,60 L 665,60 L 676,76 L 676,128 Q 665,158 640,178 Q 615,158 604,128 L 604,76 Z"
+        fill="#bbf7d0"/>
+  <!-- Checkmark circle -->
+  <circle cx="640" cy="108" r="26" fill="#16a34a"/>
+  <!-- Checkmark -->
+  <polyline points="628,108 637,119 653,95" fill="none" stroke="white" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Labels below shield -->
+  <text x="640" y="203" text-anchor="middle" font-size="14" font-weight="bold" fill="#16a34a">HELIUM</text>
+  <text x="640" y="216" text-anchor="middle" font-size="10" fill="#374151">Drift · Policy · Compliance</text>
+</svg>
