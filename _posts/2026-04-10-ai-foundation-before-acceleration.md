@@ -70,6 +70,8 @@ I am hearing and reading about too many situations where junior developers use A
 
 The result is often "tests passed" without real coverage of business-critical scenarios.
 
+![Fundamental steps to follow for AI generated solutions](/assets/images/2026/1-2-3.png)
+
 ## 4. Cases that show what happens when foundations are weak
 
 Here are concrete cases worth studying.
