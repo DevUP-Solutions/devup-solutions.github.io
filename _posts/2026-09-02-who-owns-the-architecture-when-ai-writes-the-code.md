@@ -177,6 +177,8 @@ The model starts to look more like this:
 
 **Generated change → policy validation → security verification → dependency analysis → architecture visibility → compliance verification → runtime observation**
 
+![Generated change flowing through continuous governance: policy validation, security verification, dependency analysis, architecture visibility, compliance verification, and runtime observation](/assets/images/2026/governance-pipeline.svg)
+
 This does not mean removing humans from governance. It means using automation to preserve human oversight at a scale where inspecting every artifact manually is no longer realistic.
 
 In practice, I think organizations need to increase their capability in six areas:

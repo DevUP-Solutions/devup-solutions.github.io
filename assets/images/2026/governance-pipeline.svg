@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arrowB" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#0078d4"/>
+    </marker>
+    <marker id="arrowG" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="760" height="320" fill="#f5f7fb" rx="12"/>
+
+  <!-- Title -->
+  <text x="380" y="34" text-anchor="middle" font-size="14" font-weight="600" fill="#374151">Governance as part of the delivery and operational lifecycle</text>
+
+  <!-- ===== ROW 1 ===== -->
+
+  <!-- Generated change (blue, entry point) -->
+  <rect x="24" y="58" width="152" height="58" rx="10" fill="#0078d4"/>
+  <text x="100" y="83" text-anchor="middle" font-size="12.5" font-weight="600" fill="white">Generated</text>
+  <text x="100" y="99" text-anchor="middle" font-size="12.5" font-weight="600" fill="white">change</text>
+  <!-- AI sparkle -->
+  <path d="M158,66 l2.6,6.4 6.4,2.6 -6.4,2.6 -2.6,6.4 -2.6,-6.4 -6.4,-2.6 6.4,-2.6 Z" fill="white" opacity="0.9"/>
+
+  <line x1="176" y1="87" x2="206" y2="87" stroke="#0078d4" stroke-width="2.5" marker-end="url(#arrowB)"/>
+
+  <!-- Policy validation -->
+  <rect x="208" y="58" width="152" height="58" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="284" y="83" text-anchor="middle" font-size="12.5" font-weight="600" fill="#166534">Policy</text>
+  <text x="284" y="99" text-anchor="middle" font-size="12.5" font-weight="600" fill="#166534">validation</text>
+
+  <line x1="360" y1="87" x2="390" y2="87" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowG)"/>
+
+  <!-- Security verification -->
+  <rect x="392" y="58" width="152" height="58" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="468" y="83" text-anchor="middle" font-size="12.5" font-weight="600" fill="#166534">Security</text>
+  <text x="468" y="99" text-anchor="middle" font-size="12.5" font-weight="600" fill="#166534">verification</text>
+
+  <line x1="544" y1="87" x2="574" y2="87" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowG)"/>
+
+  <!-- Dependency analysis -->
+  <rect x="576" y="58" width="152" height="58" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="652" y="83" text-anchor="middle" font-size="12.5" font-weight="600" fill="#166534">Dependency</text>
+  <text x="652" y="99" text-anchor="middle" font-size="12.5" font-weight="600" fill="#166534">analysis</text>
+
+  <!-- ===== WRAP ARROW to row 2 ===== -->
+  <path d="M 652,116 L 652,150 L 100,150 L 100,182" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowG)"/>
+
+  <!-- ===== ROW 2 ===== -->
+
+  <!-- Architecture visibility -->
+  <rect x="24" y="186" width="152" height="58" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="100" y="211" text-anchor="middle" font-size="12.5" font-weight="600" fill="#166534">Architecture</text>
+  <text x="100" y="227" text-anchor="middle" font-size="12.5" font-weight="600" fill="#166534">visibility</text>
+
+  <line x1="176" y1="215" x2="206" y2="215" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowG)"/>
+
+  <!-- Compliance verification -->
+  <rect x="208" y="186" width="152" height="58" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="284" y="211" text-anchor="middle" font-size="12.5" font-weight="600" fill="#166534">Compliance</text>
+  <text x="284" y="227" text-anchor="middle" font-size="12.5" font-weight="600" fill="#166534">verification</text>
+
+  <line x1="360" y1="215" x2="390" y2="215" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowG)"/>
+
+  <!-- Runtime observation -->
+  <rect x="392" y="186" width="152" height="58" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="468" y="211" text-anchor="middle" font-size="12.5" font-weight="600" fill="#166534">Runtime</text>
+  <text x="468" y="227" text-anchor="middle" font-size="12.5" font-weight="600" fill="#166534">observation</text>
+
+  <line x1="544" y1="215" x2="574" y2="215" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowG)"/>
+
+  <!-- Outcome: architecture under control -->
+  <circle cx="652" cy="215" r="30" fill="#16a34a"/>
+  <polyline points="638,215 648,227 667,201" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="652" y="266" text-anchor="middle" font-size="12" font-weight="bold" fill="#16a34a">Architecture</text>
+  <text x="652" y="280" text-anchor="middle" font-size="12" font-weight="bold" fill="#16a34a">under control</text>
+
+  <!-- Footer note -->
+  <text x="380" y="306" text-anchor="middle" font-size="10.5" fill="#6b7280">Automation preserves human oversight — continuously, not at checkpoints</text>
+</svg>
