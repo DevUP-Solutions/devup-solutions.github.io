@@ -228,3 +228,12 @@ So who owns the architecture when AI writes the code?
 **We still do.**
 
 And now we need governance that can keep up.
+
+### If I need some assistance?
+
+We at DevUP work with exactly this challenge: helping organizations keep architectural visibility and governance up to speed with AI-assisted delivery, using our service **Helium** for continuous insight into Azure environments.
+
+Reach out here:
+
+- [https://www.devup.solutions/](https://www.devup.solutions/)
+- [Email: mattias@devup.solutions](mailto:mattias@devup.solutions)
