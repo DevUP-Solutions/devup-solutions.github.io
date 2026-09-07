@@ -190,6 +190,8 @@ In practice, I think organizations need to increase their capability in six area
 5. **Runtime observability** — Verify how the solution behaves after deployment, not only whether the pipeline was green.
 6. **Lifecycle governance** — Identify ownership, outdated components, duplicated implementations, and resources that are no longer needed.
 
+These capabilities are not only defensive. The same visibility that protects the architecture is what makes continuous optimization — performance, cost, usability — possible at all. You cannot tune what you cannot see.
+
 We also need secure defaults and better specifications before generation starts. AI can work much more effectively when architectural intent, boundaries, and non-functional requirements are explicit.
 
 But we should assume that change will still happen. That makes continuous visibility and verification the final safety net.
