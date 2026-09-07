@@ -3,7 +3,7 @@ layout: post
 title: "Who Owns the Architecture When AI Writes the Code?"
 description: "AI can accelerate implementation dramatically, but it does not take responsibility for the architecture, the production incident, or the customer impact. How do we keep architectural understanding when delivery starts moving at machine speed?"
 date: 2026-09-02 09:00:00 +0200
-categories: Helium, AI
+categories: [Helium, AI]
 tags: [AI, Architecture, Governance, Azure, Integration]
 author: "Mattias Lögdberg"
 comments: true
