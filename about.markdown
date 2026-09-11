@@ -15,7 +15,7 @@ DevUP provides a service called Helium that helps our customers get insight and 
 
 ![Helium box](/assets/images/heliumbox.jpg)
 
-[We provide insight!](https://devup.solutions)
+[We provide insight!](https://www.devup.solutions/)
 
 
 Make sure to not miss anything, <a href="http://eepurl.com/h6evyf" target="_blank">join our mailing list</a> and/or <a href="/feed.xml">subscribe to our RSS feed</a>.

@@ -241,3 +241,4 @@ Reach out here:
 
 - [https://www.devup.solutions/](https://www.devup.solutions/)
 - [Email: mattias@devup.solutions](mailto:mattias@devup.solutions)
+- [Read more about our perspective on governing AI-generated solutions](https://www.devup.solutions/usecases/secure-ai-generated-code)
