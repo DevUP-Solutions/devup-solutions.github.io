@@ -1,0 +1,52 @@
+name: Site checks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  link-check:
+    name: Build and check links
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+
+      - name: Install dependencies
+        run: |
+          # Gemfile.lock is generated on macOS (arm64-darwin only), so the
+          # Linux platform has to be resolved before installing here.
+          bundle lock --add-platform x86_64-linux
+          bundle install --jobs 4 --retry 3
+
+      - name: Build site
+        run: bundle exec jekyll build --trace
+        env:
+          JEKYLL_ENV: production
+
+      - name: No non-www devup.solutions links (AB#2976 criterion 3)
+        run: |
+          if grep -rEn 'https?://devup\.solutions' _site; then
+            echo "::error::Found apex devup.solutions link(s) above. Use the www host instead."
+            exit 1
+          fi
+          echo "PASS: no non-www devup.solutions links in the built site."
+
+      - name: Check internal links
+        run: |
+          gem install html-proofer -v 5.0.9
+          htmlproofer ./_site \
+            --disable-external \
+            --no-enforce-https \
+            --allow-hash-href \
+            --ignore-empty-alt
