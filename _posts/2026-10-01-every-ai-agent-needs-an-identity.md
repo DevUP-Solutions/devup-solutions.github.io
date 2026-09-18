@@ -79,6 +79,8 @@ Imagine an AI agent that:
 - Triggers a Logic App
 - Updates a customer system
 
+![An AI agent connected to Azure Storage, an MCP server, a Logic App, and a customer system, with an identity and permission marker on every connection](/assets/images/2026/agent-identity-chain.svg)
+
 What looks like one agent permission can quickly become a cross-system chain of authority.
 
 Each individual permission may look reasonable. The risk appears when the agent can combine them.
@@ -177,6 +179,8 @@ This is the recurring governance gap we need to understand:
 - What is running
 - What is actually being used
 - What has changed
+
+![The governance gap between architecture intent (designed, configured) and operational reality (running, actually used, changed), closed by the continuous loop discover, understand, prioritize, improve, verify](/assets/images/2026/governance-gap.svg)
 
 Identity governance cannot stop when the first role assignment is created. It needs continuous verification throughout the workload lifecycle.
 
