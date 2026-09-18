@@ -17,7 +17,11 @@ My answer was simple:
 
 But ownership requires control. And control starts with knowing who—or what—is acting inside our systems.
 
+This is the second of four articles in this series.
+
 Identity gives us the context. Boundaries define where the agent can act. Validation tells us what actually happened.
+
+This one is about identity.
 
 For years, I have repeated the same advice in sessions, customer discussions, and our own work at DevUP:
 
@@ -109,7 +113,7 @@ That gives us the ability to:
 - Disable it without breaking every other workload
 - Tie its lifecycle to a known business purpose
 
-There can be practical reasons to use a shared project identity during early development. Microsoft Foundry currently does this for unpublished agents. But as an agent moves toward integration testing or production, its permissions, audit trail, and lifecycle need to become explicit. Foundry’s [agent identity model](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-identity) supports distinct identities for published agents.
+There can be practical reasons to use a shared project identity during early development. At the time of writing, Microsoft Foundry does this for unpublished agents. But as an agent moves toward integration testing or production, its permissions, audit trail, and lifecycle need to become explicit. Foundry’s [agent identity model](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-identity) supports distinct identities for published agents.
 
 Sharing an identity may reduce administrative work today.
 
@@ -139,6 +143,14 @@ If those answers are unclear, the agent is not ready for production.
 ## Ownership: Treat agents like employees, but stricter
 
 Agents need the same discipline as employees: a known purpose, a responsible owner, appropriate access, regular reviews, and a clear end to the lifecycle.
+
+When a new employee joins, we know who the manager is. We should know the same for an agent.
+
+Microsoft Entra Agent ID has two roles for this. The **sponsor** is accountable for why the agent exists. The **owner** is the technical administrator.
+
+It is the same split we already use for people: a manager who answers for the role, and IT who manages the account.
+
+An agent with neither is an agent nobody will answer for when something goes wrong.
 
 But their boundaries need to be tighter. Agents operate continuously, execute at machine speed, and can be influenced by prompts, retrieved data, tool descriptions, and responses from other systems. Unlike a human colleague, an agent does not stop because something feels wrong.
 
@@ -186,7 +198,7 @@ Identity governance cannot stop when the first role assignment is created. It ne
 
 ## Governance: From findings to direction
 
-This is also how we think about security in Helium.
+This is also how we think about security in Helium, our service for continuous insight into Azure environments.
 
 Today, Helium surfaces managed-identity signals, static-key findings, public exposure, networking, and resource configuration. That helps teams move from failed checks to context and priority.
 
@@ -198,7 +210,7 @@ A static credential is a finding. But the useful part is understanding why it ma
 
 - Is an identity-based alternative available but not used?
 - Is the resource also publicly exposed?
-- Which security maturity step does it block?
+- Which step toward a more mature security posture does it block?
 - What should the team fix first?
 
 Security findings become useful when they create clarity and direction—not only another list of failed checks.
