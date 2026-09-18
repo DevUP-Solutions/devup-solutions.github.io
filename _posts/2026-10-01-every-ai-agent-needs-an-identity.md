@@ -83,7 +83,10 @@ Imagine an AI agent that:
 - Triggers a Logic App
 - Updates a customer system
 
-![An AI agent connected to Azure Storage, an MCP server, a Logic App, and a customer system, with an identity and permission marker on every connection](/assets/images/2026/agent-identity-chain.svg)
+<picture>
+  <source media="(max-width: 600px)" srcset="/assets/images/2026/agent-identity-chain-mobile.svg">
+  <img src="/assets/images/2026/agent-identity-chain.svg" alt="An AI agent connected to Azure Storage, an MCP server, a Logic App, and a customer system, with an identity and permission marker on every connection">
+</picture>
 
 What looks like one agent permission can quickly become a cross-system chain of authority.
 
@@ -91,7 +94,7 @@ Each individual permission may look reasonable. The risk appears when the agent 
 
 A misleading instruction, compromised tool, poisoned tool response, or simply an unexpected decision can turn several individually acceptable permissions into a much larger action chain. The agent can repeat that chain faster than a human and across far more data.
 
-> Every agent identity creates a blast radius.
+> Every agent identity defines a potential blast radius.
 
 If the identity has broad access, the agent has broad access. If several agents share the same identity, we lose both isolation and traceability. If the agent calls a tool that uses an even more privileged backend identity, we may also create a confused deputy: a low-privileged caller borrowing the authority of a much more powerful service.
 
@@ -148,7 +151,7 @@ When a new employee joins, we know who the manager is. We should know the same f
 
 Microsoft Entra Agent ID has two roles for this. The **sponsor** is accountable for why the agent exists. The **owner** is the technical administrator.
 
-It is the same split we already use for people: a manager who answers for the role, and IT who manages the account.
+It is similar to the split we already use for people: a manager who answers for the role, and IT who manages the account.
 
 An agent with neither is an agent nobody will answer for when something goes wrong.
 
@@ -192,7 +195,10 @@ This is the recurring governance gap we need to understand:
 - What is actually being used
 - What has changed
 
-![The governance gap between architecture intent (designed, configured) and operational reality (running, actually used, changed), closed by the continuous loop discover, understand, prioritize, improve, verify](/assets/images/2026/governance-gap.svg)
+<picture>
+  <source media="(max-width: 600px)" srcset="/assets/images/2026/governance-gap-mobile.svg">
+  <img src="/assets/images/2026/governance-gap.svg" alt="The governance gap between architecture intent (designed, configured) and operational reality (running, actually used, changed), closed by the continuous loop discover, understand, prioritize, improve, verify">
+</picture>
 
 Identity governance cannot stop when the first role assignment is created. It needs continuous verification throughout the workload lifecycle.
 
