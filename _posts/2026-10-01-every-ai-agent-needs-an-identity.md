@@ -181,13 +181,11 @@ This is not bureaucracy around AI.
 
 It is what makes AI safe enough to become part of real business processes.
 
-## Guardrails: Two kinds, and we need both
-
-What about guardrails?
+## Guardrails: Behavior and authority
 
 Guardrails are an important part of agent security, but the term covers different types of controls.
 
-Model-level guardrails can filter harmful content, detect prompt attacks, and validate inputs and outputs. Microsoft Foundry's [guardrails and controls](https://learn.microsoft.com/en-us/azure/foundry/guardrails/guardrails-overview) work at this level.
+Model-level guardrails can filter harmful content, detect prompt attacks, and inspect inputs and outputs for defined risks. Microsoft Foundry's [guardrails and controls](https://learn.microsoft.com/en-us/azure/foundry/guardrails/guardrails-overview) work at this level. At the time of writing, agent guardrails are in preview.
 
 Identity guardrails—such as least privilege and [Conditional Access for agents](https://learn.microsoft.com/en-us/entra/identity/conditional-access/agent-id)—limit which resources an agent can access and under whose authority.
 
