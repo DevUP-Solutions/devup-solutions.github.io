@@ -181,6 +181,24 @@ This is not bureaucracy around AI.
 
 It is what makes AI safe enough to become part of real business processes.
 
+## Guardrails: Two kinds, and we need both
+
+What about guardrails?
+
+Guardrails are an important part of agent security, but the term covers different types of controls.
+
+Model-level guardrails can filter harmful content, detect prompt attacks, and validate inputs and outputs. Microsoft Foundry's [guardrails and controls](https://learn.microsoft.com/en-us/azure/foundry/guardrails/guardrails-overview) work at this level.
+
+Identity guardrails—such as least privilege and [Conditional Access for agents](https://learn.microsoft.com/en-us/entra/identity/conditional-access/agent-id)—limit which resources an agent can access and under whose authority.
+
+The important point is defense in depth:
+
+> Behavioral guardrails reduce the likelihood of a bad decision. Identity and authorization limit the impact when one still happens.
+
+We need both.
+
+And the identity guardrails only work when the agent actually uses an identity. An agent that connects with an API key bypasses Conditional Access completely.
+
 ## Drift: The designed identity may not be the identity in use
 
 An architecture diagram may show a managed identity. The deployed configuration may still contain a connection string. The configured identity may have broader permissions than intended, while the running solution may use another identity entirely.
