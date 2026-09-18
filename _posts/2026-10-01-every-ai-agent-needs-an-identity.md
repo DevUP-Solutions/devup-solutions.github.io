@@ -37,7 +37,7 @@ In a recent DevUP Talks conversation with Markus Lintuala, he described the chan
 
 That is the part I think many organizations are still underestimating.
 
-## Static keys were already a problem
+## Credentials: Static keys were already a problem
 
 Static credentials have never been a good foundation for cloud security.
 
@@ -64,7 +64,7 @@ The goal is to remove them wherever possible.
 
 Microsoft describes the same direction in its guidance for [workload identity federation](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation) and for [securing Azure MCP Server deployments](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/security).
 
-## AI makes the blast radius more important
+## Blast radius: AI makes it bigger and faster
 
 AI agents do not create the need for least privilege. We needed that long before generative AI.
 
@@ -93,7 +93,7 @@ If the identity has broad access, the agent has broad access. If several agents 
 
 Authentication alone does not solve any of those problems.
 
-## An agent needs its own identity
+## Identity: Every agent needs its own
 
 Microsoft Entra Agent ID introduces identities created specifically for AI agents, together with blueprints for applying common policies and lifecycle controls. Microsoft’s current [Agent ID best practices](https://learn.microsoft.com/en-us/entra/agent-id/best-practices-agent-id) recommend a unique identity for each agent instance, with an assigned sponsor and owner.
 
@@ -115,7 +115,7 @@ Sharing an identity may reduce administrative work today.
 
 It also increases the blast radius you will need to explain tomorrow.
 
-## Decide whose authority the agent is using
+## Authority: Decide whose permissions the agent is using
 
 Not every agent should operate in the same way.
 
@@ -136,7 +136,7 @@ For every agent, we should be able to answer:
 
 If those answers are unclear, the agent is not ready for production.
 
-## Treat agents like employees — but stricter
+## Ownership: Treat agents like employees, but stricter
 
 Agents need the same discipline as employees: a known purpose, a responsible owner, appropriate access, regular reviews, and a clear end to the lifecycle.
 
@@ -146,7 +146,7 @@ The old identity fundamentals still apply.
 
 The tolerance for weak implementation should not.
 
-## Seven practical controls to start with
+## Controls: Seven practical places to start
 
 We do not need to invent security again for AI agents.
 
@@ -166,7 +166,7 @@ This is not bureaucracy around AI.
 
 It is what makes AI safe enough to become part of real business processes.
 
-## The designed identity may not be the identity in use
+## Drift: The designed identity may not be the identity in use
 
 An architecture diagram may show a managed identity. The deployed configuration may still contain a connection string. The configured identity may have broader permissions than intended, while the running solution may use another identity entirely.
 
@@ -184,7 +184,7 @@ This is the recurring governance gap we need to understand:
 
 Identity governance cannot stop when the first role assignment is created. It needs continuous verification throughout the workload lifecycle.
 
-## The governance question
+## Governance: From findings to direction
 
 This is also how we think about security in Helium.
 
@@ -207,7 +207,7 @@ The next opportunity is to correlate identities and permissions with Azure resou
 
 Helium does not replace Microsoft Entra, PIM, Defender, or Sentinel. Its role is to connect their controls and signals with the wider Azure environment so teams can understand what matters first and verify whether it improves.
 
-## So, who owns the identity?
+## Accountability: So, who owns the identity?
 
 The answer is the same as it was for the architecture:
 
@@ -221,7 +221,7 @@ Identity. Least privilege. Zero Trust. Ownership. Visibility.
 
 They have simply become more urgent.
 
-## Identity is not the only perimeter
+## Boundaries: Identity is not the only perimeter
 
 Identity tells us who or what is allowed to request access.
 
