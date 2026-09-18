@@ -9,19 +9,17 @@ author: "Mattias Lögdberg"
 comments: true
 ---
 
-In the previous article, [Who Owns the Architecture When AI Writes the Code?]({% post_url 2026-09-07-who-owns-the-architecture-when-ai-writes-the-code %}), I asked what happens when AI accelerates delivery faster than our existing governance can follow.
+In the previous article, [Who Owns the Architecture When AI Writes the Code?]({% post_url 2026-09-07-who-owns-the-architecture-when-ai-writes-the-code %}), I asked what happens when AI accelerates delivery faster than governance can follow.
 
 My answer was simple:
 
 > We still own it.
 
-But responsibility needs control. And control starts with knowing who—or what—is acting inside our systems.
+But ownership requires control. And control starts with knowing who—or what—is acting inside our systems.
 
-Across this four-article series, the framework is **Context → Boundaries → Validation**.
+Identity gives us the context. Boundaries define where the agent can act. Validation tells us what actually happened.
 
-This article starts with identity: whose authority is the agent using?
-
-For years, our advice has been simple:
+For years, I have repeated the same advice in sessions, customer discussions, and our own work at DevUP:
 
 > Static keys are bad. Move to identities.
 
@@ -31,15 +29,7 @@ But it is no longer enough.
 
 Applications used to authenticate, follow predefined logic, and call the services we had explicitly connected to them. AI agents can choose tools, combine information, call other agents, and act with a degree of autonomy.
 
-The identity question is therefore changing.
-
-It is no longer only:
-
-> Can this application connect?
-
-It is also:
-
-> What can this non-human actor decide to do once it is connected?
+The identity question is no longer only whether an application can connect. It is what a non-human actor can decide to do once connected.
 
 In a recent DevUP Talks conversation with Markus Lintuala, he described the change very well:
 
@@ -91,13 +81,9 @@ Imagine an AI agent that:
 
 What looks like one agent permission can quickly become a cross-system chain of authority.
 
-Each individual permission may look reasonable.
-
-The risk appears when the agent can combine them.
+Each individual permission may look reasonable. The risk appears when the agent can combine them.
 
 A misleading instruction, compromised tool, poisoned tool response, or simply an unexpected decision can turn several individually acceptable permissions into a much larger action chain. The agent can repeat that chain faster than a human and across far more data.
-
-This leads to a simple principle:
 
 > Every agent identity creates a blast radius.
 
@@ -121,7 +107,7 @@ That gives us the ability to:
 - Disable it without breaking every other workload
 - Tie its lifecycle to a known business purpose
 
-There can be practical reasons to use a shared project identity during early development. Microsoft Foundry currently does this for unpublished agents in the same project. But when an agent moves toward integration testing or production, its permissions, audit trail, and lifecycle need to become explicit. Foundry’s [agent identity model](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-identity) supports distinct identities for published agents for exactly this reason.
+There can be practical reasons to use a shared project identity during early development. Microsoft Foundry currently does this for unpublished agents. But as an agent moves toward integration testing or production, its permissions, audit trail, and lifecycle need to become explicit. Foundry’s [agent identity model](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-identity) supports distinct identities for published agents.
 
 Sharing an identity may reduce administrative work today.
 
@@ -150,22 +136,9 @@ If those answers are unclear, the agent is not ready for production.
 
 ## Treat agents like employees — but stricter
 
-When a new employee joins, we normally know who the manager is, what role the person has, and which systems they need. When the employee changes role or leaves, their access should change as well.
+Agents need the same discipline as employees: a known purpose, a responsible owner, appropriate access, regular reviews, and a clear end to the lifecycle.
 
-Agents need the same discipline:
-
-- A clear purpose
-- A named owner and sponsor
-- Least-privilege access
-- An approval path for new permissions
-- Access reviews
-- An expiry or retirement process
-- A fast way to revoke access
-- Logs that show what the agent actually did
-
-But agents need even tighter boundaries than people.
-
-They operate continuously. They can execute actions at machine speed. They can be influenced by prompts, retrieved data, tool descriptions, and responses from other systems. And unlike a human colleague, an agent does not stop and become suspicious because something feels wrong.
+But their boundaries need to be tighter. Agents operate continuously, execute at machine speed, and can be influenced by prompts, retrieved data, tool descriptions, and responses from other systems. Unlike a human colleague, an agent does not stop because something feels wrong.
 
 The old identity fundamentals still apply.
 
@@ -191,7 +164,7 @@ This is not bureaucracy around AI.
 
 It is what makes AI safe enough to become part of real business processes.
 
-## The identity we designed may not be the identity in use
+## The designed identity may not be the identity in use
 
 An architecture diagram may show a managed identity. The deployed configuration may still contain a connection string. The configured identity may have broader permissions than intended, while the running solution may use another identity entirely.
 
@@ -211,7 +184,7 @@ Identity governance cannot stop when the first role assignment is created. It ne
 
 This is also how we think about security in Helium.
 
-Today, Helium can already surface managed-identity signals, static-key findings, public exposure, networking, and resource configuration. That gives teams part of the context needed to move from a failed check to a prioritized action.
+Today, Helium surfaces managed-identity signals, static-key findings, public exposure, networking, and resource configuration. That helps teams move from failed checks to context and priority.
 
 The continuous-governance loop is:
 
@@ -222,16 +195,13 @@ A static credential is a finding. But the useful part is understanding why it ma
 - Is an identity-based alternative available but not used?
 - Is the resource also publicly exposed?
 - Which security maturity step does it block?
-- How does it affect the wider risk picture?
 - What should the team fix first?
 
 Security findings become useful when they create clarity and direction—not only another list of failed checks.
 
-The broader opportunity for Helium is to correlate identities and permissions with Azure resources, exposure, activity, ownership, and architectural context. That is the direction we see for the product. Agent identity observability, effective-permission mapping, and a broader identity graph are future capabilities, not part of today's Helium product.
+The next opportunity is to correlate identities and permissions with Azure resources, exposure, activity, ownership, and architectural context. Over time, that could include agent identity observability, effective-permission mapping, and a broader identity graph.
 
-Helium is not intended to replace Microsoft Entra, PIM, Defender, or Sentinel. Those platforms provide identity controls and security signals. Helium's role is to connect that information with the wider Azure environment, help teams understand what matters first, and verify whether the situation improves.
-
-AI makes that context more important because it increases the number of non-human actors and the speed at which they can act.
+Helium does not replace Microsoft Entra, PIM, Defender, or Sentinel. Its role is to connect their controls and signals with the wider Azure environment so teams can understand what matters first and verify whether it improves.
 
 ## So, who owns the identity?
 
@@ -251,33 +221,11 @@ They have simply become more urgent.
 
 Identity tells us who or what is allowed to request access.
 
-It does not, by itself, control every path the traffic can take or every destination to which data can be sent.
+It does not answer where the agent can connect, which tools it can reach, or where data can leave.
 
-For agentic solutions, I think the security model increasingly needs four layers:
+That is the next layer: boundaries. [Azure Network Security Perimeter](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts), gateways, tool access, and data-exfiltration paths all enter the picture.
 
-- **Identity:** Who or what is acting?
-- **Network boundary:** Where can traffic enter, and where can data leave?
-- **Gateway:** Which operations are allowed, at what rate, and with what validation?
-- **Observability:** What actually happened across the complete chain?
-
-This is where [Azure Network Security Perimeter](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts) becomes interesting. It creates a logical boundary around supported PaaS resources outside virtual networks, with explicit rules for public inbound and outbound access and controls intended to reduce data exfiltration.
-
-But that deserves its own article: **Identity Is Not the Only Perimeter**.
-
-Because the next step after replacing static keys with identities is understanding an equally important point:
-
-> Identity may be the first control, but it is not the whole perimeter.
-
-That is where the next article begins. The fourth article then returns to validation: what could the agent do, what did it do, and can we reconstruct the complete chain?
-
-## Sources and further reading
-
-- [Microsoft Entra Agent ID documentation](https://learn.microsoft.com/en-us/entra/agent-id/)
-- [Best practices for Microsoft Entra Agent ID](https://learn.microsoft.com/en-us/entra/agent-id/best-practices-agent-id)
-- [Agent identity concepts in Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-identity)
-- [Workload identity federation concepts](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation)
-- [Secure your Azure MCP Server deployment](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/security)
-- [What is a network security perimeter?](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts)
+That is where the next article, **Identity Is Not the Only Perimeter**, begins. After boundaries, we return to validation: what could the agent do, what did it do, and can we reconstruct the complete chain?
 
 ### If I need some assistance?
 
