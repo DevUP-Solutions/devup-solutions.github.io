@@ -9,15 +9,17 @@ author: "Mattias Lögdberg"
 comments: true
 ---
 
-In the previous article, [Who Owns the Architecture When AI Writes the Code?]({% post_url 2026-09-07-who-owns-the-architecture-when-ai-writes-the-code %}), I asked what happens when AI accelerates delivery faster than governance can follow.
+This series started with [Who Owns the Architecture When AI Writes the Code?]({% post_url 2026-09-07-who-owns-the-architecture-when-ai-writes-the-code %}), where I asked what happens when AI accelerates delivery faster than governance can follow.
 
 My answer was simple:
 
 > We still own it.
 
+In the previous article, [Governance Needs to Move at the Same Speed as AI]({% post_url 2026-09-24-governance-needs-to-move-at-the-same-speed-as-ai %}), I argued that governance then has to become continuous and follow the Azure environment itself.
+
 But ownership requires control. And control starts with knowing who—or what—is acting inside our systems.
 
-This is the second of four articles in this series.
+This is the third of five articles in this series.
 
 Identity gives us the context. Boundaries define where the agent can act. Validation tells us what actually happened.
 
