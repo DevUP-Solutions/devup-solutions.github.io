@@ -131,7 +131,9 @@ A failed check does not automatically explain the risk.
 
 A public endpoint on an intentionally public API is different from one on an internal data store. A static key becomes more urgent when an identity-based alternative exists. A missing alert matters more on a critical production flow than on a temporary development resource.
 
-Governance needs context: purpose, exposure, dependencies, activity, ownership, environment, and business impact. That is what turns configuration data into a decision.
+Governance needs context: purpose, exposure, dependencies, activity, ownership, environment, and business impact.
+
+> **Context is what turns configuration data into a decision.**
 
 ### 3. Prioritize what matters
 
