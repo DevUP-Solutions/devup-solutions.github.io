@@ -202,9 +202,9 @@ As the number of subscriptions, services, teams, and requirements grows, maintai
 
 That is where Helium fits.
 
-DevUP Helium provides continuous cloud governance for Azure. It runs the same loop continuously across security, compliance, operational excellence, architecture, reliability, and cost.
+DevUP Helium provides continuous cloud governance for Azure across security, compliance, operational excellence, architecture, reliability, and cost.
 
-Two parts of that loop are difficult to build and maintain yourself.
+Two parts of the governance loop are difficult to build and maintain yourself.
 
 The first is the knowledge inside the checks. Azure does not stand still: new services, new authentication options, retired runtimes, and older TLS versions. Every check needs to be written, kept up to date, and explained well enough for a team to act on it.
 
