@@ -222,7 +222,7 @@ Identity governance cannot stop when the first role assignment is created. It ne
 
 ## Governance: From findings to direction
 
-This is also how we think about security in Helium, our service for continuous insight into Azure environments.
+This is also how we think about security in Helium, our Continuous Cloud Governance Platform for Azure.
 
 Today, Helium surfaces managed-identity signals, static-key findings, public exposure, networking, and resource configuration. That helps teams move from failed checks to context and priority.
 
@@ -267,12 +267,8 @@ That is the next layer: boundaries. [Azure Network Security Perimeter](https://l
 
 That is where the next article, **Identity Is Not the Only Perimeter**, begins. After boundaries, we return to validation: what could the agent do, what did it do, and can we reconstruct the complete chain?
 
-### If I need some assistance?
+---
 
-We at DevUP work with exactly this challenge: helping organizations understand identities, static credentials, exposure, and ownership across their Azure environments, using our service **Helium** for continuous insight and verification.
+**Want to get control of identities and static credentials in Azure?**
 
-Reach out here:
-
-- [https://www.devup.solutions/](https://www.devup.solutions/)
-- [Email: mattias@devup.solutions](mailto:mattias@devup.solutions)
-- [Read more about our perspective on governing AI-generated solutions](https://www.devup.solutions/usecases/secure-ai-generated-code)
+DevUP Helium is our Continuous Cloud Governance Platform for Azure. [Learn more about Helium](https://www.devup.solutions/) or [contact Mattias](mailto:mattias@devup.solutions).
