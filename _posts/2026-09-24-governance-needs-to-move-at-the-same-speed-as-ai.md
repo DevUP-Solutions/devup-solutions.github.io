@@ -220,7 +220,7 @@ Helium does not replace Azure Policy, Defender for Cloud, or Advisor. They remai
 
 The governance target remains the Azure environment.
 
-## Governance has to follow what we deploy
+## Governance has to keep up with what we deploy
 
 AI will continue to make implementation faster. That is an opportunity.
 
