@@ -12,7 +12,7 @@ comments: true
 
 <picture>
   <source media="(max-width: 600px)" srcset="/assets/images/2026/governance-speed-hero-mobile.svg">
-  <img src="/assets/images/2026/governance-speed-hero.svg" alt="AI-assisted delivery rapidly adding new resources to an Azure environment of applications, identities, data, networking, and integrations, with a continuous governance loop following every change underneath. Headline: Delivery is continuous. Governance must be too.">
+  <img src="/assets/images/2026/governance-speed-hero.svg" alt="AI-assisted delivery rapidly adding new resources to an Azure environment of applications, identities, data, networking, and integrations, with a continuous governance loop following the environment underneath. Headline: Delivery is continuous. Governance must be too.">
 </picture>
 
 In my previous article, [Who Owns the Architecture When AI Writes the Code?]({% post_url 2026-09-07-who-owns-the-architecture-when-ai-writes-the-code %}), I argued that AI has changed implementation, but it has not transferred responsibility.
@@ -59,7 +59,7 @@ None of those changes looks dramatic on its own. Together, they change the secur
 
 <picture>
   <source media="(max-width: 600px)" srcset="/assets/images/2026/periodic-vs-continuous-governance-mobile.svg">
-  <img src="/assets/images/2026/periodic-vs-continuous-governance.svg" alt="Two timelines of the same environment. Periodic governance: architecture review, deployment approval, and annual assessment as isolated checkpoints, with unmanaged changes accumulating between them, ending in a long remediation backlog and another review later. Continuous governance: the same checkpoints remain, but every change is picked up by the loop discover, understand, prioritize, improve, verify, and repeat.">
+  <img src="/assets/images/2026/periodic-vs-continuous-governance.svg" alt="Two timelines of the same environment. Periodic governance: architecture review, deployment approval, and annual assessment as isolated checkpoints, with unmanaged changes accumulating between them, ending in a long remediation backlog and another review later. Continuous governance: the same checkpoints remain, but the changes between them are picked up by the loop discover, understand, prioritize, improve, verify, and repeat.">
 </picture>
 
 *Periodic governance captures moments. Continuous governance follows the environment.*
@@ -176,11 +176,11 @@ AI can help here too. The same technology that increases the rate of change can 
 
 ## How can we solve this?
 
-The good news is that many of the building blocks already exist in Azure.
+Many of the building blocks already exist in Azure.
 
 [Azure Resource Graph](https://learn.microsoft.com/en-us/azure/governance/resource-graph/overview) can help us understand what is deployed across subscriptions. Azure Policy can audit and enforce requirements. Defender for Cloud, Azure Advisor, Azure Monitor, and Cost Management provide additional signals across security, reliability, operations, and cost.
 
-We do not need a new product to get started. I would start here:
+We do not need a new product to get started. To put the continuous governance loop into practice, I would start here:
 
 1. **Build one inventory.** Query what is actually deployed across all subscriptions: resources, identities, and public exposure. Start from the environment—not from the diagram.
 2. **Make ownership a deployment requirement.** Use Azure Policy to require tags for owner, environment, and criticality. A resource without an owner should be a finding on day one, not in next year's assessment.
@@ -238,12 +238,8 @@ And governance needs to keep up with both.
 
 The next article will look more closely at one part of that environment that AI is making increasingly important: identity. Because every AI agent needs an identity—and an owner.
 
-### If I need some assistance?
+---
 
-We at DevUP work with exactly this challenge: helping organizations keep governance up to speed with AI-assisted delivery, using our service **Helium** for continuous cloud governance across Azure environments.
+**Want to make governance continuous?**
 
-Reach out here:
-
-- [https://www.devup.solutions/](https://www.devup.solutions/)
-- [Email: mattias@devup.solutions](mailto:mattias@devup.solutions)
-- [Read more about our perspective on governing AI-generated solutions](https://www.devup.solutions/usecases/secure-ai-generated-code)
+DevUP Helium is our Continuous Cloud Governance Platform for Azure. [Learn more about Helium](https://www.devup.solutions/) or [contact Mattias](mailto:mattias@devup.solutions).

@@ -88,7 +88,7 @@
 
   <text x="60" y="516" font-size="22" font-weight="700" fill="#9fd3ff">Continuous</text>
   <text x="60" y="544" font-size="22" font-weight="700" fill="#9fd3ff">governance</text>
-  <text x="60" y="570" font-size="14" fill="#c7e3fb">follows every change</text>
+  <text x="60" y="570" font-size="14" fill="#c7e3fb">follows the environment</text>
 
   <rect x="340" y="476" width="800" height="100" rx="16" fill="#dbeafe"/>
   <rect x="376" y="492" width="120" height="40" rx="20" fill="#ffffff" stroke="#0078d4" stroke-width="2"/>
