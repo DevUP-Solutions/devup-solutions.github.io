@@ -176,7 +176,7 @@ People still need to decide whether an exception is justified, which risks can b
 
 AI can help here too. The same technology that increases the rate of change can also help us understand relationships and produce clearer recommendations.
 
-## How can we solve this?
+## Start with what Azure already provides
 
 Many of the building blocks already exist in Azure.
 
@@ -202,7 +202,7 @@ Individual services provide valuable controls and signals, but they do not autom
 
 As the number of subscriptions, services, teams, and requirements grows, maintaining the governance system can become a product of its own.
 
-That is where Helium fits.
+That is where Helium fits in.
 
 DevUP Helium provides continuous cloud governance for Azure across security, compliance, operational excellence, architecture, reliability, and cost.
 
