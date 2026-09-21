@@ -172,17 +172,29 @@ Some decisions can be automated:
 
 People still need to decide whether an exception is justified, which risks can be accepted temporarily, and what should be improved first. Automation should make that possible at a scale where manual review is no longer realistic—not add another approval board.
 
+AI can help here too. The same technology that increases the rate of change can also help us understand relationships and produce clearer recommendations.
+
 ## How can we solve this?
 
 The good news is that many of the building blocks already exist in Azure.
 
 [Azure Resource Graph](https://learn.microsoft.com/en-us/azure/governance/resource-graph/overview) can help us understand what is deployed across subscriptions. Azure Policy can audit and enforce requirements. Defender for Cloud, Azure Advisor, Azure Monitor, and Cost Management provide additional signals across security, reliability, operations, and cost.
 
-We can connect those services through scripts, workbooks, automation, and backlogs. We can assign owners, document exceptions, prioritize findings, and regularly check whether the environment has improved.
+We do not need a new product to get started. I would start here:
+
+1. **Build one inventory.** Query what is actually deployed across all subscriptions: resources, identities, and public exposure. Start from the environment—not from the diagram.
+2. **Make ownership a deployment requirement.** Use Azure Policy to require tags for owner, environment, and criticality. A resource without an owner should be a finding on day one, not in next year's assessment.
+3. **Choose a few non-negotiables.** Deny the configurations that are never acceptable. Audit the rest. Trying to block everything mostly creates exceptions nobody follows up.
+4. **Give every exception an owner and an expiry.** Azure Policy exemptions support expiration dates. Use them. An exception without an end date quietly becomes part of the architecture.
+5. **Bring the signals into one prioritized list.** Policy compliance, Defender for Cloud, Advisor, Monitor, and Cost Management each tell part of the story. Rank the findings by context, not by count, and bring the top few into the next sprint.
+6. **Check again after every fix.** Follow whether the environment is becoming better over time—not only how many findings are open.
+7. **Match the cadence to delivery.** If the environment changes every day, a yearly review can only document what already happened.
+
+Scripts, workbooks, automation, and a backlog will take us a long way.
 
 That can work.
 
-The challenge is bringing it all together.
+The challenge is keeping it all together.
 
 Individual services provide valuable controls and signals, but they do not automatically create a shared view of risk, context, dependencies, ownership, priorities, and progress. Someone still needs to connect the information, remove the noise, maintain the rules, and keep the process moving.
 
@@ -190,15 +202,19 @@ As the number of subscriptions, services, teams, and requirements grows, maintai
 
 That is where Helium fits.
 
-DevUP Helium provides continuous cloud governance for Azure. It brings signals, context, priorities, improvements, and verification into the same governance loop.
+DevUP Helium provides continuous cloud governance for Azure. It runs the same loop continuously across security, compliance, operational excellence, architecture, reliability, and cost.
 
-Helium continuously evaluates the Azure environment across security, compliance, operational excellence, architecture, reliability, and cost.
+Two parts of that loop are difficult to build and maintain yourself.
 
-It surfaces issues such as static credentials where managed identities are available, public exposure, missing diagnostics, unsupported versions, weak TLS, and missing operational controls.
+The first is the knowledge inside the checks. Azure does not stand still: new services, new authentication options, retired runtimes, and older TLS versions. Every check needs to be written, kept up to date, and explained well enough for a team to act on it.
 
-But the number of failed checks is not the point. The point is to understand what the findings mean together, what to improve first, and whether the environment is becoming better.
+The second is context.
 
-That is also why AI matters to the Helium story. AI increases the rate of change. It can also help us understand relationships and produce clearer recommendations. Both make continuous visibility and verification more important.
+A static key is a finding. A static key on a publicly exposed resource, where a managed identity is available but not used, is a priority.
+
+The number of failed checks is not the point. The point is to understand what the findings mean together, what to improve first, and whether the environment is becoming better.
+
+Helium does not replace Azure Policy, Defender for Cloud, or Advisor. They remain the building blocks. Helium's role is to keep the loop moving, so the team can spend its time improving the environment instead of maintaining the governance system.
 
 The governance target remains the Azure environment.
 
