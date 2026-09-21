@@ -15,7 +15,7 @@ comments: true
   <img src="/assets/images/2026/governance-speed-hero.svg" alt="AI-assisted delivery rapidly adding new resources to an Azure environment of applications, identities, data, networking, and integrations, with a continuous governance loop following the environment underneath. Headline: Delivery is continuous. Governance must be too.">
 </picture>
 
-In my previous article, [Who Owns the Architecture When AI Writes the Code?]({% post_url 2026-09-07-who-owns-the-architecture-when-ai-writes-the-code %}), I argued that AI has changed implementation, but it has not transferred responsibility.
+In my previous article, [Who Owns the Architecture When AI Writes the Code?]({% post_url 2026-09-07-who-owns-the-architecture-when-ai-writes-the-code %}), I argued that AI has changed implementation but has not transferred responsibility.
 
 We still own the architecture.
 
@@ -49,7 +49,7 @@ The challenge is not only whether the generated code is correct. It is whether t
 
 Many governance models are built around checkpoints. We review the architecture, approve the pull request, validate the deployment pipeline, and perhaps revisit the architecture a few times per year.
 
-Those checkpoints still have value, but they only show the environment at a specific moment.
+Those checkpoints still have value, but they are snapshots of the environment at a specific moment.
 
 Azure does not stop changing after the review.
 
@@ -88,7 +88,7 @@ The pipeline sees the change it is deploying. Governance needs to understand the
 
 That difference becomes increasingly important when AI is good at producing locally reasonable solutions without understanding the complete system around them.
 
-## Guardrails help, but they are not the complete model
+## Guardrails help, but they are not governance
 
 Guardrails are an important part of the answer.
 
