@@ -161,9 +161,9 @@ After the team acts, governance needs to check again. Was the public endpoint re
 
 Without verification, remediation becomes another moment in time.
 
-## Continuous governance is not continuous control
+## Continuous governance is not another approval board
 
-Continuous governance can sound like putting more controls around developers. That is not the goal. The goal is to spend less time investigating what we have and more time improving it.
+Continuous governance can sound like putting more gates and approvals in front of developers. That is not the goal. The goal is to spend less time investigating what we have and more time improving it.
 
 Some decisions can be automated:
 
