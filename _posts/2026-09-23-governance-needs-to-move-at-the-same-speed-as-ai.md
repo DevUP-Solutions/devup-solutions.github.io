@@ -2,7 +2,7 @@
 layout: post
 title: "Governance Needs to Move at the Same Speed as AI"
 description: "AI does not change what we need to govern in Azure. It changes how quickly the environment grows and drifts. When delivery is continuous, governance has to be continuous too: discover, understand, prioritize, improve, verify."
-date: 2026-09-24 09:00:00 +0200
+date: 2026-09-23 09:00:00 +0200
 categories: [Helium, AI]
 tags: [AI, Governance, Azure, Azure Governance, Continuous Governance, Architecture, Helium]
 author: "Mattias Lögdberg"
