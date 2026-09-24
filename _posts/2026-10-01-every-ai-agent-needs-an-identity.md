@@ -21,8 +21,6 @@ My answer was simple:
 
 > We still own it.
 
-In a spin-off, [Governance Needs to Move at the Same Speed as AI]({% post_url 2026-09-23-governance-needs-to-move-at-the-same-speed-as-ai %}), I argued that governance then has to become continuous and follow the Azure environment itself.
-
 But ownership requires control. And control starts with knowing who—or what—is acting inside our systems.
 
 This is the second of four articles in this series.
@@ -30,6 +28,8 @@ This is the second of four articles in this series.
 Identity gives us the context. Boundaries define where the agent can act. Validation tells us what actually happened.
 
 This one is about identity.
+
+Between the two, I wrote a spin-off, [Governance Needs to Move at the Same Speed as AI]({% post_url 2026-09-23-governance-needs-to-move-at-the-same-speed-as-ai %}), on why governance has to become continuous. This article goes one level deeper: the identities doing the work.
 
 For years, I have repeated the same advice in sessions, customer discussions, and our own work at DevUP:
 
