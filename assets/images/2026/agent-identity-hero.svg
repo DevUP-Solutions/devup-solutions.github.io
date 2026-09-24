@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071d35"/>
+      <stop offset="1" stop-color="#0b2a4a"/>
+    </linearGradient>
+    <marker id="arrowL" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#9fd3ff"/>
+    </marker>
+    <marker id="arrowR" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#f87171"/>
+    </marker>
+    <g id="idBadge">
+      <circle r="15" fill="#ffffff" stroke="#0078d4" stroke-width="2"/>
+      <circle cx="-4" cy="0" r="4.2" fill="none" stroke="#0078d4" stroke-width="2.2"/>
+      <line x1="0" y1="0" x2="9" y2="0" stroke="#0078d4" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="5.5" y1="0" x2="5.5" y2="4" stroke="#0078d4" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="9" y1="0" x2="9" y2="4" stroke="#0078d4" stroke-width="2.2" stroke-linecap="round"/>
+    </g>
+    <g id="warnBadge">
+      <circle r="15" fill="#3b1111" stroke="#f87171" stroke-width="2"/>
+      <line x1="0" y1="-7" x2="0" y2="3" stroke="#f87171" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="0" cy="8" r="1.7" fill="#f87171"/>
+    </g>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <text x="60" y="98" font-size="48" font-weight="700" fill="#ffffff">Every AI agent needs an identity.</text>
+  <text x="60" y="156" font-size="48" font-weight="700" fill="#9fd3ff">And an owner.</text>
+
+  <rect x="530" y="214" width="610" height="362" rx="16" fill="#ffffff" fill-opacity="0.05" stroke="#2f5d8a" stroke-width="1.5"/>
+  <text x="556" y="244" font-size="14" font-weight="600" letter-spacing="1.5" fill="#9fd3ff">AZURE ENVIRONMENT</text>
+  <line x1="360" y1="295" x2="556" y2="295" stroke="#9fd3ff" stroke-width="2" marker-end="url(#arrowL)"/>
+  <line x1="360" y1="410" x2="556" y2="410" stroke="#9fd3ff" stroke-width="2" marker-end="url(#arrowL)"/>
+  <path d="M 360,525 L 440,525 L 556,295" fill="none" stroke="#f87171" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrowR)"/>
+  <path d="M 360,525 L 440,525 L 556,410" fill="none" stroke="#f87171" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrowR)"/>
+  <path d="M 360,525 L 440,525 L 556,525" fill="none" stroke="#f87171" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrowR)"/>
+  <g><rect x="560" y="263" width="260" height="64" rx="12" fill="#123a63" stroke="#3b82c4" stroke-width="1.5"/>
+  <text x="690.0" y="301.0" text-anchor="middle" font-size="17" font-weight="600" fill="#ffffff">Azure Storage</text></g>
+  <g opacity="0.45"><rect x="850" y="263" width="260" height="64" rx="12" fill="#123a63" stroke="#3b82c4" stroke-width="1.5"/>
+  <text x="980.0" y="301.0" text-anchor="middle" font-size="17" font-weight="600" fill="#ffffff">Service Bus</text></g>
+  <g><rect x="560" y="378" width="260" height="64" rx="12" fill="#123a63" stroke="#3b82c4" stroke-width="1.5"/>
+  <text x="690.0" y="416.0" text-anchor="middle" font-size="17" font-weight="600" fill="#ffffff">MCP server</text></g>
+  <g opacity="0.45"><rect x="850" y="378" width="260" height="64" rx="12" fill="#123a63" stroke="#3b82c4" stroke-width="1.5"/>
+  <text x="980.0" y="416.0" text-anchor="middle" font-size="17" font-weight="600" fill="#ffffff">Key Vault</text></g>
+  <g><rect x="560" y="493" width="260" height="64" rx="12" fill="#123a63" stroke="#3b82c4" stroke-width="1.5"/>
+  <text x="690.0" y="531.0" text-anchor="middle" font-size="17" font-weight="600" fill="#ffffff">Logic App</text></g>
+  <g opacity="0.45"><rect x="850" y="493" width="260" height="64" rx="12" fill="#123a63" stroke="#3b82c4" stroke-width="1.5"/>
+  <text x="980.0" y="531.0" text-anchor="middle" font-size="17" font-weight="600" fill="#ffffff">Customer API</text></g>
+  <rect x="60" y="250" width="300" height="90" rx="14" fill="#123a63" stroke="#3b82c4" stroke-width="1.5"/>
+  <text x="210.0" y="292.0" text-anchor="middle" font-size="20" font-weight="600" fill="#ffffff">Invoice agent</text>
+  <text x="210.0" y="315.0" text-anchor="middle" font-size="13.5" fill="#9fd3ff">own identity · sponsor · owner</text>
+  <rect x="60" y="365" width="300" height="90" rx="14" fill="#123a63" stroke="#3b82c4" stroke-width="1.5"/>
+  <text x="210.0" y="407.0" text-anchor="middle" font-size="20" font-weight="600" fill="#ffffff">Support agent</text>
+  <text x="210.0" y="430.0" text-anchor="middle" font-size="13.5" fill="#9fd3ff">own identity · sponsor · owner</text>
+  <rect x="60" y="480" width="300" height="90" rx="14" fill="#2a1620" stroke="#f87171" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="210.0" y="522.0" text-anchor="middle" font-size="20" font-weight="600" fill="#ffffff">Integration agent</text>
+  <text x="210.0" y="545.0" text-anchor="middle" font-size="13.5" fill="#fca5a5">shared key · no owner</text>
+  <use href="#idBadge" x="440" y="295"/>
+  <use href="#idBadge" x="440" y="410"/>
+  <use href="#warnBadge" x="440" y="525"/>
+  <text x="60" y="610" font-size="16" fill="#9fd3ff">Own identity. Clear authority. Named owner.</text>
+  <text x="1140" y="610" text-anchor="end" font-size="16" fill="#fca5a5">A shared key reaches everything and answers to no one.</text>
+</svg>

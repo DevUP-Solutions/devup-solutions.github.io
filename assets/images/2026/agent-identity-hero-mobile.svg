@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 470" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071d35"/>
+      <stop offset="1" stop-color="#0b2a4a"/>
+    </linearGradient>
+    <marker id="arrowL" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#9fd3ff"/>
+    </marker>
+    <marker id="arrowR" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#f87171"/>
+    </marker>
+    <g id="idBadge">
+      <circle r="15" fill="#ffffff" stroke="#0078d4" stroke-width="2"/>
+      <circle cx="-4" cy="0" r="4.2" fill="none" stroke="#0078d4" stroke-width="2.2"/>
+      <line x1="0" y1="0" x2="9" y2="0" stroke="#0078d4" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="5.5" y1="0" x2="5.5" y2="4" stroke="#0078d4" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="9" y1="0" x2="9" y2="4" stroke="#0078d4" stroke-width="2.2" stroke-linecap="round"/>
+    </g>
+    <g id="warnBadge">
+      <circle r="15" fill="#3b1111" stroke="#f87171" stroke-width="2"/>
+      <line x1="0" y1="-7" x2="0" y2="3" stroke="#f87171" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="0" cy="8" r="1.7" fill="#f87171"/>
+    </g>
+  </defs>
+  <rect width="400" height="470" fill="url(#bg)" rx="12"/>
+  <text x="20" y="48" font-size="25" font-weight="700" fill="#ffffff">Every AI agent needs</text>
+  <text x="20" y="80" font-size="25" font-weight="700" fill="#ffffff">an identity.</text>
+  <text x="20" y="116" font-size="25" font-weight="700" fill="#9fd3ff">And an owner.</text>
+  <line x1="200" y1="188" x2="246" y2="188" stroke="#9fd3ff" stroke-width="2" marker-end="url(#arrowL)"/>
+  <g><rect x="250" y="160" width="130" height="56" rx="12" fill="#123a63" stroke="#3b82c4" stroke-width="1.5"/>
+  <text x="315.0" y="194.0" text-anchor="middle" font-size="14" font-weight="600" fill="#ffffff">Azure Storage</text></g>
+  <use href="#idBadge" x="222" y="188"/>
+  <rect x="20" y="150" width="180" height="76" rx="14" fill="#123a63" stroke="#3b82c4" stroke-width="1.5"/>
+  <text x="110.0" y="185.0" text-anchor="middle" font-size="16" font-weight="600" fill="#ffffff">Invoice agent</text>
+  <text x="110.0" y="208.0" text-anchor="middle" font-size="12" fill="#9fd3ff">sponsor · owner</text>
+  <line x1="200" y1="288" x2="246" y2="288" stroke="#9fd3ff" stroke-width="2" marker-end="url(#arrowL)"/>
+  <g><rect x="250" y="260" width="130" height="56" rx="12" fill="#123a63" stroke="#3b82c4" stroke-width="1.5"/>
+  <text x="315.0" y="294.0" text-anchor="middle" font-size="14" font-weight="600" fill="#ffffff">MCP server</text></g>
+  <use href="#idBadge" x="222" y="288"/>
+  <rect x="20" y="250" width="180" height="76" rx="14" fill="#123a63" stroke="#3b82c4" stroke-width="1.5"/>
+  <text x="110.0" y="285.0" text-anchor="middle" font-size="16" font-weight="600" fill="#ffffff">Support agent</text>
+  <text x="110.0" y="308.0" text-anchor="middle" font-size="12" fill="#9fd3ff">sponsor · owner</text>
+  <line x1="200" y1="388" x2="246" y2="388" stroke="#f87171" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrowR)"/>
+  <rect x="250" y="360" width="130" height="56" rx="12" fill="#2a1620" stroke="#f87171" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="315" y="384" text-anchor="middle" font-size="13" font-weight="600" fill="#fca5a5">Everything</text>
+  <text x="315" y="402" text-anchor="middle" font-size="13" font-weight="600" fill="#fca5a5">it reaches</text>
+  <use href="#warnBadge" x="222" y="388"/>
+  <rect x="20" y="350" width="180" height="76" rx="14" fill="#2a1620" stroke="#f87171" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="110.0" y="385.0" text-anchor="middle" font-size="16" font-weight="600" fill="#ffffff">Integration agent</text>
+  <text x="110.0" y="408.0" text-anchor="middle" font-size="12" fill="#fca5a5">shared key · no owner</text>
+  <text x="20" y="452" font-size="13" fill="#9fd3ff">Own identity. Clear authority. Named owner.</text>
+</svg>

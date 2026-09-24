@@ -6,8 +6,14 @@ date: 2026-10-01 09:00:00 +0200
 categories: [Helium, AI]
 tags: [AI, Security, Azure, Microsoft Entra, Agent ID, Managed Identity, Workload Identity, Governance]
 author: "Mattias Lögdberg"
+image: /assets/images/2026/agent-identity-hero.png
 comments: true
 ---
+
+<picture>
+  <source media="(max-width: 600px)" srcset="/assets/images/2026/agent-identity-hero-mobile.svg">
+  <img src="/assets/images/2026/agent-identity-hero.svg" alt="Two AI agents, each with its own identity, a sponsor and an owner, each reaching one scoped resource in an Azure environment. A third agent using a shared key with no owner reaches Azure Storage, the MCP server and a Logic App. Headline: Every AI agent needs an identity. And an owner.">
+</picture>
 
 This series started with [Who Owns the Architecture When AI Writes the Code?]({% post_url 2026-09-07-who-owns-the-architecture-when-ai-writes-the-code %}), where I asked what happens when AI accelerates delivery faster than governance can follow.
 
@@ -15,11 +21,11 @@ My answer was simple:
 
 > We still own it.
 
-In the previous article, [Governance Needs to Move at the Same Speed as AI]({% post_url 2026-09-24-governance-needs-to-move-at-the-same-speed-as-ai %}), I argued that governance then has to become continuous and follow the Azure environment itself.
+In a spin-off, [Governance Needs to Move at the Same Speed as AI]({% post_url 2026-09-23-governance-needs-to-move-at-the-same-speed-as-ai %}), I argued that governance then has to become continuous and follow the Azure environment itself.
 
 But ownership requires control. And control starts with knowing who—or what—is acting inside our systems.
 
-This is the third of five articles in this series.
+This is the second of four articles in this series.
 
 Identity gives us the context. Boundaries define where the agent can act. Validation tells us what actually happened.
 
@@ -185,7 +191,9 @@ It is what makes AI safe enough to become part of real business processes.
 
 ## Guardrails: Behavior and authority
 
-Guardrails are an important part of agent security, but the term covers different types of controls.
+In the [governance article]({% post_url 2026-09-23-governance-needs-to-move-at-the-same-speed-as-ai %}), I argued that guardrails provide boundaries, not governance.
+
+For identity, there is a second distinction. Guardrails are an important part of agent security, but the term covers different types of controls.
 
 Model-level guardrails can filter harmful content, detect prompt attacks, and inspect inputs and outputs for defined risks. Microsoft Foundry's [guardrails and controls](https://learn.microsoft.com/en-us/azure/foundry/guardrails/guardrails-overview) work at this level. At the time of writing, agent guardrails are in preview.
 
@@ -226,16 +234,11 @@ This is also how we think about security in Helium, our Continuous Cloud Governa
 
 Today, Helium surfaces managed-identity signals, static-key findings, public exposure, networking, and resource configuration. That helps teams move from failed checks to context and priority.
 
-The continuous-governance loop is:
+It is the same loop I described in the [governance article]({% post_url 2026-09-23-governance-needs-to-move-at-the-same-speed-as-ai %}):
 
 > **Discover → Understand → Prioritize → Improve → Verify**
 
-A static credential is a finding. But the useful part is understanding why it matters in this particular environment:
-
-- Is an identity-based alternative available but not used?
-- Is the resource also publicly exposed?
-- Which step toward a more mature security posture does it block?
-- What should the team fix first?
+For identity, the argument is short. A static key is a finding. A static key on a publicly exposed resource, where a managed identity is available but not used, is a priority.
 
 Security findings become useful when they create clarity and direction—not only another list of failed checks.
 
