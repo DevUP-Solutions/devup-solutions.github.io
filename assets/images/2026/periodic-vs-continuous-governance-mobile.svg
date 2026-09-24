@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 452" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arrowN" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 9 3, 0 6" fill="#0b2a4a"/></marker>
+    <marker id="arrowB" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 9 3, 0 6" fill="#0078d4"/></marker>
+    <marker id="arrowG" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 9 3, 0 6" fill="#9ca3af"/></marker>
+    <marker id="arrowL" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 9 3, 0 6" fill="#9fd3ff"/></marker>
+  </defs>
+  <rect width="400" height="452" fill="#f5f7fb" rx="12"/>
+  <text x="104" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#0b2a4a">Periodic</text>
+  <text x="296" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#0b2a4a">Continuous</text>
+  <rect x="200" y="16" width="1" height="384" fill="#d1d5db"/>
+  <rect x="22" y="46" width="164" height="40" rx="12" fill="#0b2a4a"/>
+  <text x="104" y="71" text-anchor="middle" font-size="13" font-weight="600" fill="#9fd3ff">Architecture review</text>
+  <line x1="104" y1="86" x2="104" y2="118" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowG)"/>
+  <circle cx="86" cy="97" r="4" fill="#dc2626"/>
+  <circle cx="120" cy="103" r="4" fill="#dc2626"/>
+  <circle cx="92" cy="111" r="4" fill="#dc2626"/>
+  <rect x="226" y="46" width="140" height="40" rx="20" fill="#dbeafe" stroke="#0078d4" stroke-width="2"/>
+  <text x="296" y="71" text-anchor="middle" font-size="14" font-weight="600" fill="#0b2a4a">Discover</text>
+  <line x1="296" y1="86" x2="296" y2="117" stroke="#0078d4" stroke-width="2" marker-end="url(#arrowB)"/>
+  <rect x="22" y="120" width="164" height="40" rx="12" fill="#0b2a4a"/>
+  <text x="104" y="145" text-anchor="middle" font-size="13" font-weight="600" fill="#9fd3ff">Deployment approval</text>
+  <line x1="104" y1="160" x2="104" y2="192" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowG)"/>
+  <circle cx="86" cy="171" r="4" fill="#dc2626"/>
+  <circle cx="120" cy="177" r="4" fill="#dc2626"/>
+  <circle cx="92" cy="185" r="4" fill="#dc2626"/>
+  <rect x="226" y="120" width="140" height="40" rx="20" fill="#dbeafe" stroke="#0078d4" stroke-width="2"/>
+  <text x="296" y="145" text-anchor="middle" font-size="14" font-weight="600" fill="#0b2a4a">Understand</text>
+  <line x1="296" y1="160" x2="296" y2="191" stroke="#0078d4" stroke-width="2" marker-end="url(#arrowB)"/>
+  <rect x="22" y="194" width="164" height="40" rx="12" fill="#0b2a4a"/>
+  <text x="104" y="219" text-anchor="middle" font-size="13" font-weight="600" fill="#9fd3ff">Annual assessment</text>
+  <line x1="104" y1="234" x2="104" y2="266" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowG)"/>
+  <circle cx="86" cy="245" r="4" fill="#dc2626"/>
+  <circle cx="120" cy="251" r="4" fill="#dc2626"/>
+  <circle cx="92" cy="259" r="4" fill="#dc2626"/>
+  <rect x="226" y="194" width="140" height="40" rx="20" fill="#dbeafe" stroke="#0078d4" stroke-width="2"/>
+  <text x="296" y="219" text-anchor="middle" font-size="14" font-weight="600" fill="#0b2a4a">Prioritize</text>
+  <line x1="296" y1="234" x2="296" y2="265" stroke="#0078d4" stroke-width="2" marker-end="url(#arrowB)"/>
+  <rect x="22" y="268" width="164" height="40" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="104" y="293" text-anchor="middle" font-size="12.5" font-weight="600" fill="#991b1b">Long remediation backlog</text>
+  <line x1="104" y1="308" x2="104" y2="340" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowG)"/>
+  <rect x="226" y="268" width="140" height="40" rx="20" fill="#dbeafe" stroke="#0078d4" stroke-width="2"/>
+  <text x="296" y="293" text-anchor="middle" font-size="14" font-weight="600" fill="#0b2a4a">Improve</text>
+  <line x1="296" y1="308" x2="296" y2="339" stroke="#0078d4" stroke-width="2" marker-end="url(#arrowB)"/>
+  <rect x="22" y="342" width="164" height="40" rx="12" fill="none" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="104" y="367" text-anchor="middle" font-size="13" font-weight="600" fill="#4b5563">Review again later</text>
+  <rect x="226" y="342" width="140" height="40" rx="20" fill="#0078d4"/>
+  <text x="296" y="367" text-anchor="middle" font-size="14" font-weight="600" fill="#ffffff">Verify</text>
+  <path d="M 366,362 L 384,362 L 384,66 L 370,66" fill="none" stroke="#0078d4" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowB)"/>
+  <circle cx="28" cy="424" r="4" fill="#dc2626"/>
+  <text x="40" y="428" font-size="12" font-weight="600" fill="#dc2626">unmanaged changes between checkpoints</text>
+</svg>

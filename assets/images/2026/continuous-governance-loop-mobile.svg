@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 392" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arrowN" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 9 3, 0 6" fill="#0b2a4a"/></marker>
+    <marker id="arrowB" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 9 3, 0 6" fill="#0078d4"/></marker>
+    <marker id="arrowG" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 9 3, 0 6" fill="#9ca3af"/></marker>
+    <marker id="arrowL" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 9 3, 0 6" fill="#9fd3ff"/></marker>
+  </defs>
+  <rect width="400" height="392" fill="#f5f7fb" rx="12"/>
+  <rect x="40" y="28" width="140" height="48" rx="12" fill="#0b2a4a"/>
+  <text x="110" y="58" text-anchor="middle" font-size="16" font-weight="600" fill="#9fd3ff">Discover</text>
+  <line x1="110" y1="76" x2="110" y2="96" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+  <text x="196" y="49" font-size="13.5" fill="#374151">What is actually</text>
+  <text x="196" y="67" font-size="13.5" fill="#374151">deployed?</text>
+  <rect x="40" y="98" width="140" height="48" rx="12" fill="#0b2a4a"/>
+  <text x="110" y="128" text-anchor="middle" font-size="16" font-weight="600" fill="#9fd3ff">Understand</text>
+  <line x1="110" y1="146" x2="110" y2="166" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+  <text x="196" y="119" font-size="13.5" fill="#374151">What does it mean</text>
+  <text x="196" y="137" font-size="13.5" fill="#374151">in context?</text>
+  <rect x="40" y="168" width="140" height="48" rx="12" fill="#0b2a4a"/>
+  <text x="110" y="198" text-anchor="middle" font-size="16" font-weight="600" fill="#9fd3ff">Prioritize</text>
+  <line x1="110" y1="216" x2="110" y2="236" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+  <text x="196" y="189" font-size="13.5" fill="#374151">What matters</text>
+  <text x="196" y="207" font-size="13.5" fill="#374151">first?</text>
+  <rect x="40" y="238" width="140" height="48" rx="12" fill="#0b2a4a"/>
+  <text x="110" y="268" text-anchor="middle" font-size="16" font-weight="600" fill="#9fd3ff">Improve</text>
+  <line x1="110" y1="286" x2="110" y2="306" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+  <text x="196" y="259" font-size="13.5" fill="#374151">What action should</text>
+  <text x="196" y="277" font-size="13.5" fill="#374151">be taken?</text>
+  <rect x="40" y="308" width="140" height="48" rx="12" fill="#0b2a4a"/>
+  <text x="110" y="338" text-anchor="middle" font-size="16" font-weight="600" fill="#9fd3ff">Verify</text>
+  <text x="196" y="329" font-size="13.5" fill="#374151">Did the environment</text>
+  <text x="196" y="347" font-size="13.5" fill="#374151">become better?</text>
+  <path d="M 40,332 L 18,332 L 18,52 L 36,52" fill="none" stroke="#0078d4" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowB)"/>
+  <text x="110" y="378" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0078d4">and repeat</text>
+</svg>
