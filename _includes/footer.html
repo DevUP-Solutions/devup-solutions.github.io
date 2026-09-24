@@ -6,12 +6,42 @@
     <div class="fixed-right">
       <h3>Stay in touch!</h3>
       <p>Sign up to our mailing list for updates, webinars, event invitations, and more.</p>
-      <a href="http://eepurl.com/h6evyf" target="_blank">
-        <div class="fixed-btn">
-      <p>Join mailing list</p>
-        </a>
+      <form
+        method="post"
+        action="https://func-devup-marketing-unsub.azurewebsites.net/api/subscribe"
+        style="max-width:24rem; font-family:inherit; line-height:1.5;"
+      >
+        <label for="devup-subscribe-email" style="display:block; margin-bottom:.25rem; font-weight:600;">Email</label>
+        <input
+          id="devup-subscribe-email"
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+          style="display:block; width:100%; box-sizing:border-box; margin-bottom:1rem; padding:.6rem .7rem; font:inherit; border:1px solid #c7ced6; border-radius:6px;"
+        >
+        <label for="devup-subscribe-name" style="display:block; margin-bottom:.25rem; font-weight:600;">Name (optional)</label>
+        <input
+          id="devup-subscribe-name"
+          type="text"
+          name="name"
+          autocomplete="name"
+          style="display:block; width:100%; box-sizing:border-box; margin-bottom:1rem; padding:.6rem .7rem; font:inherit; border:1px solid #c7ced6; border-radius:6px;"
+        >
+        <input
+          type="text"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+          style="position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden;"
+        >
+        <button
+          type="submit"
+          style="font:inherit; font-weight:600; color:#ffffff; background:#1a56db; border:0; border-radius:6px; padding:.7rem 1.4rem; cursor:pointer;"
+        >Subscribe</button>
+      </form>
     </div>
-  </div>
 
   <p class="rss-subscribe"><a href="/feed.xml">subscribe via RSS</a></p>
 

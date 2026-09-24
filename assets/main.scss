@@ -85,6 +85,7 @@ a:hover {
   width: 200px;
   text-align: left;
   overflow: auto;
+  max-height: 85vh;
 }
 
 .fixed-btn {
@@ -111,9 +112,10 @@ a:hover {
   text-align: center;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1240px) {
   .fixed-right {
     position: static;
+    max-height: none;
     text-align: center;
     margin: auto;
     color: #fff;
