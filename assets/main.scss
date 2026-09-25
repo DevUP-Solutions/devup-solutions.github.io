@@ -122,6 +122,18 @@ a:hover {
   }
 }
 
+@media screen and (min-width: 1241px) {
+  div.fixed-right {
+    box-sizing: border-box;
+    padding: 18px;
+    background: #f3f6fa;
+    border: 1px solid #dbe3ec;
+    border-top: 4px solid #1a56db;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 24, 47, 0.12);
+  }
+}
+
 
 .footer-cta {
   color: #fff;
