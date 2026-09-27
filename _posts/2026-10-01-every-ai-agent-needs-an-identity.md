@@ -232,8 +232,6 @@ Identity governance cannot stop when the first role assignment is created. It ne
 
 This is also how we think about security in Helium, our Continuous Cloud Governance Platform for Azure.
 
-Today, Helium surfaces managed-identity signals, static-key findings, public exposure, networking, and resource configuration. That helps teams move from failed checks to context and priority.
-
 It is the same loop I described in the [governance article]({% post_url 2026-09-23-governance-needs-to-move-at-the-same-speed-as-ai %}):
 
 > **Discover → Understand → Prioritize → Improve → Verify**
