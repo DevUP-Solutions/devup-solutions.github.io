@@ -1,27 +1,37 @@
 ---
 layout: post
 title: "Identity Is Not the Only Perimeter"
-description: "Identity decides who is allowed to ask. Boundaries decide where the data can go. An AI agent has no single perimeter: each path it can take needs its own boundary, and someone needs to know which paths are covered."
+description: "Identity decides who is allowed to ask. Boundaries decide where the data can go. An AI agent has no single perimeter: every path it can take needs its own boundary, and someone needs to know which paths are covered."
 date: 2026-10-15 09:00:00 +0200
 categories: [Helium, AI]
 tags: [AI, Security, Azure, Network Security Perimeter, Microsoft Foundry, MCP, API Management, Governance]
 author: "Mattias Lögdberg"
+image: /assets/images/2026/agent-boundaries-hero.png
 comments: true
 ---
 
-<!-- TODO(Mattias): hero image (desktop, mobile, 1200x630 PNG) in the same style as the identity post, then add `image:` to the front matter. -->
+<picture>
+  <source media="(max-width: 600px)" srcset="/assets/images/2026/agent-boundaries-hero-mobile.svg">
+  <img src="/assets/images/2026/agent-boundaries-hero.svg" alt="An invoice agent with its own identity reaches Azure Storage, an MCP server, and a Logic App through a network boundary, with a boundary marker on each path. A dashed red path leaves the approved, allowlisted MCP server and crosses the boundary to an attacker endpoint. Headline: Identity is not the only perimeter. Every path needs a boundary.">
+</picture>
 
 In [Every AI Agent Needs an Identity — and an Owner]({% post_url 2026-10-01-every-ai-agent-needs-an-identity %}), I argued that every agent needs its own identity, a clear authority model, and a named owner.
 
-This is the third of four articles in this series. It is about boundaries.
+Identity gives us the context.
 
-Identity decides who is allowed to ask.
+But it only answers one question:
 
-It does not decide where the data can go.
+> Who is allowed to ask?
+
+It does not answer where the agent can connect, which tools it can reach, or where the data can go.
+
+This is the third of four articles in this series. This one is about boundaries.
 
 ## Exfiltration: Every action was allowed
 
-Microsoft's incident responders recently [walked through an attack pattern against an invoice-processing agent](https://www.microsoft.com/en-us/security/blog/2026/06/30/securing-ai-agents-ai-tools-move-from-reading-acting/). The scenario is illustrative, but they write that the technique has been observed against enterprise agents in 2026. An attacker changed the tool description on an approved third-party MCP server. The hidden instruction told the agent to summarize the last thirty unpaid invoices and attach the summary to an ordinary tool call.
+Microsoft's incident responders recently [walked through an attack pattern against an invoice-processing agent](https://www.microsoft.com/en-us/security/blog/2026/06/30/securing-ai-agents-ai-tools-move-from-reading-acting/). The scenario is illustrative, but they write that the technique has been observed against enterprise agents in 2026.
+
+An attacker changed the tool description on an approved third-party MCP server. The hidden instruction told the agent to summarize the last thirty unpaid invoices and attach the summary to an ordinary tool call.
 
 The agent did exactly that. The server returned a normal response and passed the data on to the attacker.
 
@@ -31,11 +41,28 @@ Identity worked. Least privilege worked. The allowlist worked.
 
 The data still left.
 
+> An allowlisted destination is still a destination.
+
+## Boundaries: The other half of the firewall story
+
+In the [governance article]({% post_url 2026-09-23-governance-needs-to-move-at-the-same-speed-as-ai %}), I mentioned a [DevUP Talks conversation with Simon Wåhlin](https://youtu.be/-eAswM6jzxA) about an AI that solved a connectivity problem by removing the firewall in the way.
+
+That was an agent removing a boundary.
+
+This article is about the opposite problem. The boundary is in place. The identity is correct. And the data leaves anyway, through a path nobody thought of as a path.
+
 ## Paths: An agent has more than one way out
 
 We are used to thinking about one perimeter per workload. A virtual network, a firewall, a set of private endpoints.
 
 An agent does not fit that picture. It reads data, calls tools, calls other agents, and sends results somewhere. Each of those is a path. Each path can carry data.
+
+This is the same example as in the identity article. Last time, every connection carried an identity. This time, every connection also needs a boundary.
+
+<picture>
+  <source media="(max-width: 600px)" srcset="/assets/images/2026/agent-boundaries-chain-mobile.svg">
+  <img src="/assets/images/2026/agent-boundaries-chain.svg" alt="An AI agent connected to Azure Storage, an MCP server, a Logic App, and a customer system. Every connection carries an identity marker and a boundary marker: perimeter rules, a gateway for tools, a private endpoint, and an egress allowlist.">
+</picture>
 
 Azure now has boundary controls for most of those paths. But they are separate controls, and each covers a different part of the picture.
 
@@ -51,11 +78,13 @@ Four controls. Four different places where an agent can run or send data.
 
 None of them covers all of it.
 
+> An agent does not have one perimeter. It has one path per connection, and every path needs its own boundary.
+
 ## Coverage: Isolated does not mean private
 
 The gaps are not always where you expect.
 
-In a network-isolated Foundry setup, some tools still [use public endpoints](https://learn.microsoft.com/en-us/azure/foundry/how-to/configure-private-link#agent-tools-with-network-isolation). Bing grounding, web search and SharePoint grounding work, but their traffic goes over the public internet. If the requirement is that everything stays private, those tools need to be blocked, not just assumed away.
+In a network-isolated Foundry setup, some tools still [use public endpoints](https://learn.microsoft.com/en-us/azure/foundry/how-to/configure-private-link#agent-tools-with-network-isolation). Bing grounding, web search and SharePoint grounding work, but their traffic goes over the public internet. If the requirement is that everything stays private, those tools need to be blocked, not assumed away.
 
 The gateway has its own version of the identity problem. In the preview [AI Gateway tier of API Management](https://learn.microsoft.com/en-us/azure/api-management/ai-gateway-overview), applications authenticate with a runtime access key, and that key reaches every model and tool on the gateway. The boundary component itself runs on a shared static key. That is exactly what the identity article warned against.
 
@@ -71,9 +100,9 @@ The boundary products share one good design choice. They all start by observing.
 
 Network Security Perimeter starts in transition mode. It logs what would be denied before anything is blocked. Foundry egress rules have an audit mode that does the same for hosted agents. Microsoft recommends both before you enforce.
 
-This is the same order as the governance loop from the [governance article]({% post_url 2026-09-23-governance-needs-to-move-at-the-same-speed-as-ai %}). Discover what is actually happening. Understand it. Then decide what to block.
+This is the same order as the governance loop. Discover what is actually happening. Understand it. Then decide what to block.
 
-An agent's real dependencies are rarely the ones on the diagram. Package managers follow redirects. Tools call other hosts. Enforcing an allowlist you have not observed first is how you break production on a Friday.
+An agent's real dependencies are rarely the ones on the diagram. Package managers follow redirects. Tools call other hosts. An allowlist you have not observed first will block something the agent actually needs.
 
 ## Configuration: Tool descriptions are part of the perimeter
 
@@ -81,16 +110,40 @@ The attack in the invoice scenario did not change a firewall rule. It changed a 
 
 Microsoft's recommendation is to treat tool descriptions like system prompts. Keep an allowlist of approved MCP publishers and servers. Enable only the tools an agent needs, instead of everything a server exposes. Review changes to MCP configuration like changes to production code.
 
-That is the boundary most teams do not see yet. A network rule is infrastructure. A tool description is text. Both decide where data ends up.
+That is the boundary most teams do not see yet. A network rule is infrastructure. A tool description is text.
 
-## Controls: Where I would start
+> Both decide where the data ends up.
+
+## Controls: Six practical places to start
 
 1. **Map the paths per agent.** Data it reads, tools it calls, agents it calls, and where results are sent.
-2. **Put a boundary on each path.** Perimeter around the data, egress control on the runtime, a gateway in front of the tools.
+2. **Put a boundary on each path.** A perimeter around the data, egress control on the runtime, a gateway in front of the tools.
 3. **Start in audit mode.** Transition mode for the perimeter, audit mode for egress rules. Read the logs before enforcing.
 4. **Block the public-endpoint tools you do not need.** Isolated does not mean private.
 5. **Treat MCP configuration as code.** Approved servers, scoped tools, reviewed changes.
 6. **Re-check coverage.** Tools created before the gateway was connected, and settings changed during troubleshooting, are where the gaps appear.
+
+## Governance: Boundaries drift too
+
+A boundary is a configuration. Configurations drift.
+
+A public endpoint is enabled for troubleshooting and never disabled. A tool is added before the gateway is connected. A resource is created outside the perimeter because the deadline was tomorrow.
+
+This is how we think about it in Helium, our Continuous Cloud Governance Platform for Azure. It is the same loop as for identity:
+
+> **Discover → Understand → Prioritize → Improve → Verify**
+
+A public endpoint is a finding. A public endpoint on the storage account an agent reads from, with no perimeter and no private endpoint, is a priority.
+
+Helium does not replace Network Security Perimeter, Foundry, API Management, or Global Secure Access. Its role is to show where the boundaries are, where they are missing, and whether the environment is getting better.
+
+## Accountability: So, who owns the boundary?
+
+The answer has not changed:
+
+> We still do.
+
+The agent does not decide which paths exist. The tool vendor does not decide what leaves our environment. We do, whether we decided it on purpose or by leaving a path open.
 
 ## Validation: Boundaries limit, they do not prove
 
@@ -100,7 +153,7 @@ It does not tell you what did happen.
 
 In the invoice scenario, every control did its job and the data still left through an allowed path. The only way to find that is to reconstruct what the agent actually did: which tool, which parameters, which identity, which destination.
 
-That is the last article in this series. After identity and boundaries, we return to validation: what could the agent do, what did it do, and can we prove the complete chain?
+That is where the last article in this series begins. After identity and boundaries, we return to validation: what could the agent do, what did it do, and can we prove the complete chain?
 
 ---
 
