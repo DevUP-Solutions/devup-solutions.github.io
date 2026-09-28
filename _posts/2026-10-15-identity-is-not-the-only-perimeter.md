@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Identity Is Not the Only Perimeter"
-description: "We built a read-only MCP server for Helium and thought that was the boundary. It is one boundary. An AI agent has a path per connection, and every path needs its own: what we learned, and where the Azure controls fit."
+description: "We built an MCP server for Helium with one rule: data access must be the same as in the portal. That is one boundary. An AI agent has a path per connection, and every path needs its own: what we learned, and where the Azure controls fit."
 date: 2026-10-15 09:00:00 +0200
 categories: [Helium, AI]
 tags: [AI, Security, Azure, MCP, Network Security Perimeter, Microsoft Foundry, API Management, Governance]
@@ -17,9 +17,9 @@ comments: true
 
 Earlier this year we built an MCP server for Helium. It runs as an Azure Functions app, users sign in with their Entra account, and an AI assistant can ask it about the Azure environments that user already has access to. It is available to every Helium customer today.
 
-It exposes ten tools. All of them are read-only. No tool can change anything.
+It exposes ten tools. All of them are read-only, and all of them show a user exactly what the portal would show them. Nothing more.
 
-That was a deliberate boundary. I thought it was the boundary.
+Those were deliberate boundaries. I thought they were the boundary.
 
 This is the third of four articles in this series, and it is about boundaries. In [Every AI Agent Needs an Identity — and an Owner]({% post_url 2026-10-01-every-ai-agent-needs-an-identity %}), I argued that every agent needs its own identity, a clear authority model, and a named owner.
 
@@ -45,21 +45,29 @@ The data still left.
 
 > An allowlisted destination is still a destination.
 
-## Read-only: The boundary I thought we had
+## Access: Two boundaries, one rule
 
-Read that scenario with our server in mind.
+Read that scenario with our server in mind. An MCP server is a new door into customer data. Two boundaries decide what that door means.
 
-Read-only means our server cannot change a customer's environment. It says nothing about what happens to the answer once it leaves.
+The first is **MCP access**: who is allowed to connect at all. For us that is an Entra sign-in. No sign-in, no tools.
 
-Every tool returns data: compliance findings, resource names, failed checks, remediation guidance. The agent decides where that data goes next. Into a summary. Into another tool call. Into a parameter on a request to a server we have never heard of.
+The second is **data access**: what a signed-in user can see once connected. This is the one that matters, and the rule we set for it is simple.
 
-The data does not leave through our server. It leaves through the client the user chose to connect. And that client is outside every boundary we control.
+> Data access has to be the same whether you use the portal or the MCP server.
+
+The MCP server holds no data of its own and no permissions of its own. It takes the user's token, exchanges it for a token to the Helium backend on the user's behalf, and calls the same API the portal calls. The backend decides what the user can see. If you cannot see an environment in the portal, the tool that lists environments returns nothing.
+
+This sounds obvious. It is easy to get wrong. The shortcut is to give the server its own identity with broad read access and let the tools filter. Then the server has become a second authorization system, and the two will drift apart. Every MCP client would be trusting our filtering code instead of the customer's access model.
+
+Read-only is the supporting boundary. No tool calls a write endpoint, so an agent cannot change a customer's environment through us, whatever a description tells it to do.
+
+What read-only does not do is limit where the answer goes. Every tool returns data: findings, resource names, failed checks, remediation guidance. The agent decides where that data goes next. Into a summary. Into another tool call. Into a parameter on a request to a server we have never heard of.
 
 > Read-only limits what the server can do. It does not limit what the agent does with the answer.
 
-That was the first thing building an MCP server taught me about boundaries. The tool surface is one boundary. The path the data takes afterwards is another, and it belongs to someone else.
+The data does not leave through our server. It leaves through the client the user chose to connect. We rolled the server out as a preview to the customers we knew needed it, then to everyone, and we did not restrict which clients a user can connect. The user decides that. So the user's client is part of the customer's boundary, not ours.
 
-We rolled the server out the way we would roll out any new door into customer data. First as a preview to the customers we knew needed it, then to everyone. We did not restrict which clients a user can connect. The user decides that, and so the user's client is part of the customer's boundary, not ours.
+That was the first thing building an MCP server taught me about boundaries. Data access is a boundary we own, and it has to be the same in every channel. The path the data takes afterwards is a boundary someone else owns.
 
 ## Boundaries: The other half of the firewall story
 
@@ -138,14 +146,15 @@ This is the same order as the governance loop. Discover what is actually happeni
 
 An agent's real dependencies are rarely the ones on the diagram. Package managers follow redirects. Tools call other hosts. An allowlist you have not observed first will block something the agent actually needs.
 
-## Controls: Six practical places to start
+## Controls: Seven practical places to start
 
 1. **Map the paths per agent.** Data it reads, tools it calls, agents it calls, and where results are sent. Include the client. That is a path too.
-2. **Put a boundary on each path.** A perimeter around the data, egress control on the runtime, a gateway in front of the tools.
-3. **Start in audit mode.** Transition mode for the perimeter, audit mode for egress rules. Read the logs before enforcing.
-4. **Block the public-endpoint tools you do not need.** Isolated does not mean private.
-5. **Treat MCP configuration as code.** Approved servers, scoped tools, a catalog that a test enforces, reviewed descriptions.
-6. **Re-check coverage.** Tools created before the gateway was connected, and settings changed during troubleshooting, are where the gaps appear.
+2. **One data boundary for every channel.** An MCP server, an API and a portal that reach the same data must enforce the same access. Never give the server its own broad identity and filter in the tools.
+3. **Put a boundary on each path.** A perimeter around the data, egress control on the runtime, a gateway in front of the tools.
+4. **Start in audit mode.** Transition mode for the perimeter, audit mode for egress rules. Read the logs before enforcing.
+5. **Block the public-endpoint tools you do not need.** Isolated does not mean private.
+6. **Treat MCP configuration as code.** Approved servers, scoped tools, a catalog that a test enforces, reviewed descriptions.
+7. **Re-check coverage.** Tools created before the gateway was connected, and settings changed during troubleshooting, are where the gaps appear.
 
 ## Governance: Boundaries drift too
 
@@ -169,7 +178,7 @@ The answer has not changed:
 
 The agent does not decide which paths exist. The tool vendor does not decide what leaves our environment. We do, whether we decided it on purpose or by leaving a path open.
 
-I decided our server would be read-only. I did not decide where its answers go. That second decision was made for me, by every client a user connects. Owning the boundary means knowing which of those decisions you made and which ones you did not.
+I decided that our server would show a user exactly what the portal shows them, and nothing more. I did not decide where its answers go. That second decision was made for me, by every client a user connects. Owning the boundary means knowing which of those decisions you made and which ones you did not.
 
 ## Validation: Boundaries limit, they do not prove
 
