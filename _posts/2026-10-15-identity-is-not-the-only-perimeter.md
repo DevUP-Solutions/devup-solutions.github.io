@@ -15,7 +15,7 @@ comments: true
   <img src="/assets/images/2026/agent-boundaries-hero.svg" alt="An invoice agent with its own identity reaches Azure Storage, an MCP server, and a Logic App through a network boundary, with a boundary marker on each path. A dashed red path leaves the approved, allowlisted MCP server and crosses the boundary to an attacker endpoint. Headline: Identity is not the only perimeter. Every path needs a boundary.">
 </picture>
 
-Earlier this year we built an MCP server for Helium. It runs as an Azure Functions app, users sign in with their Entra account, and an AI assistant can ask it about the Azure environments that user already has access to.
+Earlier this year we built an MCP server for Helium. It runs as an Azure Functions app, users sign in with their Entra account, and an AI assistant can ask it about the Azure environments that user already has access to. It is available to every Helium customer today.
 
 It exposes ten tools. All of them are read-only. No tool can change anything.
 
@@ -59,7 +59,7 @@ The data does not leave through our server. It leaves through the client the use
 
 That was the first thing building an MCP server taught me about boundaries. The tool surface is one boundary. The path the data takes afterwards is another, and it belongs to someone else.
 
-<!-- TODO(Mattias): one sentence on what we decided about which clients may connect (Conditional Access on the app registration, tenant restrictions, or an open decision). Keep it honest if it is still open. -->
+We rolled the server out the way we would roll out any new door into customer data. First as a preview to the customers we knew needed it, then to everyone. We did not restrict which clients a user can connect. The user decides that, and so the user's client is part of the customer's boundary, not ours.
 
 ## Boundaries: The other half of the firewall story
 
