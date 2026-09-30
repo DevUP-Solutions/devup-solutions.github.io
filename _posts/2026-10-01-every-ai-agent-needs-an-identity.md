@@ -124,7 +124,9 @@ That gives us the ability to:
 - Disable it without breaking every other workload
 - Tie its lifecycle to a known business purpose
 
-There can be practical reasons to use a shared project identity during early development. At the time of writing, Microsoft Foundry does this for unpublished agents. But as an agent moves toward integration testing or production, its permissions, audit trail, and lifecycle need to become explicit. Foundry’s [agent identity model](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-identity) supports distinct identities for published agents.
+There can be practical reasons to use a shared project identity during early development. Microsoft Foundry's earlier publishing model did this for unpublished agents, and agents created under it still share that identity. But as an agent moves toward integration testing or production, its permissions, audit trail, and lifecycle need to become explicit.
+
+Microsoft has moved in the same direction. In Foundry's [new agent model](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/migrate-agent-applications), every new agent gets its own [agent identity](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-identity) from the moment it is created.
 
 Sharing an identity may reduce administrative work today.
 
