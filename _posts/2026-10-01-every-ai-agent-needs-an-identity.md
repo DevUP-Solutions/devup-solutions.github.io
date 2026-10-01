@@ -43,7 +43,7 @@ Applications used to authenticate, follow predefined logic, and call the service
 
 The identity question is no longer only whether an application can connect. It is what a non-human actor can decide to do once connected.
 
-In a recent DevUP Talks conversation with Markus Lintuala, he described the change very well:
+In a recent [DevUP Talks conversation with Markus Lintuala](https://www.youtube.com/watch?v=ggnaxm8PWIs), Microsoft Security MVP, he described the change very well:
 
 > Our newest users are not humans. They are machines, and they work at machine speed.
 
