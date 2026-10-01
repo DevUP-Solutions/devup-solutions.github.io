@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Identity Is Not the Only Perimeter"
-description: "We built an MCP server for Helium with one rule: data access must be the same as in the portal. That is one boundary. An AI agent has a path per connection, and every path needs its own: what we learned, and where the Azure controls fit."
+description: "An agent can have the right identity and still send data somewhere it should not. What building Helium's MCP server taught us about access, tools, and the boundaries between them."
 date: 2026-10-15 09:00:00 +0200
 categories: [Helium, AI]
 tags: [AI, Security, Azure, MCP, Network Security Perimeter, Microsoft Foundry, API Management, Governance]
@@ -12,186 +12,172 @@ comments: true
 
 <picture>
   <source media="(max-width: 600px)" srcset="/assets/images/2026/agent-boundaries-hero-mobile.svg">
-  <img src="/assets/images/2026/agent-boundaries-hero.svg" alt="An invoice agent with its own identity reaches Azure Storage, an MCP server, and a Logic App through a network boundary, with a boundary marker on each path. A dashed red path leaves the approved, allowlisted MCP server and crosses the boundary to an attacker endpoint. Headline: Identity is not the only perimeter. Every path needs a boundary.">
+  <img src="/assets/images/2026/agent-boundaries-hero.svg" alt="An invoice agent reaches approved services through controlled paths. An approved MCP server forwards data to an attacker endpoint. Identity is not the only perimeter. Every path needs a boundary.">
 </picture>
 
-Earlier this year we built an MCP server for Helium. It runs as an Azure Functions app, users sign in with their Entra account, and an AI assistant can ask it about the Azure environments that user already has access to. It is available to every Helium customer today.
+This is the third of four articles in this series. In [Every AI Agent Needs an Identity — and an Owner]({% post_url 2026-10-01-every-ai-agent-needs-an-identity %}), I argued that every agent needs its own identity, a clear authority model, and a named owner.
 
-It exposes ten tools. All of them are read-only, and all of them show a user exactly what the portal would show them. Nothing more.
+Identity gives us the context. Boundaries define where the agent can act. Validation tells us what actually happened.
 
-Those were deliberate boundaries. I thought they were the boundary.
+This one is about boundaries: where an agent can connect, which tools it can use, and what data it can send through those connections.
 
-This is the third of four articles in this series, and it is about boundaries. In [Every AI Agent Needs an Identity — and an Owner]({% post_url 2026-10-01-every-ai-agent-needs-an-identity %}), I argued that every agent needs its own identity, a clear authority model, and a named owner.
+Earlier this year we built an MCP server for Helium. It runs as an Azure Functions app, users sign in with their Entra account, and an AI assistant can ask about the Azure environments that user already has access to. It is available to every Helium customer today.
 
-Identity gives us the context. But it only answers one question:
+We made two deliberate choices. The tools are read-only. And connecting through MCP gives the user no more access to customer data than connecting through the portal.
 
-> Who is allowed to ask?
+That covers what our server can access and what its tools can do.
 
-It does not answer where the agent can connect, which tools it can reach, or where the data can go.
+But what happens after the answer reaches the client?
 
-## Exfiltration: Every action was allowed
+## Incident: Every action was allowed
 
-Microsoft's incident responders recently [walked through an attack pattern against an invoice-processing agent](https://www.microsoft.com/en-us/security/blog/2026/06/30/securing-ai-agents-ai-tools-move-from-reading-acting/). The scenario is illustrative, but they write that the technique has been observed against enterprise agents in 2026.
+Microsoft's incident responders [describe an attack pattern against an invoice-processing agent](https://www.microsoft.com/en-us/security/blog/2026/06/30/securing-ai-agents-ai-tools-move-from-reading-acting/). The scenario illustrates techniques observed against enterprise agents in 2026.
 
-An attacker changed the tool description on an approved third-party MCP server. The hidden instruction told the agent to summarize the last thirty unpaid invoices and attach the summary to an ordinary tool call.
+An attacker changed the description of a tool on an approved third-party MCP server. The instruction directed the agent to collect a summary of unpaid invoices and include it in a normal tool call. The server returned a plausible answer and forwarded the summary to an attacker-controlled endpoint.
 
-The agent did exactly that. The server returned a normal response and passed the data on to the attacker.
-
-The part I keep coming back to is Microsoft's own summary. The tool was approved. The data query used the analyst's own permissions. The outbound call went to a server that was on the allowlist.
-
-Identity worked. Least privilege worked. The allowlist worked.
+The tool was approved. The query used the analyst's permissions. The destination was allowlisted.
 
 The data still left.
 
-> An allowlisted destination is still a destination.
+Perhaps the permissions were broader than the task required. That is not the lesson. Staying within a user's permissions and an approved destination list is still not enough to prevent unwanted disclosure.
 
-## Access: Two boundaries, one rule
+Approving a server does not mean approving every piece of data an agent might send to it.
 
-Read that scenario with our server in mind. An MCP server is a new door into customer data. Two boundaries decide what that door means.
+## Access: One model, every channel
 
-The first is **MCP access**: who is allowed to connect at all. For us that is an Entra sign-in. No sign-in, no tools.
+An MCP server is another way into customer data. We need to distinguish two questions: who can connect, and what they can access once connected.
 
-The second is **data access**: what a signed-in user can see once connected. This is the one that matters, and the rule we set for it is simple.
+For Helium, connecting requires an Entra sign-in. Data access is then enforced by the same backend API the portal uses.
 
-> Data access has to be the same whether you use the portal or the MCP server.
+The MCP server exchanges the user's token for a backend token on their behalf. It does not use a separate, broadly privileged identity to read customer data. The backend decides which environments the user can access.
 
-The MCP server holds no data of its own and no permissions of its own. It takes the user's token, exchanges it for a token to the Helium backend on the user's behalf, and calls the same API the portal calls. The backend decides what the user can see. If you cannot see an environment in the portal, the tool that lists environments returns nothing.
+> The channel changes. The user's access should not.
 
-This sounds obvious. It is easy to get wrong. The shortcut is to give the server its own identity with broad read access and let the tools filter. Then the server has become a second authorization system, and the two will drift apart. Every MCP client would be trusting our filtering code instead of the customer's access model.
+It is easy to take a shortcut here: give the server broad read access, then filter the results inside each tool. Now there are two places deciding what a user may see. They both need to stay correct as permissions, tools, and customer environments change.
 
-Read-only is the supporting boundary. No tool calls a write endpoint, so an agent cannot change a customer's environment through us, whatever a description tells it to do.
+For a server acting on behalf of a user, we want that user's authority enforced at the backend. The same rule should hold whether the request comes from a portal, an API client, or an AI assistant.
 
-What read-only does not do is limit where the answer goes. Every tool returns data: findings, resource names, failed checks, remediation guidance. The agent decides where that data goes next. Into a summary. Into another tool call. Into a parameter on a request to a server we have never heard of.
+Read-only adds another boundary. Our tools cannot change a customer's environment through Helium.
 
-> Read-only limits what the server can do. It does not limit what the agent does with the answer.
+They can still return findings, resource names, failed checks, and remediation guidance. Once those answers reach the client, they can become part of a summary, another tool call, or a request to an external service.
 
-The data does not leave through our server. It leaves through the client the user chose to connect. We rolled the server out as a preview to the customers we knew needed it, then to everyone, and we did not restrict which clients a user can connect. The user decides that. So the user's client is part of the customer's boundary, not ours.
+Read-only limits what our server can do. It does not control what happens to the answer afterwards.
 
-That was the first thing building an MCP server taught me about boundaries. Data access is a boundary we own, and it has to be the same in every channel. The path the data takes afterwards is a boundary someone else owns.
+We enforce access in Helium. The customer governs the client and the other tools connected to it. Both parts need a clear owner and an understood boundary.
 
-## Boundaries: The other half of the firewall story
+## Paths: Follow the complete flow
 
-In the [governance article]({% post_url 2026-09-23-governance-needs-to-move-at-the-same-speed-as-ai %}), I wrote that guardrails provide boundaries and governance provides direction. I also mentioned a [DevUP Talks conversation with Simon Wåhlin](https://youtu.be/-eAswM6jzxA) about an AI that solved a connectivity problem by removing the firewall in the way.
+In the [governance article]({% post_url 2026-09-23-governance-needs-to-move-at-the-same-speed-as-ai %}), I mentioned a [DevUP Talks conversation with Simon Wåhlin](https://youtu.be/-eAswM6jzxA) about AI solving a connectivity problem by removing the firewall that blocked it.
 
-That was an agent removing a boundary.
+Here, the problem is different. A boundary can remain in place while an allowed connection carries data somewhere it should not go.
 
-This article is about the opposite problem. The boundary is in place. The identity is correct. And the data leaves anyway, through a path nobody thought of as a path.
+Take the same agent from the identity article. It reads documents from Azure Storage, calls an MCP server, triggers a Logic App, and updates a customer system.
 
-## Paths: An agent has more than one way out
-
-We are used to thinking about one perimeter per workload. A virtual network, a firewall, a set of private endpoints.
-
-An agent does not fit that picture. It reads data, calls tools, calls other agents, and sends results somewhere. Each of those is a path. Each path can carry data.
-
-This is the same example as in the identity article. Last time, every connection carried an identity. This time, every connection also needs a boundary.
+Last time, we asked which identity and permissions were used on each connection. Now we also need to ask what can pass through it.
 
 <picture>
   <source media="(max-width: 600px)" srcset="/assets/images/2026/agent-boundaries-chain-mobile.svg">
-  <img src="/assets/images/2026/agent-boundaries-chain.svg" alt="An AI agent connected to Azure Storage, an MCP server, a Logic App, and a customer system. Every connection carries an identity marker and a boundary marker: perimeter rules, a gateway for tools, a private endpoint, and an egress allowlist.">
+  <img src="/assets/images/2026/agent-boundaries-chain.svg" alt="An AI agent connected to Azure Storage, an MCP server, a Logic App, and a customer system. Each connection has an identity and a boundary. Controls depend on the resource and runtime.">
 </picture>
 
-Azure has boundary controls for those paths. But they are separate controls, and each covers a different part of the picture.
+Which data can the agent retrieve? Which tool operations are available? Can a tool accept arbitrary text, a destination URL, or an attachment? What can the receiving service do with that information?
 
-**Around the data.** [Network Security Perimeter](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts) puts a logical boundary around PaaS resources such as Storage, Key Vault, AI Search and Foundry. In enforced mode, public traffic in and out is denied unless a rule allows it. Outbound rules are written per FQDN, and there are access logs.
+These are integration questions. Each component can behave as configured while the complete flow does something we never intended.
 
-**Around the agent runtime.** Foundry agents can run with [public egress, in your own virtual network, or in a managed virtual network](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/networking-options). A private endpoint on the Foundry resource only protects the inbound side. With public egress, the agent can still reach anything on the internet. For hosted agents, there are also [network egress rules](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/add-hosted-agent-guardrails) that allow or deny outbound calls per host. At the time of writing they are in preview.
+## Controls: Azure covers different parts
 
-**Around the tools.** MCP traffic from Foundry agents can be [routed through an AI gateway](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/governance) in API Management, where rate limits, IP filters and logging apply. Also preview, and it only applies to tools created after the gateway was connected. Existing tools keep calling the MCP server directly.
+Azure provides several useful boundary controls. We need to know which part of the flow each one actually covers.
 
-Three controls. Three different places where an agent can run or send data.
+| Boundary | What it helps control | What to verify |
+| --- | --- | --- |
+| Data resources | Network Security Perimeter controls public access for supported PaaS resources. | Resource support, access mode, explicit rules, and private access paths. |
+| Agent runtime | Virtual network isolation and applicable egress controls restrict outbound connectivity. | The runtime's outbound configuration, not only its inbound private endpoint. |
+| MCP tools | An API Management gateway can apply policies to routed requests. | Which tools actually use the gateway and which still connect directly. |
 
-None of them covers all of it.
+[Network Security Perimeter](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts) is a logical boundary for supported PaaS services, including Storage, Key Vault, AI Search, and Foundry. In enforced mode it restricts public traffic, with explicit exceptions. It is not an egress firewall for the clients that read from them.
 
-> An agent does not have one perimeter. It has one path per connection, and every path needs its own boundary.
+For [Foundry Agent Service](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/networking-options), inbound and outbound networking are separate decisions. Adding a private endpoint while keeping public egress does not isolate the agent's outbound connections. [Hosted-agent egress controls](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/add-hosted-agent-guardrails) can restrict destinations, but are currently in preview and apply specifically to hosted agents.
 
-## Coverage: Isolated does not mean private
+[Foundry's MCP gateway routing](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/governance) is also in preview. It applies to eligible new MCP tools created in the portal after the gateway is connected. Existing tools are not automatically rerouted; managed OAuth and code-first MCP tools are among the exclusions.
 
-The gaps are not always where you expect.
+And [some Foundry tools still use public endpoints](https://learn.microsoft.com/en-us/azure/foundry/how-to/configure-private-link#agent-tools-with-network-isolation) in network-isolated setups, including Bing grounding, web search, and SharePoint grounding. If the requirement is entirely private connectivity, those tools need an explicit decision.
 
-In a network-isolated Foundry setup, some tools still [use public endpoints](https://learn.microsoft.com/en-us/azure/foundry/how-to/configure-private-link#agent-tools-with-network-isolation). Bing grounding, web search and SharePoint grounding work, but their traffic goes over the public internet. If the requirement is that everything stays private, those tools need to be blocked, not assumed away.
+The useful question is not whether we enabled network isolation. It is whether the paths this agent actually uses meet our requirements.
 
-The gateway has its own version of the identity problem. In the preview [AI Gateway tier of API Management](https://learn.microsoft.com/en-us/azure/api-management/ai-gateway-overview), applications authenticate with a runtime access key, and that key reaches every model and tool on the gateway. The boundary component itself runs on a shared static key. That is exactly what the identity article warned against.
+## Payload: An approved destination still needs limits
 
-And Network Security Perimeter has sharp edges that a real rollout will hit. SAS tokens are rejected for traffic inside the perimeter. It is not supported on Log Analytics workspaces enabled for Sentinel. Azure Backup is not supported on storage accounts in a perimeter.
+A network rule can restrict where an agent connects. It cannot, by itself, decide whether an invoice summary belongs in a particular tool call.
 
-None of this is a reason to wait. It is a reason to know which paths are covered, and by what.
+That needs another layer: scoped operations, validated parameters, and controls on the data being sent. Sensitive sharing or high-impact actions may also need human approval.
 
-## Configuration: The description is the instruction
+Microsoft's invoice example recommends inspecting outgoing tool parameters with data loss prevention controls and requiring approval for sensitive actions. The exact implementation depends on the platform, but the architectural question remains the same:
 
-The attack in the invoice scenario did not change a firewall rule. It changed a tool description.
+> Is this tool allowed to receive this data for this task?
 
-We learned how much weight a description carries from the harmless direction. Our server has two tools that overlap: one lists findings across a whole environment, one returns everything to fix on a single resource. Assistants kept picking the environment-wide tool for single-resource questions, then calling the detail tool once per finding to answer a question about one resource.
+A gateway is a place to enforce controls. Its presence alone does not answer that question. Neither does a successful sign-in.
 
-We did not change any code. We rewrote the descriptions. The environment-wide tools now say, in their descriptions, that for a single resource you should use the other one. That was the fix we shipped, and nothing else changed.
+## Descriptions: The wording changed the behavior
 
-> A tool description is not documentation. It is the instruction the model follows.
+We saw the influence of tool descriptions in a much less dramatic way when building our own server.
 
-The same lever that fixed our tool selection is the lever the attacker used.
+Assistants kept choosing an environment-wide findings tool for questions about a single resource, then calling a detail tool repeatedly to assemble the answer. We already had a tool designed to return the resource's compliance information.
 
-So we treat the tool catalog as code. It lives in the repository as one markdown file, the single source of truth for which tools exist. A test reflects over the assembly and fails when a tool is registered without a row in the catalog, or a row exists without a tool. Any add, rename or removal has to ship an update to the customer tutorial in the same change. The wording of a description is reviewed in the pull request like any other change.
+We rewrote the descriptions to make that choice clearer. That corrected the tool selection without changing the implementation.
 
-That is also Microsoft's recommendation: keep an allowlist of approved MCP publishers and servers, enable only the tools an agent needs, and review changes to MCP configuration like changes to production code.
+The wording was part of the behavior we were shipping.
 
-A network rule is infrastructure. A tool description is text.
+That is why tool metadata belongs in change review. A description can influence which operation an agent chooses and what it sends to that operation. The invoice attack used the same mechanism with a very different intention.
 
-> Both decide where the data ends up.
+In our server, a repository catalog records which tools exist. A test checks that the registered tools match it. That protects the inventory. The description wording still needs review in the pull request.
 
-## Rollout: Observe first, then enforce
+Those are different checks. Knowing that a tool exists does not tell us whether its instructions are appropriate.
 
-The boundary products share one good design choice. They all start by observing.
+## Start: With the paths you actually use
 
-Network Security Perimeter starts in transition mode. It logs what would be denied before anything is blocked. Foundry egress rules have an audit mode that does the same for hosted agents. Microsoft recommends both before you enforce.
+Before tightening an allowlist, observe representative workloads. Network Security Perimeter has transition mode. Hosted-agent egress controls have audit mode for observing would-be denials before enforcing them.
 
-This is the same order as the governance loop. Discover what is actually happening. Understand it. Then decide what to block.
+Tools may call other hosts. SDKs and package managers may follow redirects.
 
-An agent's real dependencies are rarely the ones on the diagram. Package managers follow redirects. Tools call other hosts. An allowlist you have not observed first will block something the agent actually needs.
+The real dependency list can be longer than the one we drew.
 
-## Controls: Seven practical places to start
+I would start here:
 
-1. **Map the paths per agent.** Data it reads, tools it calls, agents it calls, and where results are sent. Include the client. That is a path too.
-2. **One data boundary for every channel.** An MCP server, an API and a portal that reach the same data must enforce the same access. Never give the server its own broad identity and filter in the tools.
-3. **Put a boundary on each path.** A perimeter around the data, egress control on the runtime, a gateway in front of the tools.
-4. **Start in audit mode.** Transition mode for the perimeter, audit mode for egress rules. Read the logs before enforcing.
-5. **Block the public-endpoint tools you do not need.** Isolated does not mean private.
-6. **Treat MCP configuration as code.** Approved servers, scoped tools, a catalog that a test enforces, reviewed descriptions.
-7. **Re-check coverage.** Tools created before the gateway was connected, and settings changed during troubleshooting, are where the gaps appear.
+1. **Map the complete flow.** Include the agent runtime, client, data sources, tools, downstream services, and destinations for results. Give each part an owner.
+2. **Keep authorization consistent.** For delegated access, enforce the user's authority at the backend through every channel.
+3. **Restrict connections and operations.** Allow the destinations and tools the task needs, then limit what those tools can do.
+4. **Control the payload.** Validate parameters, minimize returned data, and inspect or approve sensitive sharing where required.
+5. **Review tool changes.** Treat descriptions, schemas, publishers, and connection settings as changes to a production dependency.
+6. **Observe, enforce, and test.** Check actual traffic and verify that prohibited operations and destinations are blocked.
+7. **Check again after changes.** A new tool or a troubleshooting exception can create a path the original controls never covered.
 
-## Governance: Boundaries drift too
+## Drift: Boundaries drift too
 
-A boundary is a configuration. Configurations drift.
+A public endpoint is enabled for troubleshooting and never disabled. A new tool connects directly instead of through the gateway. An exception survives long after the reason for it disappeared.
 
-A public endpoint is enabled for troubleshooting and never disabled. A tool is added before the gateway is connected. A resource is created outside the perimeter because the deadline was tomorrow.
+This is why boundaries belong in continuous governance. They need to be followed throughout the workload's lifecycle.
 
-This is how we think about it in Helium, our Continuous Cloud Governance Platform for Azure. It is the same loop as for identity:
+It is the same loop we use when thinking about Azure governance in Helium:
 
-> **Discover → Understand → Prioritize → Improve → Verify**
+**Discover → Understand → Prioritize → Improve → Verify**
 
-A public endpoint is a finding. A public endpoint on the storage account an agent reads from, with no perimeter and no private endpoint, is a priority.
+A public endpoint is a finding. Understanding the resource's purpose, exposure, and available controls helps us decide whether it should be a priority.
 
-The MCP server is how that picture reaches an AI assistant. The loop is what keeps the picture true.
+Helium's role is to help teams understand their Azure environment and decide what to improve. Its MCP server makes that information available to an assistant under the user's existing access. Governing that assistant's runtime, tools, and subsequent use of the data is another part of the complete solution.
 
 ## Accountability: So, who owns the boundary?
 
-The answer has not changed:
+We still do.
 
-> We still do.
+For our MCP server, we own the access enforcement, the operations we expose, and the information we return. Customers own the decisions about the clients and other tools they connect.
 
-The agent does not decide which paths exist. The tool vendor does not decide what leaves our environment. We do, whether we decided it on purpose or by leaving a path open.
+We need to make those responsibilities explicit. A flow crossing several systems should not become a flow nobody owns.
 
-I decided that our server would show a user exactly what the portal shows them, and nothing more. I did not decide where its answers go. That second decision was made for me, by every client a user connects. Owning the boundary means knowing which of those decisions you made and which ones you did not.
+A boundary limits what could happen. To understand what did happen, we need evidence: which actor called which tool, with what parameters, under whose authority, and where the result went.
 
-## Validation: Boundaries limit, they do not prove
-
-A boundary limits what could happen.
-
-It does not tell you what did happen.
-
-In the invoice scenario, every control did its job and the data still left through an allowed path. The only way to find that is to reconstruct what the agent actually did: which tool, which parameters, which identity, which destination.
-
-That is where the last article in this series begins. After identity and boundaries, we return to validation: what could the agent do, what did it do, and can we prove the complete chain?
+That is where the final article in this series begins. After identity and boundaries, we return to validation: what could the agent do, what did it do, and can we prove the complete chain?
 
 ---
 
-**Want to know which of your Azure resources are actually behind a boundary?**
+**Want a clearer view of exposure and security configuration across your Azure environment?**
 
-DevUP Helium is our Continuous Cloud Governance Platform for Azure. [Learn more about Helium](https://www.devup.solutions/) or [contact Mattias](mailto:mattias@devup.solutions).
+[Learn more about DevUP Helium](https://www.devup.solutions/) or [contact Mattias](mailto:mattias@devup.solutions).
