@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arrowN" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#0b2a4a"/>
+    </marker>
+    <marker id="arrowB" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#0078d4"/>
+    </marker>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="900" height="330" fill="#f5f7fb" rx="12"/>
+
+  <!-- Bracket labels -->
+  <text x="185" y="34" text-anchor="middle" font-size="13" font-weight="600" fill="#374151">Architecture intent</text>
+  <path d="M 30,44 L 30,52 L 340,52 L 340,44" fill="none" stroke="#9ca3af" stroke-width="1.5"/>
+
+  <text x="620" y="34" text-anchor="middle" font-size="13" font-weight="600" fill="#374151">Operational reality</text>
+  <path d="M 370,44 L 370,52 L 870,52 L 870,44" fill="none" stroke="#9ca3af" stroke-width="1.5"/>
+
+  <!-- Gap marker between Configured and Running -->
+  <line x1="355" y1="58" x2="355" y2="150" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <text x="355" y="166" text-anchor="middle" font-size="11" font-weight="600" fill="#dc2626">the governance gap</text>
+
+  <!-- Row: five states -->
+  <rect x="30" y="70" width="150" height="66" rx="14" fill="#0b2a4a"/>
+  <text x="105" y="109" text-anchor="middle" font-size="17" font-weight="600" fill="#9fd3ff">Designed</text>
+
+  <line x1="180" y1="103" x2="208" y2="103" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+
+  <rect x="210" y="70" width="150" height="66" rx="14" fill="#0b2a4a"/>
+  <text x="285" y="109" text-anchor="middle" font-size="17" font-weight="600" fill="#9fd3ff">Configured</text>
+
+  <line x1="360" y1="103" x2="388" y2="103" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+
+  <rect x="390" y="70" width="150" height="66" rx="14" fill="#0b2a4a"/>
+  <text x="465" y="109" text-anchor="middle" font-size="17" font-weight="600" fill="#9fd3ff">Running</text>
+
+  <line x1="540" y1="103" x2="568" y2="103" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+
+  <rect x="570" y="70" width="150" height="66" rx="14" fill="#0b2a4a"/>
+  <text x="645" y="109" text-anchor="middle" font-size="17" font-weight="600" fill="#9fd3ff">Actually used</text>
+
+  <line x1="720" y1="103" x2="748" y2="103" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+
+  <rect x="750" y="70" width="120" height="66" rx="14" fill="#0b2a4a"/>
+  <text x="810" y="109" text-anchor="middle" font-size="17" font-weight="600" fill="#9fd3ff">Changed</text>
+
+  <!-- Divider -->
+  <rect x="30" y="192" width="840" height="1" fill="#d1d5db"/>
+  <text x="450" y="216" text-anchor="middle" font-size="13" font-weight="600" fill="#374151">Closing the gap: the continuous-governance loop</text>
+
+  <!-- Helium loop -->
+  <rect x="60" y="234" width="130" height="44" rx="22" fill="#dbeafe" stroke="#0078d4" stroke-width="2"/>
+  <text x="125" y="262" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0b2a4a">Discover</text>
+
+  <line x1="190" y1="256" x2="218" y2="256" stroke="#0078d4" stroke-width="2" marker-end="url(#arrowB)"/>
+
+  <rect x="220" y="234" width="130" height="44" rx="22" fill="#dbeafe" stroke="#0078d4" stroke-width="2"/>
+  <text x="285" y="262" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0b2a4a">Understand</text>
+
+  <line x1="350" y1="256" x2="378" y2="256" stroke="#0078d4" stroke-width="2" marker-end="url(#arrowB)"/>
+
+  <rect x="380" y="234" width="130" height="44" rx="22" fill="#dbeafe" stroke="#0078d4" stroke-width="2"/>
+  <text x="445" y="262" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0b2a4a">Prioritize</text>
+
+  <line x1="510" y1="256" x2="538" y2="256" stroke="#0078d4" stroke-width="2" marker-end="url(#arrowB)"/>
+
+  <rect x="540" y="234" width="130" height="44" rx="22" fill="#dbeafe" stroke="#0078d4" stroke-width="2"/>
+  <text x="605" y="262" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0b2a4a">Improve</text>
+
+  <line x1="670" y1="256" x2="698" y2="256" stroke="#0078d4" stroke-width="2" marker-end="url(#arrowB)"/>
+
+  <rect x="700" y="234" width="130" height="44" rx="22" fill="#0078d4"/>
+  <text x="765" y="262" text-anchor="middle" font-size="13.5" font-weight="600" fill="#ffffff">Verify</text>
+
+  <!-- Return arrow (loop) -->
+  <path d="M 765,278 L 765,300 L 125,300 L 125,282" fill="none" stroke="#0078d4" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowB)"/>
+</svg>

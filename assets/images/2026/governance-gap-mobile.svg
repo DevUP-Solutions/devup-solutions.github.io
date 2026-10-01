@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 404" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arrowN" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 9 3, 0 6" fill="#0b2a4a"/></marker>
+    <marker id="arrowB" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 9 3, 0 6" fill="#0078d4"/></marker>
+  </defs>
+  <rect width="400" height="404" fill="#f5f7fb" rx="12"/>
+  <rect x="40" y="30" width="150" height="44" rx="12" fill="#0b2a4a"/>
+  <text x="115" y="58" text-anchor="middle" font-size="15" font-weight="600" fill="#9fd3ff">Designed</text>
+  <rect x="40" y="96" width="150" height="44" rx="12" fill="#0b2a4a"/>
+  <text x="115" y="124" text-anchor="middle" font-size="15" font-weight="600" fill="#9fd3ff">Configured</text>
+  <rect x="40" y="198" width="150" height="44" rx="12" fill="#0b2a4a"/>
+  <text x="115" y="226" text-anchor="middle" font-size="15" font-weight="600" fill="#9fd3ff">Running</text>
+  <rect x="40" y="264" width="150" height="44" rx="12" fill="#0b2a4a"/>
+  <text x="115" y="292" text-anchor="middle" font-size="15" font-weight="600" fill="#9fd3ff">Actually used</text>
+  <rect x="40" y="330" width="150" height="44" rx="12" fill="#0b2a4a"/>
+  <text x="115" y="358" text-anchor="middle" font-size="15" font-weight="600" fill="#9fd3ff">Changed</text>
+  <line x1="115" y1="74" x2="115" y2="94" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+  <line x1="115" y1="140" x2="115" y2="196" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+  <line x1="115" y1="242" x2="115" y2="262" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+  <line x1="115" y1="308" x2="115" y2="328" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+  <line x1="40" y1="168" x2="190" y2="168" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <rect x="52" y="158" width="126" height="20" rx="4" fill="#f5f7fb"/>
+  <text x="115" y="172" text-anchor="middle" font-size="12" font-weight="600" fill="#dc2626">the governance gap</text>
+  <path d="M 34,30 L 28,30 L 28,140 L 34,140" fill="none" stroke="#9ca3af" stroke-width="1.5"/>
+  <text transform="translate(18,85) rotate(-90)" text-anchor="middle" font-size="11.5" font-weight="600" fill="#374151">Architecture intent</text>
+  <path d="M 34,198 L 28,198 L 28,374 L 34,374" fill="none" stroke="#9ca3af" stroke-width="1.5"/>
+  <text transform="translate(18,286) rotate(-90)" text-anchor="middle" font-size="11.5" font-weight="600" fill="#374151">Operational reality</text>
+  <text x="298" y="20" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">Continuous-governance loop</text>
+  <rect x="228" y="30" width="140" height="40" rx="20" fill="#dbeafe" stroke="#0078d4" stroke-width="2"/>
+  <text x="298" y="55" text-anchor="middle" font-size="14" font-weight="600" fill="#0b2a4a">Discover</text>
+  <line x1="298" y1="70" x2="298" y2="103" stroke="#0078d4" stroke-width="2" marker-end="url(#arrowB)"/>
+  <rect x="228" y="106" width="140" height="40" rx="20" fill="#dbeafe" stroke="#0078d4" stroke-width="2"/>
+  <text x="298" y="131" text-anchor="middle" font-size="14" font-weight="600" fill="#0b2a4a">Understand</text>
+  <line x1="298" y1="146" x2="298" y2="179" stroke="#0078d4" stroke-width="2" marker-end="url(#arrowB)"/>
+  <rect x="228" y="182" width="140" height="40" rx="20" fill="#dbeafe" stroke="#0078d4" stroke-width="2"/>
+  <text x="298" y="207" text-anchor="middle" font-size="14" font-weight="600" fill="#0b2a4a">Prioritize</text>
+  <line x1="298" y1="222" x2="298" y2="255" stroke="#0078d4" stroke-width="2" marker-end="url(#arrowB)"/>
+  <rect x="228" y="258" width="140" height="40" rx="20" fill="#dbeafe" stroke="#0078d4" stroke-width="2"/>
+  <text x="298" y="283" text-anchor="middle" font-size="14" font-weight="600" fill="#0b2a4a">Improve</text>
+  <line x1="298" y1="298" x2="298" y2="331" stroke="#0078d4" stroke-width="2" marker-end="url(#arrowB)"/>
+  <rect x="228" y="334" width="140" height="40" rx="20" fill="#0078d4"/>
+  <text x="298" y="359" text-anchor="middle" font-size="14" font-weight="600" fill="#ffffff">Verify</text>
+  <path d="M 368,354 L 386,354 L 386,50 L 372,50" fill="none" stroke="#0078d4" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowB)"/>
+</svg>

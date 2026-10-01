@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 470" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arrowN" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#0b2a4a"/>
+    </marker>
+    <!-- identity marker: badge with key glyph -->
+    <g id="idBadge">
+      <circle r="13" fill="#ffffff" stroke="#0078d4" stroke-width="2"/>
+      <circle cx="-3.5" cy="0" r="3.6" fill="none" stroke="#0078d4" stroke-width="2"/>
+      <line x1="0" y1="0" x2="8" y2="0" stroke="#0078d4" stroke-width="2" stroke-linecap="round"/>
+      <line x1="5" y1="0" x2="5" y2="3.5" stroke="#0078d4" stroke-width="2" stroke-linecap="round"/>
+      <line x1="8" y1="0" x2="8" y2="3.5" stroke="#0078d4" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="860" height="470" fill="#f5f7fb" rx="12"/>
+
+  <!-- Title -->
+  <text x="430" y="32" text-anchor="middle" font-size="14" font-weight="600" fill="#374151">One agent, four systems, four chains of authority</text>
+
+  <!-- AI agent -->
+  <rect x="30" y="196" width="220" height="90" rx="18" fill="#0b2a4a"/>
+  <text x="140" y="248" text-anchor="middle" font-size="20" font-weight="600" fill="#9fd3ff">AI agent</text>
+
+  <!-- Targets -->
+  <rect x="560" y="56" width="270" height="70" rx="18" fill="#0b2a4a"/>
+  <text x="695" y="98" text-anchor="middle" font-size="18" font-weight="600" fill="#9fd3ff">Azure Storage</text>
+
+  <rect x="560" y="156" width="270" height="70" rx="18" fill="#0b2a4a"/>
+  <text x="695" y="198" text-anchor="middle" font-size="18" font-weight="600" fill="#9fd3ff">MCP server</text>
+
+  <rect x="560" y="256" width="270" height="70" rx="18" fill="#0b2a4a"/>
+  <text x="695" y="298" text-anchor="middle" font-size="18" font-weight="600" fill="#9fd3ff">Logic App</text>
+
+  <rect x="560" y="356" width="270" height="70" rx="18" fill="#0b2a4a"/>
+  <text x="695" y="398" text-anchor="middle" font-size="18" font-weight="600" fill="#9fd3ff">Customer system</text>
+
+  <!-- Connections -->
+  <path d="M 250,216 L 320,216 Q 340,216 340,196 L 340,111 Q 340,91 360,91 L 556,91" fill="none" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+  <path d="M 250,232 L 300,232 Q 320,232 320,212 L 320,211 Q 320,191 340,191 L 556,191" fill="none" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+  <path d="M 250,250 L 300,250 Q 320,250 320,270 L 320,271 Q 320,291 340,291 L 556,291" fill="none" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+  <path d="M 250,266 L 320,266 Q 340,266 340,286 L 340,371 Q 340,391 360,391 L 556,391" fill="none" stroke="#0b2a4a" stroke-width="2" marker-end="url(#arrowN)"/>
+
+  <!-- Identity / permission markers on each connection -->
+  <use href="#idBadge" x="378" y="91"/>
+  <text x="396" y="80" font-size="10.5" fill="#0b2a4a"><tspan font-weight="600">identity</tspan> · role · scope</text>
+
+  <use href="#idBadge" x="378" y="191"/>
+  <text x="396" y="180" font-size="10.5" fill="#0b2a4a"><tspan font-weight="600">identity</tspan> · token · audience</text>
+
+  <use href="#idBadge" x="378" y="291"/>
+  <text x="396" y="280" font-size="10.5" fill="#0b2a4a"><tspan font-weight="600">identity</tspan> · trigger permission</text>
+
+  <use href="#idBadge" x="378" y="391"/>
+  <text x="396" y="380" font-size="10.5" fill="#0b2a4a"><tspan font-weight="600">identity</tspan> · delegated / app-only</text>
+
+  <!-- Caption -->
+  <rect x="30" y="432" width="800" height="1" fill="#d1d5db"/>
+  <text x="430" y="456" text-anchor="middle" font-size="13" font-weight="600" fill="#0078d4">Every connection carries identity, authority, and permissions.</text>
+</svg>
