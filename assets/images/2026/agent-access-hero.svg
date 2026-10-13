@@ -14,47 +14,51 @@
   <text x="60" y="156" font-size="48" font-weight="700" fill="#9fd3ff">the agent can access?</text>
 
   <!-- Order agent -->
-  <rect x="60" y="330" width="300" height="92" rx="14" fill="#ffffff" fill-opacity="0.07" stroke="#9fd3ff" stroke-width="1.5"/>
-  <text x="210" y="368" text-anchor="middle" font-size="22" font-weight="600" fill="#ffffff">Order agent</text>
-  <text x="210" y="396" text-anchor="middle" font-size="14" fill="#9fd3ff">read documents · check prices · create order</text>
-  <line x1="360" y1="376" x2="526" y2="376" stroke="#9fd3ff" stroke-width="2" marker-end="url(#arrowL)"/>
-  <text x="443" y="364" text-anchor="middle" font-size="13" fill="#9fd3ff">access decided in</text>
+  <rect x="60" y="340" width="300" height="92" rx="14" fill="#ffffff" fill-opacity="0.07" stroke="#9fd3ff" stroke-width="1.5"/>
+  <text x="210" y="378" text-anchor="middle" font-size="22" font-weight="600" fill="#ffffff">Order agent</text>
+  <text x="210" y="406" text-anchor="middle" font-size="14" fill="#9fd3ff">read documents · check prices · create order</text>
+  <line x1="360" y1="386" x2="526" y2="386" stroke="#9fd3ff" stroke-width="2" marker-end="url(#arrowL)"/>
+  <text x="443" y="374" text-anchor="middle" font-size="13" fill="#9fd3ff">access decided in</text>
 
   <!-- Layers panel -->
-  <rect x="530" y="214" width="610" height="362" rx="16" fill="#ffffff" fill-opacity="0.05" stroke="#2f5d8a" stroke-width="1.5"/>
-  <text x="556" y="244" font-size="14" font-weight="600" letter-spacing="1.5" fill="#9fd3ff">ACCESS LAYERS</text>
-  <text x="1114" y="244" text-anchor="end" font-size="14" font-weight="600" letter-spacing="1.5" fill="#9fd3ff">DECIDED BY</text>
+  <rect x="530" y="200" width="610" height="384" rx="16" fill="#ffffff" fill-opacity="0.05" stroke="#2f5d8a" stroke-width="1.5"/>
+  <text x="556" y="230" font-size="14" font-weight="600" letter-spacing="1.5" fill="#9fd3ff">ACCESS LAYERS</text>
+  <text x="1114" y="230" text-anchor="end" font-size="14" font-weight="600" letter-spacing="1.5" fill="#9fd3ff">DECIDED BY</text>
 
   <g font-size="17">
-    <rect x="556" y="258" width="558" height="38" rx="8" fill="#ffffff" fill-opacity="0.06"/>
-    <text x="572" y="283" font-weight="600" fill="#ffffff">Identity</text>
-    <text x="1098" y="283" text-anchor="end" fill="#9fd3ff">sponsor · owner</text>
+    <rect x="556" y="246" width="558" height="34" rx="8" fill="#ffffff" fill-opacity="0.06"/>
+    <text x="572" y="269" font-weight="600" fill="#ffffff">Identity</text>
+    <text x="1098" y="269" text-anchor="end" fill="#9fd3ff">platform · sponsor · owner</text>
 
-    <rect x="556" y="302" width="558" height="38" rx="8" fill="#3b1111" stroke="#f87171" stroke-width="1.5"/>
-    <text x="572" y="327" font-weight="600" fill="#ffffff">Permissions</text>
-    <text x="1098" y="327" text-anchor="end" fill="#fca5a5">widened at the keyboard · nobody</text>
+    <rect x="556" y="286" width="558" height="34" rx="8" fill="#3b1111" stroke="#f87171" stroke-width="1.5"/>
+    <text x="572" y="309" font-weight="600" fill="#ffffff">Permissions</text>
+    <text x="1098" y="309" text-anchor="end" fill="#fca5a5">widened at the keyboard · nobody</text>
 
-    <rect x="556" y="346" width="558" height="38" rx="8" fill="#ffffff" fill-opacity="0.06"/>
-    <text x="572" y="371" font-weight="600" fill="#ffffff">Data scope</text>
-    <text x="1098" y="371" text-anchor="end" fill="#9fd3ff">data owner</text>
+    <rect x="556" y="326" width="558" height="34" rx="8" fill="#ffffff" fill-opacity="0.06"/>
+    <text x="572" y="349" font-weight="600" fill="#ffffff">Data scope</text>
+    <text x="1098" y="349" text-anchor="end" fill="#9fd3ff">data owner</text>
 
-    <rect x="556" y="390" width="558" height="38" rx="8" fill="#ffffff" fill-opacity="0.06"/>
-    <text x="572" y="415" font-weight="600" fill="#ffffff">Tools</text>
-    <text x="1098" y="415" text-anchor="end" fill="#9fd3ff">builder</text>
+    <rect x="556" y="366" width="558" height="34" rx="8" fill="#ffffff" fill-opacity="0.06"/>
+    <text x="572" y="389" font-weight="600" fill="#ffffff">Tools</text>
+    <text x="1098" y="389" text-anchor="end" fill="#9fd3ff">builder</text>
 
-    <rect x="556" y="434" width="558" height="38" rx="8" fill="#ffffff" fill-opacity="0.06"/>
-    <text x="572" y="459" font-weight="600" fill="#ffffff">Path</text>
-    <text x="1098" y="459" text-anchor="end" fill="#9fd3ff">platform</text>
+    <rect x="556" y="406" width="558" height="34" rx="8" fill="#ffffff" fill-opacity="0.06"/>
+    <text x="572" y="429" font-weight="600" fill="#ffffff">Instructions</text>
+    <text x="1098" y="429" text-anchor="end" fill="#9fd3ff">builder</text>
 
-    <rect x="556" y="478" width="558" height="38" rx="8" fill="#ffffff" fill-opacity="0.06"/>
-    <text x="572" y="503" font-weight="600" fill="#ffffff">Approval</text>
-    <text x="1098" y="503" text-anchor="end" fill="#9fd3ff">business sponsor</text>
+    <rect x="556" y="446" width="558" height="34" rx="8" fill="#ffffff" fill-opacity="0.06"/>
+    <text x="572" y="469" font-weight="600" fill="#ffffff">Path</text>
+    <text x="1098" y="469" text-anchor="end" fill="#9fd3ff">platform</text>
 
-    <rect x="556" y="522" width="558" height="38" rx="8" fill="#ffffff" fill-opacity="0.06"/>
-    <text x="572" y="547" font-weight="600" fill="#ffffff">Evidence</text>
-    <text x="1098" y="547" text-anchor="end" fill="#9fd3ff">operations</text>
+    <rect x="556" y="486" width="558" height="34" rx="8" fill="#ffffff" fill-opacity="0.06"/>
+    <text x="572" y="509" font-weight="600" fill="#ffffff">Approval</text>
+    <text x="1098" y="509" text-anchor="end" fill="#9fd3ff">business sponsor</text>
+
+    <rect x="556" y="526" width="558" height="34" rx="8" fill="#ffffff" fill-opacity="0.06"/>
+    <text x="572" y="549" font-weight="600" fill="#ffffff">Evidence</text>
+    <text x="1098" y="549" text-anchor="end" fill="#9fd3ff">platform</text>
   </g>
 
   <text x="60" y="610" font-size="16" fill="#9fd3ff">Every layer is a decision. Every decision needs an owner.</text>
-  <text x="1140" y="610" text-anchor="end" font-size="16" fill="#fca5a5">The widest permission sets the real access.</text>
+  <text x="1140" y="610" text-anchor="end" font-size="16" fill="#fca5a5">The layer nobody owns is the one that drifts.</text>
 </svg>

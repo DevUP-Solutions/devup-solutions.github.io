@@ -14,34 +14,38 @@
   <text x="40" y="136" font-size="11" font-weight="600" letter-spacing="1.2" fill="#9fd3ff">ORDER AGENT · ACCESS LAYERS</text>
 
   <g font-size="14">
-    <rect x="40" y="148" width="320" height="34" rx="7" fill="#ffffff" fill-opacity="0.06"/>
-    <text x="52" y="170" font-weight="600" fill="#ffffff">Identity</text>
-    <text x="348" y="170" text-anchor="end" fill="#9fd3ff">sponsor · owner</text>
+    <rect x="40" y="146" width="320" height="30" rx="7" fill="#ffffff" fill-opacity="0.06"/>
+    <text x="52" y="166" font-weight="600" fill="#ffffff">Identity</text>
+    <text x="348" y="166" text-anchor="end" fill="#9fd3ff">platform · owner</text>
 
-    <rect x="40" y="188" width="320" height="34" rx="7" fill="#3b1111" stroke="#f87171" stroke-width="1.5"/>
-    <text x="52" y="210" font-weight="600" fill="#ffffff">Permissions</text>
-    <text x="348" y="210" text-anchor="end" fill="#fca5a5">widened · nobody</text>
+    <rect x="40" y="182" width="320" height="30" rx="7" fill="#3b1111" stroke="#f87171" stroke-width="1.5"/>
+    <text x="52" y="202" font-weight="600" fill="#ffffff">Permissions</text>
+    <text x="348" y="202" text-anchor="end" fill="#fca5a5">widened · nobody</text>
 
-    <rect x="40" y="228" width="320" height="34" rx="7" fill="#ffffff" fill-opacity="0.06"/>
-    <text x="52" y="250" font-weight="600" fill="#ffffff">Data scope</text>
-    <text x="348" y="250" text-anchor="end" fill="#9fd3ff">data owner</text>
+    <rect x="40" y="218" width="320" height="30" rx="7" fill="#ffffff" fill-opacity="0.06"/>
+    <text x="52" y="238" font-weight="600" fill="#ffffff">Data scope</text>
+    <text x="348" y="238" text-anchor="end" fill="#9fd3ff">data owner</text>
 
-    <rect x="40" y="268" width="320" height="34" rx="7" fill="#ffffff" fill-opacity="0.06"/>
-    <text x="52" y="290" font-weight="600" fill="#ffffff">Tools</text>
-    <text x="348" y="290" text-anchor="end" fill="#9fd3ff">builder</text>
+    <rect x="40" y="254" width="320" height="30" rx="7" fill="#ffffff" fill-opacity="0.06"/>
+    <text x="52" y="274" font-weight="600" fill="#ffffff">Tools</text>
+    <text x="348" y="274" text-anchor="end" fill="#9fd3ff">builder</text>
 
-    <rect x="40" y="308" width="320" height="34" rx="7" fill="#ffffff" fill-opacity="0.06"/>
-    <text x="52" y="330" font-weight="600" fill="#ffffff">Path</text>
-    <text x="348" y="330" text-anchor="end" fill="#9fd3ff">platform</text>
+    <rect x="40" y="290" width="320" height="30" rx="7" fill="#ffffff" fill-opacity="0.06"/>
+    <text x="52" y="310" font-weight="600" fill="#ffffff">Instructions</text>
+    <text x="348" y="310" text-anchor="end" fill="#9fd3ff">builder</text>
 
-    <rect x="40" y="348" width="320" height="34" rx="7" fill="#ffffff" fill-opacity="0.06"/>
-    <text x="52" y="370" font-weight="600" fill="#ffffff">Approval</text>
-    <text x="348" y="370" text-anchor="end" fill="#9fd3ff">business sponsor</text>
+    <rect x="40" y="326" width="320" height="30" rx="7" fill="#ffffff" fill-opacity="0.06"/>
+    <text x="52" y="346" font-weight="600" fill="#ffffff">Path</text>
+    <text x="348" y="346" text-anchor="end" fill="#9fd3ff">platform</text>
 
-    <rect x="40" y="388" width="320" height="34" rx="7" fill="#ffffff" fill-opacity="0.06"/>
-    <text x="52" y="410" font-weight="600" fill="#ffffff">Evidence</text>
-    <text x="348" y="410" text-anchor="end" fill="#9fd3ff">operations</text>
+    <rect x="40" y="362" width="320" height="30" rx="7" fill="#ffffff" fill-opacity="0.06"/>
+    <text x="52" y="382" font-weight="600" fill="#ffffff">Approval</text>
+    <text x="348" y="382" text-anchor="end" fill="#9fd3ff">business sponsor</text>
+
+    <rect x="40" y="398" width="320" height="30" rx="7" fill="#ffffff" fill-opacity="0.06"/>
+    <text x="52" y="418" font-weight="600" fill="#ffffff">Evidence</text>
+    <text x="348" y="418" text-anchor="end" fill="#9fd3ff">platform</text>
   </g>
 
-  <text x="24" y="460" font-size="12" fill="#fca5a5">The widest permission sets the real access.</text>
+  <text x="24" y="460" font-size="12" fill="#fca5a5">The layer nobody owns is the one that drifts.</text>
 </svg>
