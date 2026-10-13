@@ -147,7 +147,7 @@ If I had to turn the session into a starting point, it would be this:
 1. **Choose one agent.** Preferably one that is already in production and touches data another team owns.
 2. **Name the owners.** A business sponsor, a data owner for each data source, a technical owner for the agent, and whoever sets the platform requirements.
 3. **Define what it may access and do.** Which data, at which scope. Which operations. Which actions need a human approval. Write it down next to the agent.
-4. **Enforce it where it holds.** Scoped roles, separate containers where needed, tools whose backends check every call, retrieval that respects permissions, and an orchestration that decides what it supplies.
+4. **Put the checks where the access happens.** Scoped roles, separate containers where needed, tools whose backends check every call, retrieval that respects permissions, and an orchestration that decides what it supplies.
 5. **Check it again as the solution changes.** In the pipeline for the changes that go through it, and in the running environment for the ones that do not.
 
 That gives one agent a clear answer to the question the room asked. The second agent is easier, because the owners and the process already exist.
