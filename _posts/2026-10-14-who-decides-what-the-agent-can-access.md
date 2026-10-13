@@ -37,7 +37,7 @@ None of the questions above are new. A Logic App that reads customer documents a
 
 The difference with an agent is that it chooses. It decides at runtime which tool to call, in which order, and with which input, based on the request and on whatever it has read along the way. A classic integration does what we wired it to do. An agent combines what it is allowed to do.
 
-That makes each of the familiar controls harder. Which documents it reads depends on how it interprets the order. Which operations it uses depends on the tools we made available. Whether it stays inside the intended scope depends on constraints that exist in several places at once: the identity, the permissions on each resource, the data inside those resources, the tools and their backends, the instructions, the network path, the approval step, and the logs.
+That makes each of the familiar controls harder. Which documents it reads depends on how it interprets the order. Which operations it uses depends on the tools we made available. Whether it stays inside the intended scope depends on constraints in several places at once: the identity, the permissions on each resource, the data inside those resources, the tools and their backends, the instructions, the network path, the approval step, and the logs.
 
 When people in the room said security was the biggest problem, I think this is what they meant. Not that one control is missing, but that it is hard to say which of these layers they have, who set them, and whether they still hold.
 
@@ -68,7 +68,7 @@ I think the confusion starts with treating this as one decision. It is several, 
 
 The developer implements the agreed scope. The business sponsor and the data owners decide what is justified. The platform team sets the requirements that apply regardless of the process.
 
-That does not mean every access change needs a new architecture meeting. It means access changes should follow an agreed process with review that matches the change. Narrowing a permission, or adding a tool that only reads data the agent already has access to, can be a normal pull request with the right reviewer. Giving the agent write access to data another team owns is not a configuration fix. It needs that team's decision, and it needs to be recorded.
+That does not mean every access change needs a new architecture meeting. It means access changes follow an agreed process, with review that matches the change. Narrowing a permission, or adding a tool that only reads data the agent already has access to, can be a normal pull request with the right reviewer. Giving the agent write access to data another team owns is not a configuration fix. It needs that team's decision, and it needs to be recorded.
 
 The problem in the six-months-later example is not that the permission was widened. It is that nobody who owns the data was asked, and nothing was written down that could be checked later.
 
@@ -80,9 +80,9 @@ For the order agent, the targeted scope is the documents for this order, the cur
 
 There are several places to enforce that, and they work best together.
 
-**Scope the role.** Azure RBAC assigns a role at a [scope](https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview). Storage Blob Data Reader on one container is a different thing from the same role on the subscription. A container-scoped role still gives access to everything in that container. [Azure attribute-based access control](https://learn.microsoft.com/en-us/azure/role-based-access-control/conditions-overview) can add conditions on top, for example based on blob tags or paths, where the service supports it. In practice, separating data into containers by purpose is often the simpler option: if the order documents and the contracts share a container, no role assignment will keep them apart.
+**Scope the role.** Azure RBAC assigns a role at a [scope](https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview). Storage Blob Data Reader on one container is a different thing from the same role on the subscription. A container-scoped role still gives access to everything in that container. [Azure attribute-based access control](https://learn.microsoft.com/en-us/azure/role-based-access-control/conditions-overview) can add conditions on top, for example based on blob tags or paths, where the service supports it. In practice, separating data into containers by purpose is often the simpler option: if the order documents and the contracts share a container, ordinary container-scoped RBAC will not keep them apart.
 
-**Put the scope in the tool, and enforce it in the backend.** A tool named *get price for item* is a narrower interface than *run query*. But the name does nothing on its own. The backend behind the tool has to check, on every call, that the caller is authorized, that the operation is one the tool allows, and that the customer or order in the request is one the agent may work on. An agent can call a tool many times, and it can substitute an identifier it found in a document. The backend has to reject those calls, not the tool description.
+**Put the scope in the tool, and enforce it in the backend.** A tool named *get price for item* is a narrower interface than *run query*. But the name does nothing on its own. The backend behind the tool has to check, on every call, that the caller is authorized, that the operation is one the tool allows, and that the customer or order in the request is one the agent may work on. An agent can call a tool many times, and it can pass an identifier it found in a document. Neither is wrong in itself. What the backend rejects is a call for a customer or order the caller is not authorized for, however the agent arrived at that identifier. The tool description cannot do that check.
 
 **Treat instructions as guidance, not authorization.** The system prompt shapes what the agent tries to do. It does not decide what it is allowed to do. If the model asks for something outside the agreed scope, the backend must say no, regardless of how the request was phrased.
 
@@ -109,7 +109,7 @@ On the board, we ended with an agreed target next to the environment. For the or
 
 None of that is exotic. The point is that it is written down, so the current state can be compared with it.
 
-When we then look at the environment and find that the agent's identity has read access to the whole storage account, we have a gap, not an opinion. We can discuss whether there is a reason for it, whether we accept an exception with an owner and an expiry, or whether it needs to change. And we can measure whether the gap is getting smaller.
+When we then find that the agent's identity has read access to the whole storage account, we have a gap, not an opinion. We can discuss whether there is a reason for it, accept an exception with an owner and an expiry, or change it. And we can see whether the gap is getting smaller.
 
 Without the list, we can still find the broad permission. What we cannot do is say whether it is wrong. We cannot reliably verify an agreement nobody has defined.
 
@@ -124,7 +124,7 @@ What changes is that reading the diff is no longer enough to tell whether a chan
 - **Before deployment.** Azure Policy can deny configurations that are never acceptable, within the resource types and properties it supports. A check on role assignment scope, or on which identity a new tool uses, can run in the pipeline against the agreed list.
 - **After deployment.** The permission that was widened six months later never went through a pull request. So the same questions need to be asked of the running environment, on a cadence that matches how often it changes.
 
-The automated checks supplement the review. They do not replace the reviewer, and they do not replace the owners who agreed the scope in the first place. What they add is the ability to ask "is this still inside what we agreed?" every time, not only at the moment of deployment.
+The automated checks supplement the review. They do not replace the reviewer or the owners who agreed the scope. What they add is the ability to ask "is this still inside what we agreed?" every time, not only at deployment.
 
 That is the same loop as in [Governance Needs to Move at the Same Speed as AI]({% post_url 2026-09-23-governance-needs-to-move-at-the-same-speed-as-ai %}): discover, understand, prioritize, improve, verify.
 
@@ -134,11 +134,11 @@ This is also how we approach it in Helium, our Continuous Cloud Governance Platf
 
 Helium does not decide what an agent should access. That stays with the owners in the table above. It does not see inside the agent's prompt, and it does not know which three documents a task needs.
 
-What it does is check the Azure resources the agent depends on against a defined set of requirements, grouped in levels so a team can agree which level is the target for an environment. For the order agent's storage account, pricing API, and business system, that includes whether key-based authentication is still allowed, whether managed identity is supported but not enabled, whether secrets sit in plain text, whether public access is enabled without a private alternative, and whether diagnostics and alerts exist. Each scan is dated, so a resource that met the target last month and does not meet it now shows up as a change, not as a new fact.
+What it does is check the supported Azure resources behind the process, such as the storage account and the API in front of the pricing data, against a defined set of requirements grouped in levels, so a team can agree which level is the target for an environment. That includes whether key-based authentication is still allowed, whether managed identity is supported but not enabled, whether secrets sit in plain text, whether public access is enabled without a private alternative, and whether diagnostics and alerts exist. Scans repeat, so a resource that met the target last month and does not now shows up as a failing check in the next one.
 
-With context, a static key on a publicly reachable resource that the agent depends on becomes a priority rather than one more finding. That gives the people who own the decisions something concrete to decide on, and it shows whether the gap is closing after they do.
+With context, a static key on a publicly reachable resource behind the agent becomes a priority rather than one more finding. That gives the people who own the decisions something concrete to decide on, and shows whether the gap is closing after they do.
 
-Which documents are in scope, and whether the write permission to the pricing data was justified, remain decisions for the business and the data owners. No tool makes those for them.
+Which documents are in scope, and whether the write permission to the pricing data was justified, remain decisions for the business and the data owners.
 
 ## Where to start
 
@@ -152,7 +152,7 @@ If I had to turn the session into a starting point, it would be this:
 
 That gives one agent a clear answer to the question the room asked. The second agent is easier, because the owners and the process already exist.
 
-Scope tells us what the agent may touch. It does not tell us where the agent can connect, which tools it can reach, or what can pass through an approved connection. That is where the next article, **Identity Is Not the Only Perimeter**, begins.
+This article has been about authorized access: what the agent may read and do. That is a different question from what the agent can reach over the network, and from what can leave through a connection we have approved. An agent with correctly scoped access can still send what it read to a destination it should not. That is where the next article, **Identity Is Not the Only Perimeter**, begins.
 
 ---
 
