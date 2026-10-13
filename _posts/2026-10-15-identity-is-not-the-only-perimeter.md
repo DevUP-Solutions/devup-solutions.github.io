@@ -21,7 +21,7 @@ Identity gives us the context. Boundaries define where the agent can act. Valida
 
 This one is about boundaries: where an agent can connect, which tools it can use, and what data it can send through those connections.
 
-Between the identity article and this one, I wrote a spin-off, [Who Decides What the Agent Can Access?]({% post_url 2026-10-14-who-decides-what-the-agent-can-access %}), on the layers where an agent's access is decided and who should own each of them. This article follows one of those layers further.
+Between the identity article and this one, I wrote [Who Decides What the Agent Can Access?]({% post_url 2026-10-14-who-decides-what-the-agent-can-access %}), on who owns the decisions about an agent's access and how to verify them. This article follows one of those layers further.
 
 Earlier this year we built an MCP server for Helium. It runs as an Azure Functions app, users sign in with their Entra account, and an AI assistant can ask about the Azure environments that user already has access to. It is available to every Helium customer today.
 
