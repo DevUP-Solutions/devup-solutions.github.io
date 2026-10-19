@@ -2,7 +2,7 @@
 layout: post
 title: "Who Decides What the Agent Can Access?"
 description: "At an event last week, the room named security as the biggest problem with AI agents. The question underneath it is about ownership: who decides what an agent may access, who enforces that decision, and how do we verify that the access still matches what was agreed?"
-date: 2026-10-14 09:00:00 +0200
+date: 2026-10-20 09:00:00 +0200
 categories: [Helium, AI]
 tags: [AI, Security, Azure, Governance, Least Privilege, Data Access, Agent ID, Helium]
 author: "Mattias Lögdberg"
