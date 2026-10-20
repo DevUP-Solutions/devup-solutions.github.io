@@ -2,7 +2,7 @@
 layout: post
 title: "Identity Is Not the Only Perimeter"
 description: "An agent can have the right identity and still send data somewhere it should not. What building Helium's MCP server taught us about access, tools, and the boundaries between them."
-date: 2026-10-15 09:00:00 +0200
+date: 2026-11-10 09:00:00 +0100
 categories: [Helium, AI]
 tags: [AI, Security, Azure, MCP, Network Security Perimeter, Microsoft Foundry, API Management, Governance]
 author: "Mattias Lögdberg"
