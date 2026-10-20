@@ -15,7 +15,7 @@ comments: true
   <img src="/assets/images/2026/agent-access-hero.svg" alt="An order agent next to a stack of access layers: identity, permissions, data scope, tools, instructions, path, approval, evidence. Each layer has a named owner, except permissions, which was widened at the keyboard and has no owner. Headline: Who decides what the agent can access?">
 </picture>
 
-Last week I ran a session at an event on the same question this series started with: [Who Owns the Architecture When AI Writes the Code?]({% post_url 2026-09-07-who-owns-the-architecture-when-ai-writes-the-code %})
+Last week I ran a session at an event on the same question this series started with: [Who Owns the Architecture When AI Writes the Code?]({% post_url 2026-09-07-who-owns-the-architecture-when-ai-writes-the-code %}).
 
 For most of the session I used a whiteboard instead of slides, and one business process as the example. A customer sends an order. An agent reads it, checks the prices, creates the order in the business system, and sends a confirmation.
 
@@ -66,7 +66,7 @@ I think the confusion starts with treating this as one decision. It is several, 
 | The narrowest technical scope that still does the job | The team building the agent |
 | The requirements every agent must meet, such as no shared keys | The platform or security team |
 
-The developer implements the agreed scope. The business sponsor and the data owners decide what is justified. The platform team sets the requirements that apply regardless of the process.
+The team building the agent implements the agreed scope. The business sponsor and the data owners decide what is justified. The platform team sets the requirements that apply regardless of the process.
 
 That does not mean every access change needs a new architecture meeting. It means access changes follow an agreed process, with review that matches the change. Narrowing a permission, or adding a tool that only reads data the agent already has access to, can be a normal pull request with the right reviewer. Giving the agent write access to data another team owns is not a configuration fix. It needs that team's decision, and it needs to be recorded.
 
@@ -76,11 +76,11 @@ The problem in the six-months-later example is not that the permission was widen
 
 The most common question after the session was practical. How do we make sure the data the agent accesses is limited to the targeted scope?
 
-For the order agent, the targeted scope is the documents for this order, the current prices for these items, and the permission to create one order. Not every customer's documents. Not the price history. Not the ability to change prices.
+For the order agent, the intended scope is the documents for this order, the current prices for these items, and the permission to create one order. Not every customer's documents. Not the price history. Not the ability to change prices.
 
 There are several places to enforce that, and they work best together.
 
-**Scope the role.** Azure RBAC assigns a role at a [scope](https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview). Storage Blob Data Reader on one container is a different thing from the same role on the subscription. A container-scoped role still gives access to everything in that container. [Azure attribute-based access control](https://learn.microsoft.com/en-us/azure/role-based-access-control/conditions-overview) can add conditions on top, for example based on blob tags or paths, where the service supports it. In practice, separating data into containers by purpose is often the simpler option: if the order documents and the contracts share a container, ordinary container-scoped RBAC will not keep them apart.
+**Scope the role.** Azure RBAC assigns a role at a [scope](https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview). Storage Blob Data Reader on one container is a different thing from the same role on the subscription. A container-scoped role still gives access to everything in that container. [Azure attribute-based access control](https://learn.microsoft.com/en-us/azure/role-based-access-control/conditions-overview) can add conditions on top, for example based on blob index tags or paths, where the service supports it. In practice, separating data into containers by purpose is often the simpler option: if the order documents and the contracts share a container, ordinary container-scoped RBAC will not keep them apart.
 
 **Put the scope in the tool, and enforce it in the backend.** A tool named *get price for item* is a narrower interface than *run query*. But the name does nothing on its own. The backend behind the tool has to check, on every call, that the caller is authorized, that the operation is one the tool allows, and that the customer or order in the request is one the agent may work on. An agent can call a tool many times, and it can pass an identifier it found in a document. Neither is wrong in itself. What the backend rejects is a call for a customer or order the caller is not authorized for, however the agent arrived at that identifier. The tool description cannot do that check.
 
@@ -90,7 +90,7 @@ There are several places to enforce that, and they work best together.
 
 **Make retrieval respect the same permissions.** Documents indexed for retrieval can carry document-level permissions in the index. The risk is retrieval that does not enforce them: an index that holds everything, queried by a component that filters nothing. If the index is shared, the retrieval path needs to apply the same scope as the source.
 
-**Pass the data in where you can.** For a well-defined process, the orchestration can hand the agent the three documents for this order. The agent then needs no search permission at all. The authorization has not disappeared. It has moved to the orchestration, which now has to decide which documents it is allowed to supply.
+**Pass the data in where you can.** For a well-defined process, the orchestration can hand the agent the documents for this order. The agent then needs no search permission at all. The authorization has not disappeared. It has moved to the orchestration, which now has to decide which documents it is allowed to supply.
 
 Each of those is a decision with an owner from the table above. And each can drift.
 
@@ -101,7 +101,7 @@ The other discussion that stayed with me was about where the constraints live.
 On the board, we ended with an agreed target next to the environment. For the order agent, it looked something like this:
 
 - Sensitive services use private access.
-- Managed identity or agent identity where the service supports it. No shared keys.
+- Managed identity or Microsoft Entra Agent ID where the service supports it. No shared keys.
 - Each production agent has its own identity, a sponsor, and an owner.
 - Data access is scoped to the process, and the scope is written down.
 - Write operations are named. Create order: yes. Change pricing: no.
@@ -132,9 +132,9 @@ That is the same loop as in [Governance Needs to Move at the Same Speed as AI]({
 
 This is also how we approach it in Helium, our Continuous Cloud Governance Platform for Azure.
 
-Helium does not decide what an agent should access. That stays with the owners in the table above. It does not see inside the agent's prompt, and it does not know which three documents a task needs.
+Helium does not decide what an agent should access. That stays with the owners in the table above. It does not see inside the agent's prompt, and it does not know which documents a task needs.
 
-What it does is check the supported Azure resources behind the process, such as the storage account and the API in front of the pricing data, against a defined set of requirements grouped in levels, so a team can agree which level is the target for an environment. That includes whether key-based authentication is still allowed, whether managed identity is supported but not enabled, whether secrets sit in plain text, whether public access is enabled without a private alternative, and whether diagnostics and alerts exist. Scans repeat, so a resource that met the target last month and does not now shows up as a failing check in the next one.
+What it does is check the supported Azure resources behind the process, such as the storage account and the API in front of the pricing data. The requirements are grouped in levels, so a team can agree which level is the target for an environment. The checks include whether key-based authentication is still allowed, whether managed identity is supported but not enabled, whether secrets sit in plain text, whether public access is enabled without a private alternative, and whether diagnostics and alerts exist. Scans repeat, so a resource that met the target last month and does not now shows up as a failing check in the next one.
 
 With context, a static key on a publicly reachable resource behind the agent becomes a priority rather than one more finding. That gives the people who own the decisions something concrete to decide on, and shows whether the gap is closing after they do.
 
