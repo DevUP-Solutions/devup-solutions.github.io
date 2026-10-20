@@ -2,7 +2,7 @@
 layout: post
 title: "Can You Reconstruct What the Agent Did?"
 description: "Identity decides who may act. Boundaries limit where. Neither tells you what actually happened. An agent incident you cannot reconstruct is an incident you cannot own."
-date: 2026-10-29 09:00:00 +0100
+date: 2026-12-08 09:00:00 +0100
 categories: [Helium, AI]
 tags: [AI, Security, Azure, Observability, OpenTelemetry, Microsoft Foundry, Microsoft Entra, Governance]
 author: "Mattias Lögdberg"
@@ -15,7 +15,7 @@ This is the last of four articles in this series.
 
 In [Every AI Agent Needs an Identity — and an Owner]({% post_url 2026-10-01-every-ai-agent-needs-an-identity %}), I argued that every agent needs its own identity and a named owner. In Identity Is Not the Only Perimeter, I followed the paths an agent can use and the boundaries around them.
 
-TODO(Mattias): replace the plain title above with a `post_url` link to `2026-10-15-identity-is-not-the-only-perimeter` once PR #19 is merged. Linking it now would break this branch's build.
+TODO(Mattias): replace the plain title above with a `post_url` link to `2026-11-10-identity-is-not-the-only-perimeter` once PR #19 is merged. Linking it now would break this branch's build.
 
 Identity gives us the context. Boundaries define where the agent can act. Validation tells us what actually happened.
 
