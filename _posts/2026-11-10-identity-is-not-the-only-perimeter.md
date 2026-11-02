@@ -21,9 +21,9 @@ Identity gives us the context. Boundaries define where the agent can act. Valida
 
 This one is about boundaries: where an agent can connect, which tools it can use, and what data it can send through those connections.
 
-Between the identity article and this one, I wrote [Who Decides What the Agent Can Access?]({% post_url 2026-10-21-who-decides-what-the-agent-can-access %}), on who owns the decisions about an agent's access and how to verify them. This article follows one of those layers further.
+Between the identity article and this one, I wrote [Who Decides What the Agent Can Access?]({% post_url 2026-10-21-who-decides-what-the-agent-can-access %}), on who owns the decisions about an agent's access and how to verify them. This article picks up where that one ended: what the agent can reach, and what can leave through a connection we have approved.
 
-Earlier this year we built an MCP server for Helium. It runs as an Azure Functions app, users sign in with their Entra account, and an AI assistant can ask about the Azure environments that user already has access to. It is available to every Helium customer today.
+Earlier this year we built an MCP server for Helium, our Continuous Cloud Governance Platform for Azure. It runs as an Azure Functions app, users sign in with their Entra account, and an AI assistant can ask about the Azure environments that user already has access to. It is available to every Helium customer today.
 
 We made two deliberate choices. The tools are read-only. And connecting through MCP gives the user no more access to customer data than connecting through the portal.
 
@@ -82,7 +82,12 @@ Last time, we asked which identity and permissions were used on each connection.
   <img src="/assets/images/2026/agent-boundaries-chain.svg" alt="An AI agent connected to Azure Storage, an MCP server, a Logic App, and a customer system. Each connection has an identity and a boundary. Controls depend on the resource and runtime.">
 </picture>
 
-Which data can the agent retrieve? Which tool operations are available? Can a tool accept arbitrary text, a destination URL, or an attachment? What can the receiving service do with that information?
+For each connection, we need to know:
+
+- Which data can the agent retrieve?
+- Which tool operations are available?
+- Can a tool accept arbitrary text, a destination URL, or an attachment?
+- What can the receiving service do with that information?
 
 These are integration questions. Each component can behave as configured while the complete flow does something we never intended.
 
@@ -156,7 +161,7 @@ I would start here:
 
 A public endpoint is enabled for troubleshooting and never disabled. A new tool connects directly instead of through the gateway. An exception survives long after the reason for it disappeared.
 
-This is why boundaries belong in continuous governance. They need to be followed throughout the workload's lifecycle.
+This is why boundaries belong in continuous governance. They need to be verified throughout the workload's lifecycle.
 
 It is the same loop we use when thinking about Azure governance in Helium:
 
@@ -168,7 +173,7 @@ Helium's role is to help teams understand their Azure environment and decide wha
 
 ## Accountability: So, who owns the boundary?
 
-We still do.
+> We still do.
 
 For our MCP server, we own the access enforcement, the operations we expose, and the information we return. Customers own the decisions about the clients and other tools they connect.
 
@@ -176,7 +181,7 @@ We need to make those responsibilities explicit. A flow crossing several systems
 
 A boundary limits what could happen. To understand what did happen, we need evidence: which actor called which tool, with what parameters, under whose authority, and where the result went.
 
-That is where the final article in this series begins. After identity and boundaries, we return to validation: what could the agent do, what did it do, and can we prove the complete chain?
+That is where the final article in this series begins. After identity and boundaries, we return to validation: what could the agent do, what did it do, and can we reconstruct the complete chain?
 
 ---
 
