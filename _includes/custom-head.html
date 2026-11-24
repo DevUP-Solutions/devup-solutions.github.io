@@ -1,2 +1,17 @@
 <link rel="shortcut icon" type="image/png" href="favicon.png">
 {% seo %}
+<script>
+  // Disqus picks its light/dark scheme once, at load. Reload it when the
+  // visitor's system theme changes so the comments follow the page.
+  (function () {
+    if (!window.matchMedia) return;
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    var onChange = function () {
+      if (window.DISQUS && typeof window.DISQUS.reset === 'function') {
+        window.DISQUS.reset({ reload: true });
+      }
+    };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  })();
+</script>

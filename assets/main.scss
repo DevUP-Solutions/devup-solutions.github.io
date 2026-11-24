@@ -4,14 +4,58 @@
 @import "minima";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
 
+/* ------------------------------------------------------------------
+   Theme tokens. Light by default, dark when the visitor's system is
+   set to dark. Same palette as the DevUP Sales Board.
+   The header and footer stay navy in both modes (white logo).
+   ------------------------------------------------------------------ */
+:root {
+  --bg: #f3f7fd;
+  --card: #ffffff;
+  --ink: #041e3c;
+  --text: #1f2937;
+  --muted: #5b6b82;
+  --line: #d5e0f0;
+  --blue: #1a56db;
+  --code-bg: #eaf2ff;
+  --navy: #00182f;
+  --navy-link: #9abff0;
+  --shadow: rgba(0, 24, 47, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #08152a;
+    --card: #0f2038;
+    --ink: #eef4fc;
+    --text: #d6e1f1;
+    --muted: #93a6c1;
+    --line: #23384f;
+    --blue: #7aa7ff;
+    --code-bg: #142a47;
+    --shadow: rgba(0, 0, 0, 0.5);
+  }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   line-height: 1.2em;
+  color: var(--ink);
 }
 
 .post-title {
   line-height: 1.2em;
+}
+
+.post-meta,
+.post-list-heading + .post-list .post-meta {
+  color: var(--muted);
 }
 
 .post-content h2 {
@@ -31,15 +75,68 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
+/* Links on the page body */
+a,
+a:visited {
+  color: var(--blue);
+}
+
+a:hover {
+  color: var(--blue);
+  opacity: 0.7;
+}
+
 .post-content a,
 .post-content a:visited {
-  color: #1F5FA8;
+  color: var(--blue);
 }
 
 .post-link {
-  line-height: 1.5em; 
+  line-height: 1.5em;
 }
 
+hr {
+  border-color: var(--line);
+}
+
+blockquote {
+  color: var(--muted);
+  border-left-color: var(--line);
+}
+
+/* Code */
+pre,
+code {
+  background-color: var(--code-bg);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.highlight,
+.highlighter-rouge .highlight {
+  background: var(--code-bg);
+}
+
+/* Tables */
+table {
+  color: var(--text);
+  border-color: var(--line);
+}
+
+table th {
+  background-color: var(--code-bg);
+  border-color: var(--line);
+}
+
+table td {
+  border-color: var(--line);
+}
+
+table tr:nth-child(even) {
+  background-color: var(--card);
+}
+
+/* Header: navy in both modes */
 .page-link {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
@@ -48,7 +145,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .site-header {
   border: none;
-  background-color: #00182F;
+  background-color: var(--navy);
 }
 
 .logo {
@@ -60,18 +157,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media screen and (max-width: 600px) {
+  .site-nav {
+    background-color: var(--card);
+    border-color: var(--line);
+  }
+
   .site-nav .page-link {
-    color: #111;
+    color: var(--ink);
   }
 }
 
-div.fixed-right {
-  padding: 0px 0px 25px 0px;
-}
-
+/* Footer: navy in both modes */
 .site-footer {
   border: none;
-  background-color: #00182F;
+  background-color: var(--navy);
+  color: #fff;
+}
+
+.site-footer h3 {
+  color: #fff;
+}
+
+.site-footer a,
+.site-footer a:visited,
+.site-footer a:hover {
+  color: var(--navy-link);
 }
 
 .footer-col-wrapper {
@@ -79,25 +189,17 @@ div.fixed-right {
 }
 
 .rss-subscribe {
-  color: #9ABFF0;
+  color: var(--navy-link);
   font-family: 'Poppins';
-}
-
-a {
-  color: #9ABFF0;
-}
-
-a:visited {
-  color: #9ABFF0;
-}
-
-a:hover {
-  color: #9ABFF0;
-  opacity: 0.7;
 }
 
 .svg-icon {
   fill: #fff;
+}
+
+/* Subscribe box */
+div.fixed-right {
+  padding: 0px 0px 25px 0px;
 }
 
 .fixed-right {
@@ -110,8 +212,14 @@ a:hover {
   max-height: 85vh;
 }
 
+.fixed-right input[type="email"],
+.fixed-right input[type="text"] {
+  background-color: var(--card);
+  color: var(--text);
+}
+
 .fixed-btn {
-  background: #9ABFF0;
+  background: var(--navy-link);
   width: 100%;
   height: 45px;
   line-height: 45px;
@@ -119,7 +227,7 @@ a:hover {
 }
 
 .fixed-btn:hover {
-  background: #9ABFF0;
+  background: var(--navy-link);
   width: 100%;
   height: 45px;
   line-height: 45px;
@@ -148,14 +256,18 @@ a:hover {
   div.fixed-right {
     box-sizing: border-box;
     padding: 18px;
-    background: #f3f6fa;
-    border: 1px solid #dbe3ec;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--line);
     border-top: 4px solid #1a56db;
     border-radius: 8px;
-    box-shadow: 0 6px 18px rgba(0, 24, 47, 0.12);
+    box-shadow: 0 6px 18px var(--shadow);
+  }
+
+  div.fixed-right h3 {
+    color: var(--ink);
   }
 }
-
 
 .footer-cta {
   color: #fff;
@@ -181,4 +293,42 @@ a:hover {
 
 .footer-cta-sep {
   padding: 0 6px;
+}
+
+/* Disqus: keep its iframe transparent so it sits on the page background */
+#disqus_thread iframe {
+  color-scheme: light;
+}
+
+/* ------------------------------------------------------------------
+   Dark-only tweaks
+   ------------------------------------------------------------------ */
+@media (prefers-color-scheme: dark) {
+  /* Post diagrams and screenshots were drawn for a white page */
+  .post-content img {
+    background-color: #ffffff;
+    border-radius: 6px;
+  }
+
+  /* Rouge syntax colours for a dark background */
+  .highlight {
+    color: #d6e1f1;
+
+    .c, .cm, .c1, .cs, .cd { color: #8b9bb4; font-style: italic; }
+    .cp { color: #9aa9bd; }
+    .err { color: #f87171; background-color: transparent; }
+    .k, .kc, .kd, .kn, .kp, .kr, .o, .ow { color: #c4a7ff; }
+    .kt { color: #7dd3fc; }
+    .s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr, .ss { color: #86efac; }
+    .m, .mf, .mh, .mi, .mo, .il { color: #fbbf72; }
+    .na, .nv, .vc, .vg, .vi { color: #7aa7ff; }
+    .nb, .bp { color: #7dd3fc; }
+    .nc, .ne, .nf, .nn, .nl { color: #f0abfc; }
+    .nt, .no, .ni, .nd { color: #7aa7ff; }
+    .gd { color: #fecaca; background-color: #3a1414; }
+    .gi { color: #bbf7d0; background-color: #0f2e1c; }
+    .gh, .gu, .gp, .go { color: #93a6c1; }
+    .gr, .gt { color: #f87171; }
+    .w { color: #5f7390; }
+  }
 }
