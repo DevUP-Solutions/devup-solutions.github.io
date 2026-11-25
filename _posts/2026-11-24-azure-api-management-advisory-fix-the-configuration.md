@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Microsoft Fixed the Platform. The Configuration Is Still Ours."
-description: "Microsoft's November advisory for Azure API Management Classic tiers names two conditions that decided who was exposed. Rotating the secrets closes the incident. It does not change why we were exposed."
+description: "Microsoft's November advisory for Azure API Management Classic tiers: network isolation decided who was exposed. Rotating the secrets closes the incident. It does not change why we were exposed."
+last_modified_at: 2026-11-25 12:00:00 +0100
 date: 2026-11-24 09:00:00 +0100
 categories: [Helium, Security]
 tags: [Azure, API Management, Security, Key Vault, Managed Identity, Network Isolation, Governance]
@@ -9,13 +10,15 @@ author: "Mattias Lögdberg"
 comments: true
 ---
 
+> **Update, 25 November.** Microsoft updated the advisory overnight, and two things I wrote yesterday were wrong. Key Vault did not keep anyone out: if an instance was not isolated, the Key Vault secrets it references need rotating too. And a private endpoint does not count as isolation, only a virtual network with the ports locked down does. On the good side, the Consumption tier was not affected after all. I have corrected the post below.
+
 For years, I have repeated the same advice in sessions, customer discussions, and our own work at DevUP:
 
 > Static keys are bad. Move to identities.
 
 On 22 November, Microsoft sent out a security advisory that reads like the reason why.
 
-If you run Azure API Management on a Classic tier, the short version is this: rotate the credentials stored in it this week. Then fix the two settings that decided whether you were exposed.
+If you run Azure API Management on a Classic tier (Developer, Basic, Standard or Premium), the short version is this: rotate the credentials it holds or points to this week. Then fix the setting that decided whether you were exposed.
 
 The first part is urgent. The second part is the one that matters.
 
@@ -23,7 +26,7 @@ The first part is urgent. The second part is the one that matters.
 
 Everything in this section comes from Microsoft's own notification, sent by email to affected customers and published as a security advisory in Azure Service Health (tracking ID MZK9-GH0).
 
-On 18 November 2026, Microsoft identified a security issue in the API Management Classic tiers. It could allow unauthorized access to certain management functionality, including secrets management, if the service was not configured according to Microsoft's [documented security best practices](https://learn.microsoft.com/azure/api-management/secure-api-management). Microsoft closed the access path on 19 November, with no action needed from customers. The v2 tiers were not affected.
+On 18 November 2026, Microsoft identified a security issue in the API Management Classic tiers. It could allow unauthorized access to certain management functionality, including secrets management, if the service was not configured according to Microsoft's [documented security best practices](https://learn.microsoft.com/azure/api-management/secure-api-management). Microsoft closed the access path on 19 November, with no action needed from customers. The v2 tiers were not affected, and in its 25 November update Microsoft confirmed that the Consumption tier was not affected either.
 
 That is a fast response, and it is Microsoft's side of the line.
 
@@ -39,18 +42,23 @@ Microsoft lists what could have been accessed:
 - Subscription keys
 - Tokens used to call the direct management APIs
 
-Each of those still works until somebody rotates it.
+Each of those still works until somebody rotates it. In the update, Microsoft added one more: secrets in Azure Key Vault that API Management references.
 
-## Who was exposed: two conditions, both ours
+## Who was exposed: one condition, and it is ours
 
-Microsoft names two configurations. If you run a Classic tier in either of them, your resources may have been accessed:
+The first notice named two things, secrets stored in API Management and missing network isolation. The update makes it simpler. Network isolation is what decided it. An instance was protected only if all of this was true before 19 November:
 
-- The instance lacks the network integration described in the [Network security](https://learn.microsoft.com/azure/api-management/secure-api-management#network-security) section of Microsoft's guidance.
-- Secrets are stored in API Management instead of in Azure Key Vault and referenced from there, as the [Data protection](https://learn.microsoft.com/azure/api-management/secure-api-management#data-protection) section recommends.
+- It was deployed in a virtual network, in internal or external mode.
+- Inbound 443 was blocked, limited to trusted IP addresses, or behind Application Gateway or Front Door that only let through requests for the gateway hostnames.
+- Inbound 3443 was open only to the ApiManagement service tag or trusted IP addresses.
 
-Neither of these is a Microsoft setting. Both are decisions we made, or decisions we postponed.
+A private endpoint is not on that list. Basic and Standard cannot be deployed in a virtual network at all, so they never met it.
 
-I understand how they happen. Putting a secret straight into a named value is the quickest way to get an API working. Then it works, and nobody goes back. Network isolation costs money and effort, so it waits for the next project.
+If an instance did not meet all three, everything it holds or points to should be treated as read. That includes the Key Vault secrets. Key Vault protects the secret at rest, but API Management can read it, and that was the access path.
+
+None of this is a Microsoft setting. It is a decision we made, or one we postponed.
+
+I understand how it happens. Network isolation costs money and effort, so it waits for the next project. Then everything works, and nobody goes back.
 
 Nobody acted badly. The configuration simply stayed where the first deadline left it.
 
@@ -59,7 +67,7 @@ Nobody acted badly. The configuration simply stayed where the first deadline lef
 Microsoft's recommended actions, in its order:
 
 1. Find your potentially impacted resources. They are listed under "Impacted Resources" on advisory MZK9-GH0 in Azure Service Health.
-2. Immediately find and rotate the credentials and secrets stored in those instances, using Microsoft's [rotation guide](https://aka.ms/apimcredrotation).
+2. Immediately find and rotate the credentials and secrets stored in those instances, and the Key Vault secrets they reference, using Microsoft's [rotation guide](https://aka.ms/apimcredrotation). Anything you already rotated after the first notice does not need rotating again.
 3. Check the systems those secrets give access to for unexpected activity, and review your logs as far back as your records allow.
 4. Consider migrating from the Classic tiers to v2, which was not affected.
 
@@ -77,9 +85,7 @@ az apim nv list --resource-group {rg} --service-name {apimName} \
   --output table
 ```
 
-Every row where `Secret` is true and `KeyVaultBacked` is false is a secret stored in API Management itself.
-
-That is the second condition in the advisory, as a list with names on it.
+If the instance was not isolated, every row where `Secret` is true goes on the rotation list, whether `KeyVaultBacked` is true or false. That is your list, with names on it.
 
 ## Rotation is cleanup. Configuration is prevention.
 
@@ -92,18 +98,18 @@ If the new secret goes back into a plain named value, on an instance that is sti
 The lasting fix is not my advice. It is the configuration in Microsoft's own [security guidance for API Management](https://learn.microsoft.com/azure/api-management/secure-api-management), the same document the advisory points to:
 
 - Secrets in Key Vault, referenced from API Management through a managed identity.
-- Network isolation, through a virtual network or a private endpoint with public access turned off.
+- Network isolation: a virtual network, with 443 and 3443 locked down.
 - Managed identities instead of keys when API Management calls a backend.
 
 ## Key Vault is the minimum, not the goal
 
-Microsoft's advisory draws the line at Key Vault. This is the one place where I go further than the advisory, so read it as my view and not Microsoft's.
+This is the one place where I go further than the advisory, so read it as my view and not Microsoft's. The update made the point for me, though.
 
 In [Every AI Agent Needs an Identity — and an Owner]({% post_url 2026-10-01-every-ai-agent-needs-an-identity %}) I wrote that a protected static key is still a static key. It still needs to be rotated. It can still be shared. It can still be stolen.
 
 The same is true here.
 
-A secret in Key Vault would have kept an instance outside the second condition. A backend called with a managed identity would have had no secret to read in the first place.
+A secret in Key Vault still had to be rotated. A backend called with a managed identity had no secret to read in the first place.
 
 > The goal is not to hide credentials better. The goal is to remove them wherever possible.
 
@@ -118,15 +124,15 @@ For each API Management instance, Helium flags:
 - secret named values that are not Key Vault references
 - credentials and certificates held in API Management instead of in Key Vault
 - instances without a managed identity
-- instances that are publicly reachable, with no virtual network and no private endpoint
+- instances that are not deployed in a virtual network, and instances with public access turned on
 - AI backends called with an API key instead of a managed identity
 - management API settings that still allow read-only access to secrets
 
 Each finding names the resource and comes with remediation steps. When it is fixed, the next scan confirms it.
 
-Helium does not detect whether a secret was read. It does not rotate credentials. Microsoft's guide and your own logs are still the answer to both.
+Helium does not detect whether a secret was read. It does not rotate credentials, and it does not read the rules on ports 443 and 3443. Microsoft's guide, your network security groups and your own logs are still the answer to those.
 
-What it does is keep the two conditions from this advisory visible every day, and not only in the week an advisory lands.
+What it does is keep this configuration visible every day, and not only in the week an advisory lands.
 
 ## We still own it
 
